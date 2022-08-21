@@ -17,6 +17,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { HomephotosComponent } from './components/home/homephotos/homephotos/homephotos.component';
 import { YoutubeplayerComponent } from './components/home/youtubeplayer/youtubeplayer/youtubeplayer.component';
 import { MapComponent } from './components/home/map/map/map.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MapComponent } from './components/home/map/map/map.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     YouTubePlayerModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

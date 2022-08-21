@@ -1,10 +1,20 @@
-export interface IRoom
+export interface Room
 {
-    title:string;
-    photoUtr:string;
-    price:number;
-
-    participant: Array<IParticipants>;
+    Id:number,
+    Title:string,
+    Description:string,
+    Duration:number,
+    Genre:number,
+    Capacity:number,
+    Difficulty:number,
+    HasActor:boolean,
+    Rating:number,
+    EscapeRate:number,
+    IsActive:boolean,
+    StartingPricePerPerson:number,
+    DiscountPerPerson:number,
+    ImageUrl:string,
+    VideoId:string
 }
 
 

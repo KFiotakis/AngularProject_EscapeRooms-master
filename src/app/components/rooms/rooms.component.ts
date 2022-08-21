@@ -1,7 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import sampledata from './Json/data.json';
-
+import { RoomService } from './room.service';
+ import { Room } from './roomsModels';
  
 @Component({
   selector: 'app-rooms',
@@ -10,11 +10,18 @@ import sampledata from './Json/data.json';
 })
 export class RoomsComponent implements OnInit {
 
+  Rooms!:Array<Room>;
 
-  Rooms: any = sampledata;
-  constructor() { }
+  constructor(private roomService:RoomService) { }
 
   ngOnInit(): void {
+    this.roomService.getRooms().subscribe(
+      {
+        next: response => this.Rooms = response,
+        error: e => console.log(e),
+        complete: () => console.log("petuxe")
+      }
+    )
   }
 
 }
