@@ -1,7 +1,7 @@
 .detailsImage {
     width: 100%;
     opacity: 1;
-    margin-bottom: 50%;
+   
     margin-top: 55px;
     padding: 0;
     outline: none;
@@ -14,4 +14,22 @@ img {
     }
     
     
-  
+
+
+  .textinImage{
+    position: absolute;
+    top: 50%;
+    right: 32%;
+    text-align: center;
+    transform: translate(20%, -40%);
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .card-text
+  {
+    display: inline-block;
+    margin-left: 100px;
+    font-size: medium;
+    color: rgba(252, 252, 252, 0.619);
+  }
