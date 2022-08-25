@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-youtubeplayer',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./youtubeplayer.component.css']
 })
 export class YoutubeplayerComponent implements OnInit {
+  
 
   slides = [
     {videoIds: "64NrDwoaYuU"},
@@ -21,6 +23,8 @@ export class YoutubeplayerComponent implements OnInit {
   ];
   slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
 
+  constructor() {
+  }
   
   
   slickInit(_e: any) {
@@ -38,9 +42,8 @@ export class YoutubeplayerComponent implements OnInit {
   beforeChange(_e: any) {
     console.log('beforeChange');
   }
-  constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }
+
+
