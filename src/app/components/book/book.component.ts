@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import data from "src/app/components/Json/data.json";
 
 @Component({
   selector: 'app-book',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-
+  Rooms : any = data;
   constructor() { }
 
   ngOnInit(): void {

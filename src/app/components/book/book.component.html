@@ -1,1 +1,49 @@
-<app-homephotos></app-homephotos>
+<div *ngFor="let room of Rooms "> 
+    
+    <div *ngIf="room.Id==2">
+        <img class="detailsImage w-100" src={{room.ImageUrl}}>
+
+        
+        <form style="background-color:rgb(32,38,50,50%); width:50%; border-radius: 5px; margin-left: 25%;     position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translate(-20%, -50%);">
+        
+            <h2 style="color: #d5b215;">Reservation Details for "{{room.Title}}"</h2>
+            <br>
+
+            <p>Firstname: <input  style="background-color: 
+                #a39f9f; border: none;"  type="text" placeholder="Write your First Name" required></p>
+            <p >Lastname:  <input style="background-color: 
+                #a39f9f; border: none;" type="text" placeholder="Write your Last Name" required></p>
+            <p>Game Date: <input style="background-color: 
+                #a39f9f; border: none; color:white;"  type="date"></p>
+            <p>Select Hours 
+            <select style="background-color: 
+            #a39f9f; border: none; color:white; text-align:center;">
+                <option>6pm-7pm</option>
+                <option>7pm-8pm</option>
+                <option>8pm-9pm</option>
+                <option>9pm-10pm</option>
+            </select>
+             </p>  
+             <p>Number of Players
+                <select style="background-color: 
+                #a39f9f; border: none; color:white;" >
+                    <option>{{room.Capacity-4}}</option>
+                    <option>{{room.Capacity-3}}</option>
+                    <option>{{room.Capacity-2}}</option>
+                    <option>{{room.Capacity-1}}</option>
+                    <option>{{room.Capacity}}</option>
+                </select>
+             </p> 
+             <p>Select Payment Method</p> 
+             <p class="fa fa-paypal"></p>
+             <p class="fa fa-btc "></p>
+             <br>
+          <input class="btn btn-primary" type="submit">
+          <input class="btn btn-warning" type="button" value="Go Back">
+
+        </form>
+    </div>
+</div>

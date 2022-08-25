@@ -1,6 +1,34 @@
-<img class="detailsImage w-100" src="https://www.escapeall.gr/Images/ServicesPhotos/41aec98d-5e02-46a8-92a0-58c88da31d07/8d0365b3-c72f-4d80-b8ae-800f11f971e6.jpg">
-
-
-<div class="container-fluid">
-
+<div *ngFor="let room of Rooms ">
+    <div *ngIf="room.Id==2">
+        <img class="detailsImage w-100" src={{room.ImageUrl}}>
+        <br>
+        <div class="textinImage active">
+            <p class="display-4" style="margin-top: 300px; color: #d5b251;">{{room.Title}}</p>
+            <hr>
+            <p class="card-text" *ngIf="room.Difficulty==0"><i class="fa fa-bomb" title="Difficulty: Begginer"></i></p>
+            <p class="card-text" *ngIf="room.Difficulty==1"><i class="fa fa-bomb"
+                    title="Difficulty: Intermediate"></i><i class="fa fa-bomb"></i></p>
+            <p class="card-text" *ngIf="room.Difficulty==2"> <i class="fa fa-bomb" title="Difficulty: Advanced"></i><i
+                    class="fa fa-bomb" title="Difficulty: Advanced"></i><i class="fa fa-bomb"
+                    title="Difficulty: Advanced"></i> </p>
+                    <p  class="card-text" *ngIf="room.HasActor==true"> <i class="fa fa-user-secret"></i> </p>
+            <p class="card-text"> <i class="fa fa-hourglass-end" aria-hidden="true"></i> {{room.Duration}} min </p>
+            <p class="card-text"> <i class="fa fa-users" aria-hidden="true"></i> up to {{room.Capacity}}</p>
+            <p class="card-text" *ngIf="room.Genre==0"><i class="fa fa-hashtag"></i>Horror</p>
+            <p class="card-text" *ngIf="room.Genre==1"><i class="fa fa-hashtag"></i>Comedy</p>
+            <p class="card-text" *ngIf="room.Genre==2"><i class="fa fa-hashtag"></i>Thriller</p>
+            <p class="card-text" *ngIf="room.Genre==3"><i class="fa fa-hashtag"></i>KidsFriendly</p>
+            <p class="card-text" *ngIf="room.Genre==4"><i class="fa fa-hashtag"></i>RolePlaying</p>
+            <p class="card-text" *ngIf="room.Genre==5"><i class="fa fa-hashtag"></i>SciFi</p>
+            <p class="card-text" *ngIf="room.Genre==6"><i class="fa fa-hashtag"></i>Mystery</p>
+            <p class="card-text"> <i class="fa fa-star"></i>{{room.Rating}}</p>
+            <hr>
+            <p>{{room.Description}}</p>
+            <youtube-player style="margin-top:200px;"  videoId="{{ room.VideoId }}" suggestedQuality="hd1080" [startSeconds]="0"> </youtube-player>
+            <br>
+            <div class="book-button">
+                <button routerLink="/Book" class="btn btn-success "> Book Now!</button>
+            </div>
+        </div>
+    </div>
 </div>

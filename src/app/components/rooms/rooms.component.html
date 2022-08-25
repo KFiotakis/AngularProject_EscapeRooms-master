@@ -24,14 +24,23 @@
 
       <h2 class="card-title">{{room.Title}}</h2>
       <hr>
-      <p class="card-text"  *ngIf="room.Difficulty==0"><i class="fa fa-bomb"></i></p>
-      <p class="card-text" *ngIf="room.Difficulty==1"><i class="fa fa-bomb"></i><i class="fa fa-bomb"></i></p>
-      <p class="card-text" *ngIf="room.Difficulty==2"> <i class="fa fa-bomb"></i><i class="fa fa-bomb"></i><i class="fa fa-bomb"></i> </p>
-      <p class="card-text"> <i class="fa fa-users" aria-hidden="true"></i>  up to {{room.Capacity}}</p>
-      <p class="card-text"> <i class="fa fa-hourglass-end" aria-hidden="true"></i> {{room.Duration}} min </p>
-      <p class="card-text"><i class="fa fa-hashtag" ></i>{{room.Genre}} </p>
+      <p class="card-text"  *ngIf="room.Difficulty==0"><i class="fa fa-bomb" title="Difficulty: Begginer"></i></p>
+      <p class="card-text" *ngIf="room.Difficulty==1"><i class="fa fa-bomb" title="Difficulty: Intermediate"></i><i class="fa fa-bomb"></i></p>
+      <p class="card-text" *ngIf="room.Difficulty==2"> 
+        <i class="fa fa-bomb" title="Difficulty: Advanced"></i><i class="fa fa-bomb"  title="Difficulty: Advanced"></i><i class="fa fa-bomb"  title="Difficulty: Advanced"></i> </p>
+      <p class="card-text"> <i class="fa fa-users" aria-hidden="true" title="Capacity"></i>  up to {{room.Capacity}}</p>
+      <p class="card-text"> <i class="fa fa-hourglass-end" aria-hidden="true" title="Game Duration"></i> {{room.Duration}} min </p>
+      <p class="card-text" *ngIf="room.Genre==0" ><i class="fa fa-hashtag" title="Genre" ></i>Horror</p>
+      <p class="card-text" *ngIf="room.Genre==1"><i class="fa fa-hashtag" title="Genre"></i>Comedy</p>
+      <p class="card-text" *ngIf="room.Genre==2"><i class="fa fa-hashtag" title="Genre"></i>Thriller</p>
+      <p class="card-text" *ngIf="room.Genre==3"><i class="fa fa-hashtag" title="Genre"></i>KidsFriendly</p>
+      <p class="card-text" *ngIf="room.Genre==4"><i class="fa fa-hashtag" title="Genre"></i>RolePlaying</p>
+      <p class="card-text" *ngIf="room.Genre==5"><i class="fa fa-hashtag" title="Genre"></i>SciFi</p>
+      <p class="card-text" *ngIf="room.Genre==6"><i class="fa fa-hashtag" title="Genre"></i>Mystery</p>
     
-      <a routerLink="/Details" class="btn btn-outline-danger">Room Details</a>
+       <a  routerLink="/Details" class="btn btn-outline-danger">Room Details</a>
+ 
+     
     </div>
   </div>
   

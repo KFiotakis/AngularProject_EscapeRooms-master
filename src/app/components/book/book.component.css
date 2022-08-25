@@ -1,0 +1,16 @@
+
+
+form{
+    margin-top: 50px;
+    text-align: center;
+    color:white;
+}
+input
+{
+    text-align: center;
+}
+
+::placeholder
+{
+    color:white;
+}

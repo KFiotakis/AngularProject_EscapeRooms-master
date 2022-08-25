@@ -17,17 +17,3 @@ export interface Room
     VideoId:string
 }
 
-
-export interface IParticipants
-{
-    groupName:string;
-    timesParticipated:number;
-} 
-
-export enum SortOptions
-{
-    titleisAsc = "titleisAsc",
-    titleisDesc = "titleisDesc",
-    groupisAsc = "groupisAsc",
-    groupisDesc = "groupisDesc"
-}
