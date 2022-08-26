@@ -19,6 +19,8 @@ import { YoutubeplayerComponent } from './components/home/youtubeplayer/youtubep
 import { MapComponent } from './components/home/map/map/map.component';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { RouterModule } from '@angular/router';
     HomephotosComponent,
     YoutubeplayerComponent,
     MapComponent,
-    HomephotosComponent
+    HomephotosComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { RouterModule } from '@angular/router';
     YouTubePlayerModule,
     SlickCarouselModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot
       ([
 
