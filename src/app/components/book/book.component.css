@@ -1,16 +1,47 @@
-
-
-form{
+form {
     margin-top: 50px;
     text-align: center;
-    color:white;
+    color: white;
+    background-color: rgb(32, 38, 50, 50%);
+    width: 50%;
+    border-radius: 5px;
+    margin-left: 25%;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-20%, -50%);
 }
-input
-{
+
+input {
+    text-align: center;
+    background-color:
+        #a39f9f;
+    border: none;
+}
+
+::placeholder {
+    color: white;
+}
+
+h2 {
+    color: #d5b215;
+}
+
+select {
+    background-color:
+        #a39f9f;
+    border: none;
+    color: white;
     text-align: center;
 }
 
-::placeholder
+.btn-primary
 {
-    color:white;
+    background-color: blue;
+    margin-right:30px;
+}
+
+.btn-warning
+{
+    background-color: yellow;
 }

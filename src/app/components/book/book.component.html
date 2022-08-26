@@ -1,49 +1,72 @@
 <div *ngFor="let room of Rooms "> 
-    
+  
     <div *ngIf="room.Id==2">
-        <img class="detailsImage w-100" src={{room.ImageUrl}}>
-
-        
-        <form style="background-color:rgb(32,38,50,50%); width:50%; border-radius: 5px; margin-left: 25%;     position: absolute;
-        top: 50%;
-        left: 10%;
-        transform: translate(-20%, -50%);">
-        
-            <h2 style="color: #d5b215;">Reservation Details for "{{room.Title}}"</h2>
+         
+      <div>
+       
+         <img class="detailsImage w-100" src={{room.ImageUrl}}> 
+      </div>
+       
+    
+        <form> 
+            <h2>Fill the Reservation Form <br>for "{{room.Title}}"</h2>
             <br>
 
-            <p>Firstname: <input  style="background-color: 
-                #a39f9f; border: none;"  type="text" placeholder="Write your First Name" required></p>
-            <p >Lastname:  <input style="background-color: 
-                #a39f9f; border: none;" type="text" placeholder="Write your Last Name" required></p>
-            <p>Game Date: <input style="background-color: 
-                #a39f9f; border: none; color:white;"  type="date"></p>
-            <p>Select Hours 
-            <select style="background-color: 
-            #a39f9f; border: none; color:white; text-align:center;">
+            <label>Firstname </label> 
+            <br>
+            <input  type="text" placeholder="Write your First Name" >
+            <br>
+            <br>
+            <label >Lastname </label>  
+            <br>
+            <input type="text" placeholder="Write your Last Name" >
+            <br>
+            <br>
+
+            <label>Game Date </label>
+            <br>
+            <input style="color:white"  type="date">
+            <br>
+            <br>
+
+            <label>Select Hours</label> 
+            <br>
+            <select>
                 <option>6pm-7pm</option>
                 <option>7pm-8pm</option>
                 <option>8pm-9pm</option>
                 <option>9pm-10pm</option>
             </select>
-             </p>  
-             <p>Number of Players
-                <select style="background-color: 
-                #a39f9f; border: none; color:white;" >
+              <br>
+              <br>
+
+             <label>Number of Players </label>
+                <select>
                     <option>{{room.Capacity-4}}</option>
                     <option>{{room.Capacity-3}}</option>
                     <option>{{room.Capacity-2}}</option>
                     <option>{{room.Capacity-1}}</option>
                     <option>{{room.Capacity}}</option>
                 </select>
-             </p> 
-             <p>Select Payment Method</p> 
+             <br>
+             <br>
+             <div>Select Payment Method 
+                <br>
              <p class="fa fa-paypal"></p>
              <p class="fa fa-btc "></p>
+             </div>
              <br>
-          <input class="btn btn-primary" type="submit">
-          <input class="btn btn-warning" type="button" value="Go Back">
+          <input class="btn btn-primary" (click)="submitdone()" type="button" value="Submit">
+          <input class="btn btn-warning" type="button" routerLink="/Details"  value="Go Back">
+          <br>
+          <br>
+       
+          <div *ngIf="alert"  class="alert alert-success"  role="alert">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>You can now proceed to payment!</p>
+          </div>
 
         </form>
     </div>
+    <router-outlet></router-outlet>
 </div>

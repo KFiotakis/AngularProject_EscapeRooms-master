@@ -8,9 +8,20 @@ import data from "src/app/components/Json/data.json";
 })
 export class BookComponent implements OnInit {
   Rooms : any = data;
-  constructor() { }
+  alert:boolean=false;
+
+
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
 
+  submitdone()
+  {
+    this.alert = !this.alert;
+  this.alert=true;
+  }
+  
+ 
 }
