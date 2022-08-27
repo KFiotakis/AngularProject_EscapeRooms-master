@@ -17,7 +17,7 @@ export class RoomsComponent implements OnInit {
   constructor(private roomService:RoomService) { }
 
   ngOnInit(): void {
-   /* this.roomService.getRooms().subscribe(
+   this.roomService.getRooms().subscribe(
       {
         next: response => {
           if (response) {
