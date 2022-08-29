@@ -11,17 +11,15 @@ import data from "../Json/data.json";
   styleUrls: ['./rooms.component.css']
 })
 export class RoomsComponent implements OnInit {
-  Rooms : any = data;
-  // Rooms!:Array<Room>;
   dt: any;
   dataDisplay: any;
-  
+  Rooms!:Array<Room>;
   
   constructor(private roomService:RoomService) { }
 
   ngOnInit(): void {
-    this.roomService.getRooms().subscribe(
-      /*{
+   /* this.roomService.getRooms().subscribe(
+      {
         next: response => {
           if (response) {
             hideloader();
@@ -31,10 +29,9 @@ export class RoomsComponent implements OnInit {
           this.dataDisplay = this.dt.data;},
         error: e => console.log(e),
         complete: () => console.log()
-      }*/
-    );}
-}
-/*
+      }
+    );
+
     // Function is defined
     function hideloader() {
   
@@ -50,4 +47,4 @@ export class RoomsComponent implements OnInit {
     
   }
 
-}*/
+}

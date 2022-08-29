@@ -21,7 +21,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { FormsModule } from '@angular/forms';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +47,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     SlickCarouselModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot
       ([
 
