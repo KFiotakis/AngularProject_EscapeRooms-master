@@ -1,5 +1,7 @@
-<div *ngFor="let room of Rooms ">
-    <div *ngIf="room.Id==2">
+<div *ngIf="room" >
+    
+    <div >
+
         <img class="detailsImage w-100" src={{room.ImageUrl}}>
         <br>
         <div class="textinImage active">
@@ -31,4 +33,3 @@
             </div>
         </div>
     </div>
-</div>

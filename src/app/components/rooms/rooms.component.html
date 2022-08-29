@@ -1,11 +1,11 @@
 
-      
+
 
 <app-homephotos></app-homephotos>
 
 <app-loading-spinner></app-loading-spinner>
 
-<div *ngFor="let room of Rooms " class="card-group vgr-cards">
+<div *ngFor="let room of Rooms" class="card-group vgr-cards">
 
 
   <div class="card">
@@ -18,13 +18,11 @@
         src={{room.ImageUrl}}>
     </div>
 
-
-    
     <div class="card-body">
 
       <h2 class="card-title">{{room.Title}}</h2>
       <hr>
-      <p class="card-text"  *ngIf="room.Difficulty==0"><i class="fa fa-bomb" title="Difficulty: Begginer"></i></p>
+      <p class="card-text"  *ngIf="room.Difficulty== 0"><i class="fa fa-bomb" title="Difficulty: Begginer"></i></p>
       <p class="card-text" *ngIf="room.Difficulty==1"><i class="fa fa-bomb" title="Difficulty: Intermediate"></i><i class="fa fa-bomb"></i></p>
       <p class="card-text" *ngIf="room.Difficulty==2"> 
         <i class="fa fa-bomb" title="Difficulty: Advanced"></i><i class="fa fa-bomb"  title="Difficulty: Advanced"></i><i class="fa fa-bomb"  title="Difficulty: Advanced"></i> </p>
@@ -38,7 +36,7 @@
       <p class="card-text" *ngIf="room.Genre==5"><i class="fa fa-hashtag" title="Genre"></i>SciFi</p>
       <p class="card-text" *ngIf="room.Genre==6"><i class="fa fa-hashtag" title="Genre"></i>Mystery</p>
     
-       <a  routerLink="/Details" class="btn btn-outline-danger">Room Details</a>
+       <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
  
      
     </div>

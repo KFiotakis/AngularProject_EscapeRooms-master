@@ -21,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { FormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     MapComponent,
     HomephotosComponent,
     LoadingSpinnerComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,13 +53,14 @@ import { FormsModule } from '@angular/forms';
 
         { path: "Home", component: HomeComponent },
         { path: "Rooms", component: RoomsComponent },
-        { path: "Details", component: DetailsComponent },
+        { path: "Rooms/:roomId", component: DetailsComponent },
         { path: "About", component: AboutComponent },
         { path: "Book", component: BookComponent },
         { path: "Contact", component: ContactComponent },
         { path: "Sign", component: SignComponent },
 
         { path: '', redirectTo: "/Home", pathMatch: 'full' },
+        { path: '**', component: PageNotFoundComponent }
 
 
       ])
