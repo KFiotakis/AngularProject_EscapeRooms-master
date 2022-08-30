@@ -1,52 +1,74 @@
-
-
-
 <app-homephotos></app-homephotos>
-
-<app-loading-spinner></app-loading-spinner>
 
 <div *ngFor="let room of Rooms" class="card-group vgr-cards">
 
 
   <div class="card">
-    <i class="fa fa-heart" title="Wish list!"></i>
-    <i *ngIf="room.HasActor==true" class="fa fa-user-secret" title="With Actor"></i>
-
-    <div  class="card-img-body">
-
-      <img class="card-img"
-        src={{room.ImageUrl}}>
+    <app-heart></app-heart>
+    <app-user-secret style=" position: absolute;
+    z-index: 1;
+    top:-25px;
+    right:700px;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgba(71, 123, 219, 0.847);" *ngIf="room.HasActor==true"></app-user-secret>
+    <div class="card-img-body">
+      <img class="card-img" src={{room.ImageUrl}}>
     </div>
 
     <div class="card-body">
-
       <h2 class="card-title">{{room.Title}}</h2>
       <hr>
-      <p class="card-text"  *ngIf="room.Difficulty== 0"><i class="fa fa-bomb" title="Difficulty: Begginer"></i></p>
-      <p class="card-text" *ngIf="room.Difficulty==1"><i class="fa fa-bomb" title="Difficulty: Intermediate"></i><i class="fa fa-bomb"></i></p>
-      <p class="card-text" *ngIf="room.Difficulty==2"> 
-        <i class="fa fa-bomb" title="Difficulty: Advanced"></i><i class="fa fa-bomb"  title="Difficulty: Advanced"></i><i class="fa fa-bomb"  title="Difficulty: Advanced"></i> </p>
-      <p class="card-text"> <i class="fa fa-users" aria-hidden="true" title="Capacity"></i>  up to {{room.Capacity}}</p>
-      <p class="card-text"> <i class="fa fa-hourglass-end" aria-hidden="true" title="Game Duration"></i> {{room.Duration}} min </p>
-      <p class="card-text" *ngIf="room.Genre==0" ><i class="fa fa-hashtag" title="Genre" ></i>Horror</p>
-      <p class="card-text" *ngIf="room.Genre==1"><i class="fa fa-hashtag" title="Genre"></i>Comedy</p>
-      <p class="card-text" *ngIf="room.Genre==2"><i class="fa fa-hashtag" title="Genre"></i>Thriller</p>
-      <p class="card-text" *ngIf="room.Genre==3"><i class="fa fa-hashtag" title="Genre"></i>KidsFriendly</p>
-      <p class="card-text" *ngIf="room.Genre==4"><i class="fa fa-hashtag" title="Genre"></i>RolePlaying</p>
-      <p class="card-text" *ngIf="room.Genre==5"><i class="fa fa-hashtag" title="Genre"></i>SciFi</p>
-      <p class="card-text" *ngIf="room.Genre==6"><i class="fa fa-hashtag" title="Genre"></i>Mystery</p>
-    
-       <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
- 
-     
+
+      <div style="text-align:center;" [ngSwitch]="room.Difficulty">
+        <p *ngSwitchCase="0">
+          <app-bomb title="Difficulty: Begginer"></app-bomb>
+        </p>
+        <p *ngSwitchCase="1">
+          <app-bomb title="Difficulty: Intermediate"></app-bomb>
+          <app-bomb title="Difficulty: Intermediate"></app-bomb>
+        </p>
+        <p *ngSwitchCase="2">
+          <app-bomb title="Difficulty: Advanced"></app-bomb>
+          <app-bomb title="Difficulty: Advanced"></app-bomb>
+          <app-bomb title="Difficulty: Advanced"></app-bomb>
+        </p>
+      </div>
+      <p class="card-text">
+        <app-users aria-hidden="true" title="Capacity"></app-users>up to {{room.Capacity}}
+      </p>
+      <p class="card-text">
+        <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
+      </p>
+
+      <div style="text-align:center;" [ngSwitch]="room.Genre">
+        <p *ngSwitchCase="0">
+          <app-hashtag title="Genre"></app-hashtag>Horror
+        </p>
+        <p *ngSwitchCase="1">
+          <app-hashtag title="Genre"></app-hashtag>Comedy
+        </p>
+        <p *ngSwitchCase="2">
+          <app-hashtag title="Genre"></app-hashtag>Thriller
+        </p>
+        <p *ngSwitchCase="3">
+          <app-hashtag title="Genre"></app-hashtag>KidsFriendly
+        </p>
+        <p *ngSwitchCase="4">
+          <app-hashtag title="Genre"></app-hashtag>RolePlaying
+        </p>
+        <p *ngSwitchCase="5">
+          <app-hashtag title="Genre"></app-hashtag>SciFi
+        </p>
+        <p *ngSwitchCase="6">
+          <app-hashtag title="Genre"></app-hashtag>Mystery
+        </p>
+      </div>
+      <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
+
     </div>
   </div>
-  
-  </div>
 
-
-
-
-
+</div>
 
 <router-outlet></router-outlet>

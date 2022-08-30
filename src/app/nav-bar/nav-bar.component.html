@@ -1,0 +1,38 @@
+<!--NavBar-->
+<div class="navbar-out" style="background-color:#1b1b1b">
+    <nav class="navbar fixed-top">
+      <ul class="nav">
+        <li>
+          <img class="nav-logo col-1"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJidQ4t0_bdv0PLVJ4TZx8xWC-F5t3xjelZQ&usqp=CAU">
+        </li>
+  
+        <li class="nav-item" >
+          <a class="nav-link" [routerLink]="['/Home']" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Home</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" [routerLink]="['/About']" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Rooms']" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Rooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Contact']" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Book']" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Book Now</a>
+        </li>
+        <li>
+          <div class="nav-button">
+            <button routerLink="/Sign" class="signin-btn btn btn-outline-danger "><i class="fa fa-user-circle"
+                aria-hidden="true"></i> Sign In/Sign Up</button>
+          </div>
+        </li>
+  
+      </ul>
+    </nav>

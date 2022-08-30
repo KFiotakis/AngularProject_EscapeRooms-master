@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RoomsComponent } from './components/rooms/rooms.component';
@@ -21,6 +21,14 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { FormsModule } from '@angular/forms';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeartComponent } from './fa-icons/heart/heart.component';
+import { UserSecretComponent } from './fa-icons/user-secret/user-secret.component';
+import { BombComponent } from './fa-icons/bomb/bomb.component';
+import { HashtagComponent } from './fa-icons/hashtag/hashtag.component';
+import { UsersComponent } from './fa-icons/users/users.component';
+import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.component';  
 
 @NgModule({
   declarations: [
@@ -38,6 +46,14 @@ import { FormsModule } from '@angular/forms';
     HomephotosComponent,
     LoadingSpinnerComponent,
     PageNotFoundComponent,
+    NavBarComponent,
+    FooterComponent,
+    HeartComponent,
+    UserSecretComponent,
+    BombComponent,
+    HashtagComponent,
+    UsersComponent,
+    HourglassEndComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +63,7 @@ import { FormsModule } from '@angular/forms';
     SlickCarouselModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    
     RouterModule.forRoot
       ([
 
@@ -61,7 +77,6 @@ import { FormsModule } from '@angular/forms';
 
         { path: '', redirectTo: "/Home", pathMatch: 'full' },
         { path: '**', component: PageNotFoundComponent }
-
 
       ])
 

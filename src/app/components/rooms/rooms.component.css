@@ -88,32 +88,7 @@
 
 /*Fa icons*/
 
-.fa-heart {
-    position: absolute;
-    z-index: 1;
-    top:-25px;
-    left:25px;
-    font-size: 22px;
-    cursor: pointer;
-    color:  rgba(255, 0, 0, 0.878);
-}
 
-.fa-user-secret
-{
-    position: absolute;
-    z-index: 1;
-    top:-25px;
-    right:700px;
-    font-size: 30px;
-    cursor: pointer;
-    color: rgba(71, 123, 219, 0.847);
-}
-
-.fa-bomb
-{
-    font-size: 30px;
-    cursor: pointer;
-}
 /* Perithorio apo dexia kai aristera gia mones kai zyges kartes*/
 
 
@@ -131,7 +106,7 @@
     }
     .fa-user-secret
     {
-        right:650px;
+        left:650px;
     }
   
   }

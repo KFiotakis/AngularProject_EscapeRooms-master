@@ -1,16 +1,15 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from './room.service';
-import { Room } from './roomsModels';
-import { HttpClient } from '@angular/common/http';
-import data from "../Json/data.json";
- 
+import data from "src/app/components/Json/data.json";
+import { RoomService } from 'src/app/components/rooms/room.service'; 
+import { Room } from 'src/app/components/rooms/roomsModels';
+
 @Component({
-  selector: 'app-rooms',
-  templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.css']
+  selector: 'app-user-secret',
+  templateUrl: './user-secret.component.html',
+  styleUrls: ['./user-secret.component.css']
 })
-export class RoomsComponent implements OnInit {
+export class UserSecretComponent implements OnInit {
+
   dt: any;
   dataDisplay: any;
   //Rooms!:Array<Room>;

@@ -13,6 +13,7 @@ export class DetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
  room: Room | undefined;
+ 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const roomIdFromRoute = Number(routeParams.get('roomId'));

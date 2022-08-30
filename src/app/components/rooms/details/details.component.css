@@ -1,35 +1,46 @@
 .detailsImage {
-    width: 100%;
-    opacity: 1;
-   
-    margin-top: 55px;
-    padding: 0;
-    outline: none;
-    background-size: cover;
-
+  width: 100%;
+  opacity: 0.55;
+  margin-top: 55px;
+  padding: 0;
+  background-size: cover;
 }
 
 img {
-    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), to(rgb(88, 88, 88, 0)));
-    }
-    
-    
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), to(rgb(88, 88, 88, 0)));
+}
 
+.textinImage {
+  position: absolute;
+  top: 50%;
+  right: 32%;
+  text-align: center;
+  transform: translate(20%, -40%);
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
-  .textinImage{
-    position: absolute;
-    top: 50%;
-    right: 32%;
-    text-align: center;
-    transform: translate(20%, -40%);
-    color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
+.textinImage p {
+  margin-top: 10px;
+}
 
-  .card-text
-  {
-    display: inline-block;
-    margin-left: 100px;
-    font-size: medium;
-    color: rgba(252, 252, 252, 0.619);
-  }
+.title
+{
+  margin-top: 300px; 
+  color: #d5b251;
+}
+
+.card-text {
+  display: inline-block;
+  margin-left: 100px;
+  font-size: medium;
+  color: rgba(252, 252, 252, 0.619);
+}
+
+.actor
+{
+  display: inline-block;
+  margin-left: 100px;
+  font-size: medium;
+  color: rgba(252, 252, 252, 0.619);
+}
