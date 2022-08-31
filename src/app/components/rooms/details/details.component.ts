@@ -15,7 +15,7 @@ export class DetailsComponent implements OnInit {
   dataDisplay: any;
   room: Room | undefined;
 
-  id = this.actRoute.snapshot.params['Id'];
+  id = this.actRoute.snapshot.params['roomId'];
 
   
 
