@@ -1,5 +1,7 @@
 <app-homephotos></app-homephotos>
 
+<app-loading-spinner></app-loading-spinner>
+
 <div *ngFor="let room of Rooms" class="card-group vgr-cards">
 
 
@@ -13,7 +15,7 @@
     cursor: pointer;
     color: rgba(71, 123, 219, 0.847);" *ngIf="room.HasActor==true"></app-user-secret>
     <div class="card-img-body">
-      <img class="card-img" src={{room.ImageUrl}}>
+      <img class="card-img" [title]="room.Title + ' relative image'" src={{room.ImageUrl}}>
     </div>
 
     <div class="card-body">
@@ -35,7 +37,7 @@
         </p>
       </div>
       <p class="card-text">
-        <app-users aria-hidden="true" title="Capacity"></app-users>up to {{room.Capacity}}
+        <app-users aria-hidden="true" title="Capacity"></app-users> up to {{room.Capacity}}
       </p>
       <p class="card-text">
         <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
@@ -43,25 +45,25 @@
 
       <div style="text-align:center;" [ngSwitch]="room.Genre">
         <p *ngSwitchCase="0">
-          <app-hashtag title="Genre"></app-hashtag>Horror
+          <app-hashtag title="Genre"></app-hashtag> Horror
         </p>
         <p *ngSwitchCase="1">
-          <app-hashtag title="Genre"></app-hashtag>Comedy
+          <app-hashtag title="Genre"></app-hashtag> Comedy
         </p>
         <p *ngSwitchCase="2">
-          <app-hashtag title="Genre"></app-hashtag>Thriller
+          <app-hashtag title="Genre"></app-hashtag> Thriller
         </p>
         <p *ngSwitchCase="3">
-          <app-hashtag title="Genre"></app-hashtag>KidsFriendly
+          <app-hashtag title="Genre"></app-hashtag> KidsFriendly
         </p>
         <p *ngSwitchCase="4">
-          <app-hashtag title="Genre"></app-hashtag>RolePlaying
+          <app-hashtag title="Genre"></app-hashtag> RolePlaying
         </p>
         <p *ngSwitchCase="5">
-          <app-hashtag title="Genre"></app-hashtag>SciFi
+          <app-hashtag title="Genre"></app-hashtag> SciFi
         </p>
         <p *ngSwitchCase="6">
-          <app-hashtag title="Genre"></app-hashtag>Mystery
+          <app-hashtag title="Genre"></app-hashtag> Mystery
         </p>
       </div>
       <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
@@ -70,5 +72,7 @@
   </div>
 
 </div>
+
+
 
 <router-outlet></router-outlet>

@@ -9,10 +9,18 @@ import { Room } from './roomsModels';
 export class RoomService {
 
   private URL = "https://localhost:44368/api/RoomApi";
+  private URL1 = "https://localhost:44368/api/RoomApi?roomid=";
 
-  getRooms(): Observable<Room[]> {
+  getRooms(): Observable<Room[]> 
+  {
     return this.httpService.get<Room[]>(this.URL);
   }
+
+  getRoom(id:string):Observable<Room>
+  {
+    return this.httpService.get<Room>(this.URL1 + id);
+  }
+
   
   constructor(private httpService:HttpClient) { }
 }

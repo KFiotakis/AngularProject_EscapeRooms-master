@@ -14,15 +14,11 @@
     border-radius: 4px;
     margin-left: 10%;
     margin-right: 10%;
-    
-   
-
 }
 
 
 /*Για κάθε φωτογραφία πως θα εμφανίζεται */
 .card-img-body {
-    
     flex: 2.20; 
     overflow: hidden;
     position: relative;
@@ -31,7 +27,6 @@
     margin-left: -0.5%;
     margin-right: -1%;
     box-shadow: 10px 10px 8px #00000069; 
-    
 }
 
 /*Link centered*/
@@ -46,7 +41,6 @@
 .card-title {
     text-align: center;
     letter-spacing: 2px;
-    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     color: #e74c3c;
 }
@@ -71,8 +65,6 @@
     height: 100%;
     width: 100%;
      object-fit: cover;
-      
-
 }
 
 .card-img:hover {

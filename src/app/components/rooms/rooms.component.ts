@@ -3,50 +3,54 @@ import { Component, OnInit } from '@angular/core';
 import { RoomService } from './room.service';
 import { Room } from './roomsModels';
 import { HttpClient } from '@angular/common/http';
-import data from "../Json/data.json";
- 
+
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
 export class RoomsComponent implements OnInit {
+
   dt: any;
   dataDisplay: any;
-  //Rooms!:Array<Room>;
-  Rooms : any = data;
-  constructor(private roomService:RoomService) { }
+  Rooms!: Array<Room>;
+
+  constructor(private roomService: RoomService) { }
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe(
-      /*{
+      {
         next: response => {
           if (response) {
             hideloader();
-        }
+          }
           this.Rooms = response;
           this.dt = response;
-          this.dataDisplay = this.dt.data;},
+          this.dataDisplay = this.dt.data;
+        },
         error: e => console.log(e),
-        complete: () => console.log()
-      }*/
+        complete: () => console.log(this.Rooms)
+      }
     );
-
     // Function is defined
-   /* function hideloader() {
-  
+    function hideloader() {
+
       // Setting display of spinner
       // element to none
       let ele = document.getElementById('loading');
-      if (ele){
+      if (ele) {
         ele.style.display = 'none';
       }
-      
+    }
+
   }
 
-    
-  }
 
-}*/
-  }
+
+
+
+
+
 }
+
+
