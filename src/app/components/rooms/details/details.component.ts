@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import data from "src/app/components/Json/data.json";
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../roomsModels';
 import { RoomService } from '../room.service';
@@ -17,11 +16,7 @@ export class DetailsComponent implements OnInit {
 
   id = this.actRoute.snapshot.params['roomId'];
 
-  
-
   constructor(private actRoute: ActivatedRoute, private roomService: RoomService) { }
-
-
 
   ngOnInit(): void {
     this.roomService.getRoom(this.id).subscribe(
@@ -35,8 +30,6 @@ export class DetailsComponent implements OnInit {
         complete: () => console.log(this.room)
       }
     );
-
-
   }
 
 

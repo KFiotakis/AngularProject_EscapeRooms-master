@@ -71,7 +71,7 @@ import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.co
         { path: "Rooms", component: RoomsComponent },
         { path: "Rooms/:roomId", component: DetailsComponent },
         { path: "About", component: AboutComponent },
-        { path: "Book", component: BookComponent },
+        { path: "Book/:roomId", component: BookComponent },
         { path: "Contact", component: ContactComponent },
         { path: "Sign", component: SignComponent },
 

@@ -1,20 +1,18 @@
-<div *ngFor="let room of Rooms "> 
+<div *ngIf="room"> 
   
-    <div *ngIf="room.Id==2">
+    <div>
          
       <div>
        
          <img class="detailsImage w-100" src={{room.ImageUrl}}> 
       </div>
-       
-    
         <form> 
             <h2>Fill the Reservation Form <br>for "{{room.Title}}"</h2>
             <br>
 
             <label>Firstname </label> 
             <br>
-            <input  type="text" placeholder="Write your First Name" >
+            <input  type="text"  placeholder="Write your First Name" >
             <br>
             <br>
             <label >Lastname </label>  

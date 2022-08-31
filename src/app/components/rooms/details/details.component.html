@@ -59,7 +59,7 @@
                 [startSeconds]="0"> </youtube-player>
             <br>
             <div class="book-button">
-                <button routerLink="/Book" class="btn btn-success "> Book Now!</button>
+                <button [routerLink]="['/Book',room.Id]" class="btn btn-success "> Book Now!</button>
             </div>
         </div>
     </div>
