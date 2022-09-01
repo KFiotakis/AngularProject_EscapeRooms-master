@@ -1,6 +1,6 @@
 
 
-/*Για τη κάθε κάρτα properties*/
+/*Για τη κάθε κάρτα properties
 .card {
     background-color: #bddcee;
     border: none;
@@ -15,9 +15,9 @@
     margin-left: 10%;
     margin-right: 10%;
 }
+*/
 
-
-/*Για κάθε φωτογραφία πως θα εμφανίζεται */
+/*Για κάθε φωτογραφία πως θα εμφανίζεται 
 .card-img-body {
     flex: 2.20; 
     overflow: hidden;
@@ -28,7 +28,7 @@
     margin-right: -1%;
     box-shadow: 10px 10px 8px #00000069; 
 }
-
+*/
 /*Link centered*/
 .card-body a {
     display: block;
@@ -75,6 +75,8 @@
 .card-body {
     flex: 2;
     padding: 1 0 0 3rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 
@@ -83,11 +85,6 @@
 
 /* Perithorio apo dexia kai aristera gia mones kai zyges kartes*/
 
-
- .card:nth-child(odd) .card-body {
-    padding-left: 5rem;
-    padding-right: 5rem;
-}
 
 @media only screen and (max-width: 1460px) {
 

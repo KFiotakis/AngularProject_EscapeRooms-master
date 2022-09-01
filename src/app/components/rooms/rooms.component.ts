@@ -1,8 +1,10 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from './room.service';
 import { Room } from './roomsModels';
-import { HttpClient } from '@angular/common/http';
+import { IWithActorSettings, WithActorSettings } from './roomSettings';
+import { ICardSettings, CardSettings } from './roomSettings';
+import { ICardImgBodySettings, CardImgBodySettings } from './roomSettings';
+
 
 @Component({
   selector: 'app-rooms',
@@ -14,6 +16,9 @@ export class RoomsComponent implements OnInit {
   dt: any;
   dataDisplay: any;
   Rooms!: Array<Room>;
+  AcSettings: IWithActorSettings = WithActorSettings;
+  CSettings: ICardSettings = CardSettings;
+  CImgSettings: ICardImgBodySettings = CardImgBodySettings;
 
   constructor(private roomService: RoomService) { }
 

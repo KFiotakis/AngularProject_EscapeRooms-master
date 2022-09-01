@@ -2,20 +2,22 @@
 
 <app-loading-spinner></app-loading-spinner>
 
-<div *ngFor="let room of Rooms" class="card-group vgr-cards">
-
-
-  <div class="card">
+<div *ngFor="let room of Rooms" class="card-group">
+  <div class="card" [style.border]="CSettings.border" [style.background-color]="CSettings.backColor"
+    [style.border-radius.px]="CSettings.borderRadius" [style.box-shadow]="CSettings.boxShadow"
+    [style.margin-top.px]="CSettings.marginTop" [style.margin-bottom.px]="CSettings.marginBot"
+    [style.margin-left.%]="CSettings.marginL" [style.margin-right.%]="CSettings.marginR"
+    [style.flex-flow]="CSettings.flexflow" [style.flex.%]="CSettings.flex" [style.display]="CSettings.display"
+    [style.cursor]="CSettings.cursor">
     <app-heart></app-heart>
-    <app-user-secret style=" position: absolute;
-    z-index: 1;
-    top:-25px;
-    right:700px;
-    font-size: 30px;
-    cursor: pointer;
-    color: rgba(71, 123, 219, 0.847);" *ngIf="room.HasActor==true"></app-user-secret>
-    <div class="card-img-body">
-      <img class="card-img" [title]="room.Title + ' relative image'" src={{room.ImageUrl}}>
+    <app-user-secret [style.position]="AcSettings.posAbsol" [style.z-index]="AcSettings.zIndex"
+      [style.top.px]="AcSettings.top" [style.right.px]="AcSettings.right" [style.font-size.px]="AcSettings.fontSize"
+      [style.cursor]="AcSettings.cursor" [style.color]="AcSettings.color" *ngIf="room.HasActor"></app-user-secret>
+    <div class="card-img-body" [style.flex]="CImgSettings.flex" [style.overflow]="CImgSettings.overflow"
+      [style.position]="CImgSettings.posRel" [style.height.%]="CImgSettings.height"
+      [style.margin-top.%]="CImgSettings.marginTop" [style.margin-left.%]="CImgSettings.marginL"
+      [style.margin-right.%]="CImgSettings.marginR" [style.box-shadow]="CImgSettings.boxShadow">
+      <img class="card-img" [title]="room.Title + ' relative image'" [src]="room.ImageUrl">
     </div>
 
     <div class="card-body">
@@ -72,6 +74,7 @@
   </div>
 
 </div>
+
 
 
 

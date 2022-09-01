@@ -1,7 +1,7 @@
 <div *ngIf="room">
 
     <div>
-        <img class="detailsImage w-100" src={{room.ImageUrl}}>
+        <img class="detailsImage w-100" [src]="room.ImageUrl">
         <br>
         <div class="textinImage active">
             <p class="title display-4">{{room.Title}}</p>
