@@ -6,7 +6,7 @@
        
          <img class="detailsImage w-100" src={{room.ImageUrl}}> 
       </div>
-        <form> 
+        <form action=""> 
             <h2>Fill the Reservation Form <br>for "{{room.Title}}"</h2>
             <br>
 
@@ -23,28 +23,28 @@
 
             <label>Game Date </label>
             <br>
-            <input style="color:white"  type="date">
+            <input style="color:white"  type="date" min="2022-09-03" max="2022-09-05">
+            <!-- <input type="time" min="" max="" value=""> -->
             <br>
             <br>
+            
 
             <label>Select Hours</label> 
             <br>
             <select>
-                <option>6pm-7pm</option>
-                <option>7pm-8pm</option>
-                <option>8pm-9pm</option>
-                <option>9pm-10pm</option>
+            <ng-container *ngFor="let type of timeArray">
+              <option [ngValue]="type.value" >
+                {{type.text}}
+              </option>
+             </ng-container>
             </select>
               <br>
               <br>
 
              <label>Number of Players </label>
                 <select>
-                    <option>{{room.Capacity-4}}</option>
-                    <option>{{room.Capacity-3}}</option>
-                    <option>{{room.Capacity-2}}</option>
-                    <option>{{room.Capacity-1}}</option>
-                    <option>{{room.Capacity}}</option>
+                    <option *ngFor="let item of fakeArray(room.Capacity)">{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
+                    
                 </select>
              <br>
              <br>

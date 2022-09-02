@@ -17,9 +17,21 @@ export class BookComponent implements OnInit {
   dataDisplay: any;
   room: Room | undefined;
 
+
+
+  timeArray:any=[
+    {value:"18:00",text:"18:00"},
+    {value:"20:00",text:"20:00"},
+    {value:"22:00",text:"22:00"},
+    {value:"12:00",text:"12:00"}
+    
+ ]
+
   id = this.actRoute.snapshot.params['roomId'];
 
-  constructor(private actRoute: ActivatedRoute, private roomService: RoomService) { }
+  constructor(private actRoute: ActivatedRoute, private roomService: RoomService) { 
+    
+  }
 
   ngOnInit(): void {
     this.roomService.getRoom(this.id).subscribe(
@@ -33,6 +45,26 @@ export class BookComponent implements OnInit {
         complete: () => console.log(this.room)
       }
     );
+  }
+
+  fakeArray(length: number): Array<number> {
+    var arr: number[] = [];
+    for (let i = 2 ; i <= length; i++){
+      arr.push(i);
+    }
+    return arr;
+  }
+
+  showTotalPrice(players : number): number{
+    
+    if (this.room){
+      var price = (players > 2 ? (this.room.StartingPricePerPerson * players) - (this.room.StartingPricePerPerson * players * this.room.DiscountPerPerson)
+                  : this.room.StartingPricePerPerson * players)
+      return Math.floor(price);
+    }
+    else {
+      return 0;
+    }
   }
 
   submitdone()
