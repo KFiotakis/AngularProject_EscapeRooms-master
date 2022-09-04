@@ -1,8 +1,11 @@
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import data from "src/app/components/Json/data.json";
 import { RoomService } from '../rooms/room.service';
 import { Room } from '../rooms/roomsModels';
+import { Book } from './bookModel';
+import { BookService } from './book.service';
 
 @Component({
   selector: 'app-book',
@@ -16,7 +19,7 @@ export class BookComponent implements OnInit {
   dt: any;
   dataDisplay: any;
   room: Room | undefined;
-
+  book!: Book;
 
 
   timeArray:any=[
@@ -29,7 +32,7 @@ export class BookComponent implements OnInit {
 
   id = this.actRoute.snapshot.params['roomId'];
 
-  constructor(private actRoute: ActivatedRoute, private roomService: RoomService) { 
+  constructor(private actRoute: ActivatedRoute, private roomService: RoomService, private bookService: BookService) { 
     
   }
 
@@ -47,7 +50,7 @@ export class BookComponent implements OnInit {
     );
   }
 
-  fakeArray(length: number): Array<number> {
+  getNumberOfPlayers(length: number): Array<number> {
     var arr: number[] = [];
     for (let i = 2 ; i <= length; i++){
       arr.push(i);
@@ -73,5 +76,28 @@ export class BookComponent implements OnInit {
   this.alert=true;
   }
   
- 
+  
+  CreateBookHandler(roomId:number,firstName:string, lastName:string, numberofPlayers:number,  gameDate:Date, gameHour:Time,){
+
+    console.log(roomId, firstName, numberofPlayers, gameDate, gameHour);
+
+    this.bookService.createBook(roomId, {FirstName:firstName, LastName:lastName, NumberofPlayers:numberofPlayers, GameDate:gameDate, GameHour:gameHour} as Book).subscribe(
+      {
+
+        next: response => console.log(response),
+
+        error : error => console.log(error),
+
+        complete: () => console.log("Petuxe")
+
+      }
+
+    )
+
+  }
+
+
+
+
+
 }

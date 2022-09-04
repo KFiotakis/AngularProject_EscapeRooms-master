@@ -12,18 +12,18 @@
 
             <label>Firstname </label> 
             <br>
-            <input  type="text"  placeholder="Write your First Name" >
+            <input #firstName type="text"  placeholder="Write your First Name" >
             <br>
             <br>
             <label >Lastname </label>  
             <br>
-            <input type="text" placeholder="Write your Last Name" >
+            <input #lastName type="text" placeholder="Write your Last Name" >
             <br>
             <br>
 
             <label>Game Date </label>
             <br>
-            <input style="color:white"  type="date" min="2022-09-03" max="2022-09-05">
+            <input #gameDate style="color:white"  type="date" min="2022-09-03" max="2022-09-05">
             <!-- <input type="time" min="" max="" value=""> -->
             <br>
             <br>
@@ -43,15 +43,17 @@
 
              <label>Number of Players </label>
                 <select>
-                    <option *ngFor="let item of fakeArray(room.Capacity)">{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
+                    <option #numberOfPlayers  *ngFor="let item of getNumberOfPlayers(room.Capacity)">{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
                     
                 </select>
              <br>
              <br>
-             <div>Select Payment Method 
+             <div>
+              <label>Select Payment Method </label>
                 <br>
-             <p class="fa fa-paypal"></p>
-             <p class="fa fa-btc "></p>
+              <p><input type="radio" name="paymentMethod" value="">Pay with cash</p> 
+               <p><input type="radio" name="paymentMethod" value="">Pay with PayPal<span class="fa fa-paypal"></span></p>
+               <!-- <p class="fa fa-btc "></p> -->
              </div>
              <br>
           <input class="btn btn-primary" (click)="submitdone()" type="button" value="Submit">
@@ -68,3 +70,8 @@
     </div>
     <router-outlet></router-outlet>
 </div>
+
+
+
+
+<!-- <button (click)="CreateBookHandler(roomId = room.Id, firstName.value, lastName.value, numberOfPlayers.valueAsNumber, gameDate, gameTime)" class="btn btn-sm btn-primary">Create</button>  -->
