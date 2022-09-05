@@ -77,11 +77,12 @@ export class BookComponent implements OnInit {
   }
   
   
-  CreateBookHandler(roomId:number,firstName:string, lastName:string, numberofPlayers:number,  gameDate:Date, gameHour:Time,){
+  CreateBookHandler(roomId:number, firstName:string, lastName:string, numberofPlayers:string,  gameDate:Date, gameHour:string,){
 
+    if (this.room)
     console.log(roomId, firstName, numberofPlayers, gameDate, gameHour);
 
-    this.bookService.createBook(roomId, {FirstName:firstName, LastName:lastName, NumberofPlayers:numberofPlayers, GameDate:gameDate, GameHour:gameHour} as Book).subscribe(
+    this.bookService.createBook({RoomId: roomId, FirstName:firstName, LastName:lastName, NumberofPlayers:numberofPlayers, GameDate:gameDate, GameHour:gameHour} as Book).subscribe(
       {
 
         next: response => console.log(response),

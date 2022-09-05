@@ -31,7 +31,7 @@
 
             <label>Select Hours</label> 
             <br>
-            <select>
+            <select #gameTime>
             <ng-container *ngFor="let type of timeArray">
               <option [ngValue]="type.value" >
                 {{type.text}}
@@ -42,8 +42,8 @@
               <br>
 
              <label>Number of Players </label>
-                <select>
-                    <option #numberOfPlayers  *ngFor="let item of getNumberOfPlayers(room.Capacity)">{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
+                <select #numberOfPlayers>
+                    <option  *ngFor="let item of getNumberOfPlayers(room.Capacity)" [ngValue]="item">{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
                     
                 </select>
              <br>
@@ -66,6 +66,8 @@
             <p>You can now proceed to payment!</p>
           </div>
 
+          <button *ngIf="room && gameDate" (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, numberOfPlayers.value ,gameDate.valueAsDate!, gameTime.value )" class="btn btn-sm btn-primary">Create</button> 
+
         </form>
     </div>
     <router-outlet></router-outlet>
@@ -74,4 +76,3 @@
 
 
 
-<!-- <button (click)="CreateBookHandler(roomId = room.Id, firstName.value, lastName.value, numberOfPlayers.valueAsNumber, gameDate, gameTime)" class="btn btn-sm btn-primary">Create</button>  -->

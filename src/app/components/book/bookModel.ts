@@ -6,9 +6,9 @@ export interface Book
     RoomId:number,
     FirstName:string,
     LastName:string,
-    NumberofPlayers:number,
+    NumberofPlayers:string,
     GameDate:Date,
-    GameHour:Time
+    GameHour:string,
     TotalPrice:number,
     IsPayed:boolean,
     Email:string,
