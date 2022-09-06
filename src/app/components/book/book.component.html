@@ -23,13 +23,13 @@
 
             <label>Game Date </label>
             <br>
-            <input #gameDate style="color:white"  type="date" min="2022-09-03" max="2022-09-05">
-            <!-- <input type="time" min="" max="" value=""> -->
+            <input #gameDate style="color:white"  type="date" min="2022-09-03" max="2022-09-05"> -->
+            <input #gameHour type="time" min="" max="" value="">
             <br>
             <br>
             
 
-            <label>Select Hours</label> 
+            <!-- <label>Select Hours</label> 
             <br>
             <select #gameTime>
             <ng-container *ngFor="let type of timeArray">
@@ -37,7 +37,7 @@
                 {{type.text}}
               </option>
              </ng-container>
-            </select>
+            </select> -->
               <br>
               <br>
 
@@ -49,10 +49,10 @@
              <br>
              <br>
              <div>
-              <label>Select Payment Method </label>
+              <!-- <label>Select Payment Method </label>
                 <br>
               <p><input type="radio" name="paymentMethod" value="">Pay with cash</p> 
-               <p><input type="radio" name="paymentMethod" value="">Pay with PayPal<span class="fa fa-paypal"></span></p>
+               <p><input type="radio" name="paymentMethod" value="">Pay with PayPal<span class="fa fa-paypal"></span></p> -->
                <!-- <p class="fa fa-btc "></p> -->
              </div>
              <br>
@@ -66,8 +66,8 @@
             <p>You can now proceed to payment!</p>
           </div>
 
-          <button *ngIf="room && gameDate" (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, numberOfPlayers.value ,gameDate.valueAsDate!, gameTime.value )" class="btn btn-sm btn-primary">Create</button> 
-
+          <!-- <button *ngIf="room && gameDate" (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, numberOfPlayers.value ,gameDate.valueAsDate!, gameTime.value )" class="btn btn-sm btn-primary">Create</button>  -->
+          <button *ngIf="room" (click)="CreateBookHandler(room.Id, firstName.value,lastName.value,gameDate.valueAsDate!,gameHour.value,numberOfPlayers.value)" class="btn btn-sm btn-primary">Create</button>
         </form>
     </div>
     <router-outlet></router-outlet>
