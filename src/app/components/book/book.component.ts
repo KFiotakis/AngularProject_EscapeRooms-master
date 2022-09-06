@@ -77,12 +77,34 @@ export class BookComponent implements OnInit {
   }
   
   
-  CreateBookHandler(roomId:number, firstName:string, lastName:string, numberofPlayers:string,  gameDate:Date, gameHour:string,){
+  // CreateBookHandler(roomId:number, firstName:string, lastName:string, numberofPlayers:string,  gameDate:Date, gameHour:string,){
+
+  //   if (this.room)
+  //   console.log(roomId, firstName, numberofPlayers, gameDate, gameHour);
+
+  //   this.bookService.createBook({RoomId: roomId, FirstName:firstName, LastName:lastName, NumberofPlayers:numberofPlayers, GameDate:gameDate, GameHour:gameHour} as Book).subscribe(
+  //     {
+
+  //       next: response => console.log(response),
+
+  //       error : error => console.log(error),
+
+  //       complete: () => console.log("Petuxe")
+
+  //     }
+
+  //   )
+
+  // }
+  CreateBookHandler(roomId:number, firstName:string,lastName:string,gameDate:Date,gameHour:string,numberofPlayers:string){
 
     if (this.room)
-    console.log(roomId, firstName, numberofPlayers, gameDate, gameHour);
+    console.log(roomId, firstName,lastName,gameDate,numberofPlayers,gameHour);
 
-    this.bookService.createBook({RoomId: roomId, FirstName:firstName, LastName:lastName, NumberofPlayers:numberofPlayers, GameDate:gameDate, GameHour:gameHour} as Book).subscribe(
+    var kati = numberofPlayers.substring(0,1);
+    console.log(kati);
+
+    this.bookService.createBook({RoomId: roomId, FirstName:firstName,LastName:lastName,GameDate:gameDate,NumberofPlayers:+kati,GameHour:gameHour} as Book).subscribe(
       {
 
         next: response => console.log(response),

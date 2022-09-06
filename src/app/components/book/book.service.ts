@@ -11,7 +11,7 @@ export class BookService {
 
   book! : Book;
   
-  private URL = "https://localhost:44368/Reservation/MakeReservation?roomId=1"
+  private URL = "https://localhost:44379/api/ReservationApi"
 
   httpOptions = {
      headers: new HttpHeaders({ 'content-Type': 'application/json' })
