@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Room } from 'src/app/components/rooms/roomsModels';
+import { RoomService } from 'src/app/components/rooms/room.service';
 
 @Component({
   selector: 'app-youtubeplayer',
@@ -7,43 +9,42 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./youtubeplayer.component.css']
 })
 export class YoutubeplayerComponent implements OnInit {
+  dt: any;
+  dataDisplay: any;
+  Rooms!: Array<Room>;
   
 
-  slides = [
-    {videoIds: "64NrDwoaYuU"},
-    {videoIds: "1beRQ5WqrPo"},
-    {videoIds: "wezggys53KM"},
-    {videoIds: "-bVS5uHamck"},
-    {videoIds: "0i85CJilgdQ"},
-    {videoIds: "Tj1Chebkz68"},
-    {videoIds: "LuNhlOziCzc"},
-    {videoIds: "asaREiqt-7M"},
-    {videoIds: "mWdqJfjOP8w"},
-    {videoIds: "1TACbGt9dO4"}
-  ];
   slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
 
-  constructor() {
+  constructor(private roomService: RoomService) {
   }
   
-  
-  slickInit(_e: any) {
-    console.log('slick initialized');
-  }
-    
-  breakpoint(_e: any) {
-    console.log('breakpoint');
-  }
-    
-  afterChange(_e: any) {
-    console.log('afterChange');
-  }
-    
-  beforeChange(_e: any) {
-    console.log('beforeChange');
+
+  ngOnInit(): void { this.roomService.getRooms().subscribe(
+    {
+      next: response => {
+        if (response) {
+          hideloader();
+        }
+        this.Rooms = response;
+        this.dt = response;
+        this.dataDisplay = this.dt.data;
+      },
+      error: e => console.log(e),
+      complete: () => console.log(this.Rooms)
+    }
+  );
+  // Function is defined
+  function hideloader() {
+
+    // Setting display of spinner
+    // element to none
+    let ele = document.getElementById('loading');
+    if (ele) {
+      ele.style.display = 'none';
+    }
   }
 
-  ngOnInit(): void { }
 }
 
-
+}
