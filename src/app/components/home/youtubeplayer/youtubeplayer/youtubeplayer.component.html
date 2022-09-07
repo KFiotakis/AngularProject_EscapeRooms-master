@@ -1,6 +1,6 @@
 <div class="check">
     <h3>Check Out Our Videos! <i class="fa fa-youtube-play"></i></h3>
-    
+    <app-loading-spinner></app-loading-spinner>
 
     
     <br>
@@ -10,7 +10,7 @@
                             [config]="slideConfig" 
                             
                             >
-                            <app-loading-spinner></app-loading-spinner>
+                            
                             <div ngxSlickItem *ngFor="let room of Rooms" class="slide" style="height: 390px; width:80%;" >
 
 
