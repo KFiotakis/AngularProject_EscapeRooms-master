@@ -18,7 +18,7 @@ Cheers, Darjan!
                             <p>Login your details to start<br>your journey.</p>
                         </div> 
                         <div class="heroSignInButton">   
-                            <button class="buttonHeroSignIn" onclick="signIn()">SIGN IN</button>
+                            <button class="buttonHeroSignIn" (click)="signIn()">SIGN IN</button>
                         </div>
                     </div>
                 </div>
@@ -74,24 +74,12 @@ Cheers, Darjan!
                             <hr>
                             <p>Enter your personal details<br>and start your journey.</p>
                         </div> 
-                        <div class="heroSignUpButton" onclick="signUp()">   
+                        <div class="heroSignUpButton" (click)="signUp()">   
                             <button class="buttonHeroSignUp">SIGN UP</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>     
-        
-        <script src="script.js">
-            function signUp() {
-    let element = document.getElementById("container_SignIn");
-    element.classList.add("myStyle");
-}
-
-function signIn() {
-    let element = document.getElementById("container_SignIn");
-    element.classList.remove("myStyle");
-}
-        </script>
     </body>
    
