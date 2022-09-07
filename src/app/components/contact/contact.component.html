@@ -1,6 +1,82 @@
 <app-homephotos></app-homephotos>
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact" #contact="ngModelGroup">
+        <div class="form-group">
+            <label class="labels" for="firstName">First Name</label>
+            <input 
+                required 
+                minlength="3" 
+                ngModel 
+                name="firstName" 
+                #firstName="ngModel" 
+                (change)="log(firstName)" 
+                id="firstName" 
+                type="text" 
+                class="form-control" 
+                placeholder="Type your first name">
+            <div 
+                class="alert alert-danger" 
+                *ngIf="firstName.touched && !firstName.valid">
+            <div  *ngif="firstName.errors.required">
+                    First Name is required
+                </div>
+                <div *ngif="firstName.errors.minlength">
+                    First Name should contain minimun 3 characters
+                </div>
+            </div>
+        </div>
+    </div>
 
-<section class="ftco-section">
+<div class="form-group">
+    <label class="labels" for="lastName">Last Name</label>
+    <input 
+        required 
+        minlength="3" 
+        maxlength="20" 
+        ngModel name="lastName" 
+        #lastName="ngModel" 
+        (change)="log(lastName)" 
+        id="lastName" 
+        type="text" 
+        class="form-control" 
+        placeholder="Type your last name">
+    <div 
+        class="alert alert-danger" 
+        *ngIf="lastName.touched && !lastName.valid">
+            Last Name is required
+    </div>
+</div>
+<div class="form-group">
+    <label class="labels" for="comment">Comment</label>
+<textarea 
+    ngModel name="comment"  
+    id="comment" 
+    cols="30" 
+    rows="10" 
+    class="form-control" 
+    placeholder="Leave us your comment ">
+</textarea>
+</div>
+<div class="checkobox">
+    <label class="labels">
+        <input type="checkbox"  ngModel name="isSubscribed" >Subscribe to mailing list
+    </label> 
+</div>
+<div class="form-group">
+    <label for="contactMethod">Contact Method</label>
+    <select multiple ngModel name="contactMethod" id="contactMethod" class="form-control">
+        <option value=""></option>
+        <option *ngFor="let method of contactMethods" [value]="method.id">{{method.name}}</option>        
+    </select>
+</div>       
+<p class="labels">
+    {{f.value | json}}
+</p>                      
+<button class="btn btn-primary" [disabled]="!f.valid" >Submit</button>
+
+</form> 
+
+<!-- <section class="ftco-section">
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-md-6 text-center mb-5">
@@ -89,4 +165,4 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
