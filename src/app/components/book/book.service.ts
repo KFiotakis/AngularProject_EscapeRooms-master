@@ -10,21 +10,30 @@ import { Book } from './bookModel';
 export class BookService {
 
 
-  private URL = "https://localhost:44368/Reservation/MakeReservation?roomId="
+  private URL = "https://localhost:44368/api/ReservationApi"
+  private URLpay = "https://localhost:44368/PayPalApi/CreatePayment"
 
   httpOptions = {
      headers: new HttpHeaders({ 'content-Type': 'application/json' })
   }
   
-// geiaaaaaaaaa
 
- createBook(roomId: number, book:Book): Observable<Book> {
+ createBook(book:Book): Observable<Book> {
     
-    return this.httpService.post<Book>(this.URL + roomId, book, this.httpOptions)
+    return this.httpService.post<Book>(this.URL, book, this.httpOptions)
 }
+
+
+payBook(book:Book): Observable<Book> {
+    
+  return this.httpService.post<Book>(this.URLpay, book, this.httpOptions)
+}
+
 
   constructor(private httpService: HttpClient) { }
 }
+
+
 
 
 
