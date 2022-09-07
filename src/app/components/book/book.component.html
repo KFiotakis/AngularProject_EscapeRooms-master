@@ -12,47 +12,44 @@
 
             <label>Firstname </label> 
             <br>
-            <input #firstName type="text"  placeholder="Write your First Name" >
+            <input #firstName type="text"  placeholder="Write your First Name" />
             <br>
             <br>
             <label >Lastname </label>  
             <br>
-            <input #lastName type="text" placeholder="Write your Last Name" >
+            <input #lastName type="text" placeholder="Write your Last Name" />
             <br>
             <br>
 
             <label>Game Date </label>
             <br>
-            <input #gameDate style="color:white"  type="date" min="2022-09-03" max="2022-09-05"> -->
-            <input #gameHour type="time" min="" max="" value="">
+            <input #gameDate style="color:white"  type="date" min="2022-09-03" max="2022-09-20"/>
+            
             <br>
             <br>
             
 
             <!-- <label>Select Hours</label> 
             <br>
+           
+
             <select #gameTime>
-            <ng-container *ngFor="let type of timeArray">
-              <option [ngValue]="type.value" >
-                {{type.text}}
-              </option>
-             </ng-container>
-            </select> -->
+              <option  *ngFor="let dateObj of getTimeArray(room.Duration)">{{ dateObj | date:'shortTime' }}</option>
+            </select>
               <br>
               <br>
 
              <label>Number of Players </label>
                 <select #numberOfPlayers>
-                    <option  *ngFor="let item of getNumberOfPlayers(room.Capacity)" [ngValue]="item">{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
-                    
+                    <option *ngFor="let item of getNumberOfPlayers(room.Capacity)" >{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
                 </select>
              <br>
              <br>
              <div>
               <!-- <label>Select Payment Method </label>
                 <br>
-              <p><input type="radio" name="paymentMethod" value="">Pay with cash</p> 
-               <p><input type="radio" name="paymentMethod" value="">Pay with PayPal<span class="fa fa-paypal"></span></p> -->
+              <p><input type="radio"  [(ngModel)]="paymentMethod" name="paymentMethod" value="">Pay with cash</p> 
+               <p><input type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="">Pay with PayPal<span class="fa fa-paypal"></span></p>
                <!-- <p class="fa fa-btc "></p> -->
              </div>
              <br>
@@ -65,9 +62,9 @@
             <h4 class="alert-heading">Well done!</h4>
             <p>You can now proceed to payment!</p>
           </div>
+         
 
-          <!-- <button *ngIf="room && gameDate" (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, numberOfPlayers.value ,gameDate.valueAsDate!, gameTime.value )" class="btn btn-sm btn-primary">Create</button>  -->
-          <button *ngIf="room" (click)="CreateBookHandler(room.Id, firstName.value,lastName.value,gameDate.valueAsDate!,gameHour.value,numberOfPlayers.value)" class="btn btn-sm btn-primary">Create</button>
+          <button (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, gameDate.valueAsDate!, numberOfPlayers.value, gameTime.value)" class="btn btn-sm btn-primary">Book Now</button> 
         </form>
     </div>
     <router-outlet></router-outlet>
