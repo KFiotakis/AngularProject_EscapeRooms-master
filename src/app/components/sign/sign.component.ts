@@ -12,4 +12,16 @@ export class SignComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  signUp() {
+    let element = document.getElementById("container_SignIn");
+    if (element)
+    element.classList.add("myStyle");
+}
+
+  signIn() {
+    let element = document.getElementById("container_SignIn");
+    if (element)
+    element.classList.remove("myStyle");
+}
+
 }

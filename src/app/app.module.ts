@@ -29,7 +29,6 @@ import { BombComponent } from './fa-icons/bomb/bomb.component';
 import { HashtagComponent } from './fa-icons/hashtag/hashtag.component';
 import { UsersComponent } from './fa-icons/users/users.component';
 import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.component';  
-import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -64,7 +63,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     SlickCarouselModule,
     HttpClientModule,
     FormsModule,
-    NgSelectModule,
     RouterModule.forRoot
       ([
 
