@@ -1,63 +1,101 @@
-<p class="tip">Click on button in image container</p>
-<div class="cont">
-  <div class="form sign-in">
-    <h2>Welcome back,</h2>
-    <label>
-      <span>Email</span>
-      <input type="email" />
-    </label>
-    <label>
-      <span>Password</span>
-      <input type="password" />
-    </label>
-    <p class="forgot-pass">Forgot password?</p>
-    <button type="button" class="submit">Sign In</button>
-    <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
-  </div>
-  <div class="sub-cont">
-    <div class="img">
-      <div class="img__text m--up">
-        <h2>New here?</h2>
-        <p>Sign up and discover great amount of new opportunities!</p>
-      </div>
-      <div class="img__text m--in">
-        <h2>One of us?</h2>
-        <p>If you already has an account, just sign in. We've missed you!</p>
-      </div>
-      <div class="img__btn">
-        <span class="m--up">Sign Up</span>
-        <span class="m--in">Sign In</span>
-      </div>
-    </div>
-    <div class="form sign-up">
-      <h2>Time to feel like home,</h2>
-      <label>
-        <span>Name</span>
-        <input type="text" />
-      </label>
-      <label>
-        <span>Email</span>
-        <input type="email" />
-      </label>
-      <label>
-        <span>Password</span>
-        <input type="password" />
-      </label>
-      <button type="button" class="submit">Sign Up</button>
-      <button type="button" class="fb-btn">Join with <span>facebook</span></button>
-    </div>
-  </div>
-</div>
+<!-- 
+Hello! Thank you for stopping by!
+Don't forget to follow me on: 
+Dribbble: https://dribbble.com/gardiandesign and 
+LinkedIn: https://www.linkedin.com/in/darjan-gardinovacki-602252132/
+Cheers, Darjan!
+-->   
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<body>
+        <div class="container_SignUp">
+         <!-- Sign In - Hero Image -->
+            <div class="heroSignInBackground">
+                <div class="heroSignInBackgroundOverlay">
+                    <div class="containerHeroSignIn">
+                        <div class="signInContent">
+                            <h1>Hello friend, welcome!</h1>
+                            <hr>
+                            <p>Login your details to start<br>your journey.</p>
+                        </div> 
+                        <div class="heroSignInButton">   
+                            <button class="buttonHeroSignIn" onclick="signIn()">SIGN IN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sign Up - Form --> 
+            <div class="containerSignUp">
+                <div class="socialIcons">
+                    <h1>Create Account</h1>
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="containerFormSignUp">
+                    <form action="#">
+                        <span class ="title">or use your email for registration:</span>
+                        <input type="text" placeholder="Name" />
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                    </form>
+                </div>
+                <div class="formSignUpButton">
+                    <button class="buttonFormSignUp">SIGN UP</button>
+                </div>
+           </div>
+        </div>
+        <div class="container_SignIn" id="container_SignIn">
+            <!-- Sign In - Form -->
+            <div class="containerSignIn">
+                <div class="socialIcons">
+                    <h1>Sign In</h1>
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="containerFormSignIn">
+                    <form action="#">
+                        <span class ="title">or use your email account:</span>
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <a href="#">forgot your password?</a>
+                    </form>
+                </div>
+                <div class="formSignInButton">
+                    <button class="buttonFormSignIn">SIGN IN</button>
+                </div>
+            </div>
+            <!-- Sign Up - Hero Image -->
+            <div class="heroSignUpBackground" id="containerHeroSignUp">
+                <div class="heroSignUpBackgroundOverlay">
+                    <div class="containerHeroSignUp">
+                        <div class="signUpContent">
+                            <h1>Not a member?</h1>
+                            <hr>
+                            <p>Enter your personal details<br>and start your journey.</p>
+                        </div> 
+                        <div class="heroSignUpButton" onclick="signUp()">   
+                            <button class="buttonHeroSignUp">SIGN UP</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <footer>
+            <p>Design & Code by<a href="https://www.gardiandesign.com" target="_blank">Darjan Gardinovacki</a>- 2019</p>
+            </footer>
+        <script src="script.js"></script>
+    </body>
+    <script>
 
-<a href="https://dribbble.com/shots/3306190-Login-Registration-form" target="_blank" class="icon-link">
-  <img src="http://icons.iconarchive.com/icons/uiconstock/socialmedia/256/Dribbble-icon.png">
-</a>
-<a href="https://twitter.com/NikolayTalanov" target="_blank" class="icon-link icon-link--twitter">
-  <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png">
-</a>
 
-<script type="text/javascript">
-        document.querySelector('.img__btn').addEventListener('click', function() {
-  document.querySelector('.cont').classList.toggle('s--signup');
-});
-</script>
+function signUp() {
+    let element = document.getElementById("container_SignIn");
+    element.classList.add("myStyle");
+}
+
+function signIn() {
+    let element = document.getElementById("container_SignIn");
+    element.classList.remove("myStyle");
+}
+    </script>
