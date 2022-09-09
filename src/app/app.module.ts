@@ -28,7 +28,9 @@ import { UserSecretComponent } from './fa-icons/user-secret/user-secret.componen
 import { BombComponent } from './fa-icons/bomb/bomb.component';
 import { HashtagComponent } from './fa-icons/hashtag/hashtag.component';
 import { UsersComponent } from './fa-icons/users/users.component';
-import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.component';  
+import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.component';
+import { AdmincrudComponent } from './components/admincrud/adminChild/admincrud.component';
+import { AdminTableComponent } from './components/admincrud/adminTable/adminFather/admin-table.component';  
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.co
     HashtagComponent,
     UsersComponent,
     HourglassEndComponent,
+    AdmincrudComponent,
+    AdminTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +77,7 @@ import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.co
         { path: "Book/:roomId", component: BookComponent },
         { path: "Contact", component: ContactComponent },
         { path: "Sign", component: SignComponent },
+        {path:"Admin", component:AdminTableComponent},
 
         { path: '', redirectTo: "/Home", pathMatch: 'full' },
         { path: '**', component: PageNotFoundComponent }

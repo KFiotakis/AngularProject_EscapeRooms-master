@@ -27,9 +27,13 @@ export class RoomService {
     return this.httpService.get<Room>(this.URL1 + id);
   }
 
-
-
-
+  createRoom(room:Room):Observable<Room[]>
+  {
+    room.IsActive= true;
+    room.HasActor=true;
+    console.log(room);
+    return this.httpService.post<Room[]>(this.URL,room,this.httpOptions);
+  }
   
   constructor(private httpService:HttpClient) { }
 }

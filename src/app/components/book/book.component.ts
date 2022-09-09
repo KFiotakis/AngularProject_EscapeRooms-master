@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import data from "src/app/components/Json/data.json";
 import { RoomService } from '../rooms/room.service';
 import { Room } from '../rooms/roomsModels';
 import { Book } from './bookModel';
@@ -15,7 +14,6 @@ import { BookService } from './book.service';
 
 
 export class BookComponent implements OnInit {
-  Rooms : any = data;
   alert:boolean=false;
   
   dt: any;
