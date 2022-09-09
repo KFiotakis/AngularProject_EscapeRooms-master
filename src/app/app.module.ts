@@ -32,6 +32,13 @@ import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.co
 import { AdmincrudComponent } from './components/admincrud/adminChild/admincrud.component';
 import { AdminTableComponent } from './components/admincrud/adminTable/adminFather/admin-table.component';  
 import { MatInputModule } from "@angular/material/input";
+import { ChartComponent } from './components/chart/chart.component';
+import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -59,6 +66,9 @@ import { MatInputModule } from "@angular/material/input";
     HourglassEndComponent,
     AdmincrudComponent,
     AdminTableComponent,
+    CanvasJSChart,
+    ChartComponent
+   
   ],
   imports: [
     BrowserModule,
