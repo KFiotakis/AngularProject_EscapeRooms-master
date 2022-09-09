@@ -1,5 +1,7 @@
 /* app.component.ts */
 import { Component } from '@angular/core';
+
+
  
 @Component({
   selector: 'app-chart',
@@ -8,28 +10,24 @@ import { Component } from '@angular/core';
 })
 export class ChartComponent {
 	chartOptions = {
-	  title: {
-		  text: "Angular Column Chart with Index Labels"
-	  },
 	  animationEnabled: true,
-	  axisY: {
-		includeZero: true
+	  theme: "dark2",
+	  exportEnabled: true,
+	  title: {
+		text: "Most played Room"
 	  },
+	  subtitles: [{
+		text: "Times/week"
+	  }],
 	  data: [{
-		type: "column", //change type to bar, line, area, pie, etc
-		//indexLabel: "{y}", //Shows y value on all Data Points
-		indexLabelFontColor: "#5A5757",
+		type: "pie", //change type to column, line, area, doughnut, etc
+		indexLabel: "{name}: {y}%",
 		dataPoints: [
-			{ x: 10, y: 71 },
-			{ x: 20, y: 55 },
-			{ x: 30, y: 50 },
-			{ x: 40, y: 65 },
-			{ x: 50, y: 71 },
-			{ x: 60, y: 92, indexLabel: "Highest\u2191" },
-			{ x: 70, y: 68 },
-			{ x: 80, y: 38, indexLabel: "Lowest\u2193"  },
-			{ x: 90, y: 54 },
-			{ x: 100, y: 60 }
+			{ name: "Overhead", y: 9.1 },
+			{ name: "Problem Solving", y: 3.7 },
+			{ name: "Debugging", y: 36.4 },
+			{ name: "Writing Code", y: 30.7 },
+			{ name: "Firefighting", y: 20.1 }
 		]
 	  }]
 	}
