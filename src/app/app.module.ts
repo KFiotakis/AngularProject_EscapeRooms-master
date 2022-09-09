@@ -20,7 +20,7 @@ import { MapComponent } from './components/home/map/map/map.component';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeartComponent } from './fa-icons/heart/heart.component';
@@ -31,6 +31,7 @@ import { UsersComponent } from './fa-icons/users/users.component';
 import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.component';
 import { AdmincrudComponent } from './components/admincrud/adminChild/admincrud.component';
 import { AdminTableComponent } from './components/admincrud/adminTable/adminFather/admin-table.component';  
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -67,6 +68,8 @@ import { AdminTableComponent } from './components/admincrud/adminTable/adminFath
     SlickCarouselModule,
     HttpClientModule,
     FormsModule,
+    MatInputModule,
+    ReactiveFormsModule,
     RouterModule.forRoot
       ([
 

@@ -1,92 +1,28 @@
 <app-homephotos></app-homephotos>
-
-<section class="ftco-section">
-  <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-md-6 text-center mb-5">
-              <h2 class="heading-section">Contact Us!</h2>
-          </div>
-      </div>
-      <div class="row justify-content-center">
-          <div class="col-lg-10 col-md-12">
-              <div class="wrapper">
-                  <div class="row justify-content-center">
-                      <div class="col-lg-8 mb-5">
-                          <div class="row">
-                              <div class="col-md-4">
-                                  <div class="dbox w-100 text-center">
-                              <div class="icon d-flex align-items-center justify-content-center">
-                                  <span class="fa fa-map-marker"></span>
-                              </div>
-                              <div class="text">
-                              <p><span>Address:</span> Καραολή και Δημητρίου 17, Πειραιάς 185 47</p>
-                            </div>
-                        </div>
-                              </div>
-                              <div class="col-md-4">
-                                  <div class="dbox w-100 text-center">
-                              <div class="icon d-flex align-items-center justify-content-center">
-                                  <span class="fa fa-phone"></span>
-                              </div>
-                              <div class="text">
-                              <p><span>Phone:</span> <a href="tel://210-123456">210-1234567</a></p>
-                            </div>
-                        </div>
-                              </div>
-                              <div class="col-md-4">
-                                  <div class="dbox w-100 text-center">
-                              <div class="icon d-flex align-items-center justify-content-center">
-                                  <span class="fa fa-paper-plane"></span>
-                              </div>
-                              <div class="text">
-                              <p><span>Email:</span> <a href="mailto:anikitoi@gmail.com">anikitoi@gmail.com</a></p>
-                            </div>
-                        </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-8">
-                          <div class="contact-wrap">
-                              <h3 class="mb-4 text-center">Get in touch with us</h3>
-                              <div id="form-message-warning" class="mb-4 w-100 text-center"></div> 
-                      <div id="form-message-success" class="mb-4 w-100 text-center">
-                      Your message was sent, thank you!
-                      </div>
-                              <form method="POST" id="contactForm" name="contactForm" class="contactForm">
-                                  <div class="row">
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12"> 
-                                          <div class="form-group">
-                                              <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <textarea name="message" class="form-control" id="message" cols="30" rows="8" placeholder="Message"></textarea>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <input type="submit" value="Send Message" class="btn btn-primary">
-                                              <div class="submitting"></div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
+<form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
+	<mat-form-field>
+		<mat-label>Name</mat-label>
+		<input matInput [formControl]="name" required>
+		<mat-error *ngIf="name.invalid">Please enter your name</mat-error>
+	</mat-form-field>
+	<br>
+	<mat-form-field>
+		<mat-label>Email</mat-label>
+		<input matInput [formControl]="email" placeholder="email@example.com" required>
+		<mat-error *ngIf="email.invalid">Please enter a valid email</mat-error>
+	</mat-form-field>
+	<br>
+	<mat-form-field>
+		<mat-label>Message</mat-label>
+		<textarea matInput [formControl]="message" maxlength="256" placeholder="I'm interested in..." required></textarea>
+		<mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
+		<mat-error *ngIf="message.invalid">Please enter a message</mat-error>
+	</mat-form-field>
+	<br>
+	<button [disabled]="isLoading" class="submit" type="submit">Submit</button>
+	<br>
+	<input [formControl]="honeypot" class="hidden" type="text" />
+	<div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
+		<span>{{responseMessage}}</span>
+	</div>
+</form>
