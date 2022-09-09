@@ -39,22 +39,40 @@
       <th><input #roomVideoId  class="form-control" type="text" placeholder="New VideoId"></th>
       <th><input #roomTitle class="form-control" type="text" placeholder="New Title"></th>
       <th><input #roomDescription class="form-control" type="text" placeholder="New Description"></th>
-      <th><input #roomDifficulty class="form-control" type="number" placeholder="New Difficulty"></th>
+      <th><select #roomDifficulty>
+        <option value="0" selected>Begginer</option>
+        <option value="1">Intermediate</option>
+        <option value="2">Advanced</option>
+      </select>
+      </th>
       <th><input #roomDuration class="form-control" type="number" placeholder="New Duration"></th>
-      <th><input #roomGenre class="form-control" type="text" placeholder="New Genre"></th>
+      <th>
+        <select #roomGenre>
+          <option value="0" selected>Horror</option>
+          <option value="1">Comedy</option>
+          <option value="2">Thriller</option>
+          <option value="3">KidsFriendly</option>
+          <option value="4">RolePlaying</option>
+          <option value="5">SciFi</option>
+          <option value="6">Mystery</option>
+        </select>
+      </th>
       <th><input #roomCapacity class="form-control" type="number" placeholder="New Capacity"></th>
       <th><input #roomDiscountPerPerson class="form-control" type="number" placeholder="New DiscountPerPerson"></th>
       <th><input #roomStartPricePerPerson class="form-control" type="number" placeholder="New StartingPricePerPerson"></th>
-      <th><input #roomActor class="form-control" type="text" placeholder="true or false"></th>
+      <th><select #roomActor>
+        <option value="1" selected>True</option>
+        <option value="0">False</option>
+      </select></th>
 
       <th>
         <button *ngIf="Rooms" (click)="CreateRoomHandler
         (roomTitle.value
         ,roomDescription.value
-        ,roomDuration.valueAsNumber,roomGenre.valueAsNumber,roomCapacity.valueAsNumber,
-        roomDifficulty.valueAsNumber,roomStartPricePerPerson.valueAsNumber,roomDiscountPerPerson.valueAsNumber,
+        ,roomDuration.valueAsNumber,+roomGenre.value,roomCapacity.valueAsNumber,
+        +roomDifficulty.value, getBoolean(roomActor.value) , 0, 0, true,  roomStartPricePerPerson.valueAsNumber,roomDiscountPerPerson.valueAsNumber,
         roomImage.value,
-        roomVideoId.value)" class="btn btn-primary">Create</button> 
+        roomVideoId.value)" class="btn btn-primary" [routerLink]="['/Admin']">Create</button> 
       </th>
     </tr>
   </thead>

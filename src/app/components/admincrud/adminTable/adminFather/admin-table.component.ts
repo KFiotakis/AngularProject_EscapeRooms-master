@@ -27,13 +27,13 @@ export class AdminTableComponent implements OnInit {
 
   CreateRoomHandler(title:string,description:string,
      duration:number,genre:number,capacity:number, 
-     difficulty:number,
+     difficulty:number, hasActor: boolean, rating:number,escapeRate: number, isActive:boolean,
      startingPricePerPerson:number,
      discountPerPerson:number,imageUrl:string,videoId:string):void
      {
         this.roomService.createRoom({Title:title,
           Description:description,Duration:duration
-          ,Genre:genre,Capacity:capacity,Difficulty:difficulty,
+          ,Genre:genre,Capacity:capacity,Difficulty:difficulty, HasActor: hasActor, Rating: rating, EscapeRate: escapeRate, IsActive: isActive,
           StartingPricePerPerson:startingPricePerPerson,
           DiscountPerPerson:discountPerPerson,ImageUrl:imageUrl,VideoId:videoId}as Room).subscribe(
           {
@@ -74,6 +74,20 @@ export class AdminTableComponent implements OnInit {
 
   
   }
+
+  getBoolean(value : string){
+
+    switch(value){
+         
+         case "true":
+         case "1":
+         case "on":
+         case "yes":
+             return true;
+         default: 
+             return false;
+     }
+ }
 
 
 }
