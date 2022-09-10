@@ -1,7 +1,7 @@
 <div *ngIf="isVisible">
     <h1 style="margin-top:100px; text-align: center; color: #d5b215;">Make your Changes to the form Below!</h1>
     <form style="margin:100px;" class="form-group">
-        <input class="form-control m-4" type="image" placeholder="Edit ImageUrl">
+        <input class="form-control m-4" type="image" placeholder="Edit ImageUrl" [(ngModel)] = 'Room.ImageUrl'>
         <input  class="form-control m-4" type="text" placeholder="Edit VideoId">
         <input class="form-control m-4" type="text" placeholder="Edit Title">
         <input class="form-control m-4" type="number" placeholder="Edit Description">
