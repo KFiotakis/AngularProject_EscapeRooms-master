@@ -14,13 +14,21 @@ import { BookService } from './book.service';
 
 
 export class BookComponent implements OnInit {
+
+  Rooms : any = data;
   alert:boolean=false;
-  
+  message!: string;
   dt: any;
   dataDisplay: any;
   room: Room | undefined;
   book!: Book;
-  
+  isHidden:boolean = false;
+
+  title = 'stipe-angular';
+  amount!: number;
+  token: any;
+
+
  paymentMethod!:string;
 
   id = this.actRoute.snapshot.params['roomId'];
@@ -41,8 +49,54 @@ export class BookComponent implements OnInit {
         complete: () => console.log(this.room)
       }
     );
+
+
   }
 
+
+
+  onCheckout(roomId:number, firstName:string, lastName:string,  gameDate:Date, numberOfPlayers:string, gameTime:string) {
+    var kati = numberOfPlayers.substring(0,1);
+    var totalPrice = this.showTotalPrice(+kati);
+    var newDate = this.ConvertStringForGameHour(gameTime);
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51LcUDrDl59dROsBALAOiUYf5Jfza8MYrK8k3fQiOHafJJ8vGpcPawwp9Rd4m2wp4Kf0fQP2wLwjH59eMuOoLUYWS00dfCsCjlI',
+      locale: 'auto',
+      token: (token: any) => {
+        this.token = `token : ${token.id}`;
+          this.bookService.payBookWithCard({RoomId:roomId, FirstName:firstName, LastName:lastName, GameDate:gameDate, NumberOfPlayers:+kati,GameTime:newDate} as Book).subscribe(
+            {
+      
+              next: response => console.log(response),
+      
+              error : error => console.log(error),
+      
+              complete: () => console.log("Petuxe")
+      
+            }
+      
+          )
+          this.submitdone("Payment");
+        }
+      
+    });
+    handler.open({
+      name: 'Anikhtoi',
+      description: 'Escape Room Project',
+      amount: totalPrice * 100,
+      currency: 'eur'
+    });
+    
+  
+  }
+
+  GoToPayPal(roomId:number, firstName:string, lastName:string, numberOfPlayers:string, gameDate:Date, gameTime:string){
+    var kati = numberOfPlayers.substring(0,1);
+    var newDate = this.ConvertStringForGameHour(gameTime);
+   window.location.href = 'https://localhost:44368/Reservation?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName 
+   + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON();
+   
+  }
 
 getTimeArray(duration: number) : Array<Date>{
   let startDate: Date = new Date(2022,9,5,18,0,0);
@@ -79,10 +133,12 @@ getTimeArray(duration: number) : Array<Date>{
     }
   }
 
-  submitdone()
+  submitdone(message: string)
   {
     this.alert = !this.alert;
   this.alert=true;
+  this.message = message;
+  this.isHidden = true;
   }
 
 
@@ -110,37 +166,17 @@ getTimeArray(duration: number) : Array<Date>{
     console.log(newDate);
     console.log(this.paymentMethod)
 
-    
-      // this.bookService.createBook({RoomId:roomId, FirstName:firstName, LastName:lastName, GameDate:gameDate, NumberOfPlayers:+kati,GameTime:newDate} as Book).subscribe(
-      //   {
-  
-      //     next: response => console.log(response),
-  
-      //     error : error => console.log(error),
-  
-      //     complete: () => console.log("Petuxe")
-  
-      //   }
-  
-      // )
-    
-    // else{
-      this.bookService.payBook({RoomId:roomId, FirstName:firstName, LastName:lastName, GameDate:gameDate, NumberOfPlayers:+kati,GameTime:newDate} as Book).subscribe(
+    console.log(newDate);
+      this.bookService.createBook({RoomId:roomId, FirstName:firstName, LastName:lastName, GameDate:gameDate, NumberOfPlayers:+kati,GameTime:newDate} as Book).subscribe(
         {
   
           next: response => console.log(response),
   
           error : error => console.log(error),
   
-          complete: () => console.log("Ksanapetuxe")
+          complete: () => console.log("Petuxe")
   
-        }
-      )
-    // }
-   
-
+        })
+        this.submitdone("Booking");
   }
-
- 
-
 }

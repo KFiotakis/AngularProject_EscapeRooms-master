@@ -38,10 +38,25 @@ select {
 .btn-primary
 {
     background-color: blue;
-    margin-right:30px;
+    /* margin-right:30px; */
 }
 
 .btn-warning
 {
     background-color: yellow;
+}
+
+.message{
+    margin-top: 50px;
+    text-align: center;
+    width: 50%;
+    border-radius: 5px;
+    margin-left: 25%;
+    position: absolute;
+    top: 50%;
+}
+
+.back{
+    margin-top: 50;
+    margin-left: 50%;
 }

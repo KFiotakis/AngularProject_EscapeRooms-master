@@ -11,7 +11,7 @@ export class BookService {
 
 
   private URL = "https://localhost:44368/api/ReservationApi"
-  private URLpay = "https://localhost:44368/PayPalApi/CreatePayment"
+  private cardPaymentURL = "https://localhost:44368/api/CardPaymentApi"
 
   httpOptions = {
      headers: new HttpHeaders({ 'content-Type': 'application/json' })
@@ -24,32 +24,14 @@ export class BookService {
 }
 
 
-payBook(book:Book): Observable<Book> {
+payBookWithCard(book:Book): Observable<Book> {
     
-  return this.httpService.post<Book>(this.URLpay, book, this.httpOptions)
+  return this.httpService.post<Book>(this.cardPaymentURL, book, this.httpOptions)
 }
 
 
   constructor(private httpService: HttpClient) { }
 }
 
-
-
-
-
-
-//   deleteCar(id: number) {
-//     const url = `${this.URL}/${id}`;    //https://localhost:44372/api/Car/5
-//     return this.httpService.delete<Car>(url, this.httpOptions);
-//   }
-
-//   getCars(): Observable<Car[]> {
-//     return this.httpService.get<Car[]>(this.URL);
-//   }
-
-//   updateCar(car:Car){
-//     const url = `${this.URL}/${car.Id}`; 
-//     return this.httpService.put<Car>(this.URL, car, this.httpOptions);
-//   }
 
 
