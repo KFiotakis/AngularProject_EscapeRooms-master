@@ -15,7 +15,7 @@ import { BookService } from './book.service';
 
 export class BookComponent implements OnInit {
 
-  Rooms : any = data;
+  Rooms : any;
   alert:boolean=false;
   message!: string;
   dt: any;
