@@ -1,8 +1,62 @@
 <app-homephotos></app-homephotos>
 
-<!-- <app-loading-spinner></app-loading-spinner> -->
+<app-loading-spinner></app-loading-spinner>
+<div class="form__group field">
+  <input  [(ngModel)]="searchTitle" (input)="FilterRooms()" type="text" class="form__field" placeholder="Search Title" name="name" id='name' required />
+</div>
+<br>
+<br>
 
-<div *ngFor="let room of Rooms" class="card-group">
+<!-- <div class="form-group">
+  <select [(ngModel)]="selectedGenre" (change)="FilterRooms()" type="text" >
+     <option  value="" selected disabled>Search Genre</option>
+     <option *ngFor="let item of Genres" value={{item.no}} >{{item.title}}</option> 
+  </select>
+</div> -->
+
+
+
+<label class="select" for="slct">
+  <div id="labeld">Search Genre</div>
+  <select [(ngModel)]="selectedGenre" (change)="FilterRooms()" type="text" id="slct" >
+      <option  value="" selected disabled>Search Genre</option>
+      <option *ngFor="let item of Genres" value={{item.no}} >{{item.title}}</option> 
+  </select>
+  <svg>
+    <use xlink:href="#select-arrow-down"></use>
+  </svg>
+</label>
+<!-- SVG Sprites-->
+<svg class="sprites">
+  <symbol id="select-arrow-down" viewbox="0 0 10 6">
+    <polyline points="1 1 5 5 9 1"></polyline>
+  </symbol>
+</svg>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngFor="let room of FilteredRooms" class="card-group">
   <div class="card" [style.border]="CSettings.border" [style.background-color]="CSettings.backColor"
     [style.border-radius.px]="CSettings.borderRadius" [style.box-shadow]="CSettings.boxShadow"
     [style.margin-top.px]="CSettings.marginTop" [style.margin-bottom.px]="CSettings.marginBot"
@@ -69,9 +123,10 @@
         </p>
       </div>
       <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
-
     </div>
   </div>
+
+
 
 </div>
 
