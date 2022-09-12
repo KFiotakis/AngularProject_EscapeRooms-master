@@ -1,21 +1,22 @@
-<div *ngIf="isVisible">
+<div *ngIf="isVisible && Room">
     <h1 style="margin-top:100px; text-align: center; color: #d5b215;">Make your Changes to the form Below!</h1>
     <form style="margin:100px;" class="form-group">
-        <input class="form-control m-4" type="image" placeholder="Edit ImageUrl">
-        <input  class="form-control m-4" type="text" placeholder="Edit VideoId">
-        <input class="form-control m-4" type="text" placeholder="Edit Title">
-        <input class="form-control m-4" type="number" placeholder="Edit Description">
-        <input class="form-control m-4" type="text" placeholder="Edit Difficulty">
-        <input class="form-control m-4" type="number" placeholder="Edit Duration">
-        <input class="form-control m-4" type="number" placeholder="Edit Genre">
-        <input class="form-control m-4" type="number" placeholder="Edit Capacity">
-        <input class="form-control m-4" type="number" placeholder="Edit DiscountPerPerson">
-        <input class="form-control m-4" type="number" placeholder="Edit StartingPricePerPerson">
-        <select style="background-color:#bddcee;"class="form-control m-4" placeholder="Edit HasActor">
+        <input [(ngModel)]="Room.ImageUrl" name="ImageUrl" class="form-control m-4" type="text" placeholder="Edit ImageUrl">
+        <input [(ngModel)]="Room.VideoId" name="VideoId" class="form-control m-4" type="text" placeholder="Edit VideoId">
+        <input [(ngModel)]="Room.Title" name="Title" class="form-control m-4" type="text" placeholder="Edit Title">
+        <input [(ngModel)]="Room.Description" name="Description" class="form-control m-4" type="text" placeholder="Edit Description">
+        <input [(ngModel)]="Room.Difficulty" name="Difficulty" class="form-control m-4" type="text" placeholder="Edit Difficulty">
+        <input [(ngModel)]="Room.Duration" name="Duration" class="form-control m-4" type="number" placeholder="Edit Duration">
+        <input [(ngModel)]="Room.Genre" name="Genre" class="form-control m-4" type="number" placeholder="Edit Genre">
+        <input [(ngModel)]="Room.Capacity" name="Capacity" class="form-control m-4" type="number" placeholder="Edit Capacity">
+        <input [(ngModel)]="Room.DiscountPerPerson" name="DiscountPerPerson" class="form-control m-4" type="number" placeholder="Edit DiscountPerPerson">
+        <input [(ngModel)]="Room.StartingPricePerPerson" name="StartingPricePerPerson" class="form-control m-4" type="number" placeholder="Edit StartingPricePerPerson">
+        <input [(ngModel)]="Room.HasActor" name="HasActor" class="form-control m-4" type="text" placeholder="Edit HasActor">
+        <!-- <select style="background-color:#bddcee;"class="form-control m-4" placeholder="Edit HasActor">
             <option  disabled selected>Edit HasActor</option>
             <option>true</option>
             <option>false</option>
-        </select>
+        </select> -->
         <button class="btn btn-primary m-4">Save Changes</button>
         <button (click)="onCloseHandler()" class="btn btn-warning m-4">Close</button>
     </form>
