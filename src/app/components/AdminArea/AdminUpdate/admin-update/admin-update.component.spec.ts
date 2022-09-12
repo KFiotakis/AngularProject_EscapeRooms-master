@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdmincrudComponent } from './admincrud.component';
+import { AdminUpdateComponent } from './admin-update.component';
 
-describe('AdmincrudComponent', () => {
-  let component: AdmincrudComponent;
-  let fixture: ComponentFixture<AdmincrudComponent>;
+describe('AdminUpdateComponent', () => {
+  let component: AdminUpdateComponent;
+  let fixture: ComponentFixture<AdminUpdateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdmincrudComponent ]
+      declarations: [ AdminUpdateComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdmincrudComponent);
+    fixture = TestBed.createComponent(AdminUpdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

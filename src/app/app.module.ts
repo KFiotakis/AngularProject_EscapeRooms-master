@@ -29,11 +29,11 @@ import { BombComponent } from './fa-icons/bomb/bomb.component';
 import { HashtagComponent } from './fa-icons/hashtag/hashtag.component';
 import { UsersComponent } from './fa-icons/users/users.component';
 import { HourglassEndComponent } from './fa-icons/hourglass-end/hourglass-end.component';
-import { AdmincrudComponent } from './components/admincrud/adminChild/admincrud.component';
-import { AdminTableComponent } from './components/admincrud/adminTable/adminFather/admin-table.component';  
 import { MatInputModule } from "@angular/material/input";
 import { ChartComponent } from './components/chart/chart.component';
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+import { AdminCreateDeleteComponent } from './components/AdminArea/AdminCreateDelete/admin-create-delete/admin-create-delete.component';
+import { AdminUpdateComponent } from './components/AdminArea/AdminUpdate/admin-update/admin-update.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 
@@ -64,10 +64,10 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     HashtagComponent,
     UsersComponent,
     HourglassEndComponent,
-    AdmincrudComponent,
-    AdminTableComponent,
     CanvasJSChart,
-    ChartComponent
+    ChartComponent,
+    AdminCreateDeleteComponent,
+    AdminUpdateComponent
    
   ],
   imports: [
@@ -90,7 +90,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
         { path: "Book/:roomId", component: BookComponent },
         { path: "Contact", component: ContactComponent },
         { path: "Sign", component: SignComponent },
-        {path:"Admin", component:AdminTableComponent},
+        {path:"Admin", component:AdminCreateDeleteComponent},
 
         { path: '', redirectTo: "/Home", pathMatch: 'full' },
         { path: '**', component: PageNotFoundComponent }

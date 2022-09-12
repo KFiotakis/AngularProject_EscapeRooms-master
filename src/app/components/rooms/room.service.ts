@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Room } from './roomsModels';
 
@@ -17,21 +17,22 @@ export class RoomService {
     }),
   };
 
-  getRooms(): Observable<Room[]> 
-  {
+  getRooms(): Observable<Room[]> {
     return this.httpService.get<Room[]>(this.URL);
   }
 
-  getRoom(id:string):Observable<Room>
-  {
+  getRoom(id: string): Observable<Room> {
     return this.httpService.get<Room>(this.URL1 + id);
   }
 
-  createRoom(room:Room):Observable<Room[]>
-  {
+  createRoom(room: Room): Observable<Room> {
     console.log(room);
-    return this.httpService.post<Room[]>(this.URL,room,this.httpOptions);
+    return this.httpService.post<Room>(this.URL, room, this.httpOptions);
   }
-  
-  constructor(private httpService:HttpClient) { }
+
+  deleteRoom(id: number) {
+    return this.httpService.delete<Room>(this.URL1 + id, this.httpOptions);
+  }
+
+  constructor(private httpService: HttpClient) { }
 }
