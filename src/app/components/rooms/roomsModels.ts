@@ -17,13 +17,9 @@ export interface Room
     VideoId:string
 }
 
-export enum Genre
-{
-        Horror,
-        Comedy,
-        Thriller,
-        KidsFriendly,
-        RolePlaying,
-        SciFi,
-        Mystery
+export enum SortOptions{
+    difficultyAsc="difficultyAsc",
+    difficultyDesc="difficultyDesc",
+    durationAsc="durationAsc",
+    durationDesc="durationDesc"
 }
