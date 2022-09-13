@@ -9,8 +9,8 @@
 <label class="select" for="slct">
   <div id="labeld">Search Genre</div>
   <select [(ngModel)]="selectedGenre" (change)="FilterRooms()" type="text" id="slct" >
-      <option  value="" selected disabled>Search Genre</option>
-      <option *ngFor="let item of Genres" value={{item.no}} >{{item.title}}</option>
+      <option value="" selected>All</option>
+      <option *ngFor="let genre of Genres" value={{genre}} >{{genre}}</option>
   </select>
   <svg>
     <use xlink:href="#select-arrow-down"></use>

@@ -27,53 +27,27 @@ export class RoomsComponent implements OnInit {
 
   //Filtering
   searchTitle!: string;
-  searchGenre!: number | string;
-  selectedGenre!: string;
+  selectedGenre!: number;
   FilteredRooms!: Array<Room>;
   Genres: any[] = [];
   FilterRooms() {
+   
     this.FilteredRooms = this.Rooms;
     if (this.searchTitle) {
       this.FilteredRooms = this.FilteredRooms
         .filter(x => x.Title.toUpperCase()
           .includes(this.searchTitle.toUpperCase()))
     }
-    this.GetGenresOption();
-    if (this.searchGenre) {
+    if (this.selectedGenre) {
       this.FilteredRooms = this.FilteredRooms
-        .filter(x => x.Genre == this.searchGenre)
+        .filter(x => x.Genre == this.selectedGenre)
     }
   }
-  GetGenresOption() {
-     this.searchGenre = this.selectedGenre;
-  }
-
-  // Method(){
-
-  //   for (const key in Genre) {
-
-  //     if(!isNaN(parseInt(key))){
-
-  //      let temp = {
-
-  //        title:Genre[key],
-
-  //        no:key
-
-  //       }
-
-  //       this.Genres.push(temp)
-
-  //     }
-
-  // }
-
-//}
-
+ 
 
 
   constructor(private roomService: RoomService) { 
-    //this.Method();
+    
   }
 
   ngOnInit(): void {
@@ -87,6 +61,8 @@ export class RoomsComponent implements OnInit {
           this.dt = response;
           this.dataDisplay = this.dt.data;
           this.FilteredRooms=response;
+          this.Genres = [...new Set(this.Rooms.map(x => x.Genre))];
+          console.log(this.Genres)
         },
         error: e => console.log(e),
         complete: () => console.log(this.Rooms)
@@ -102,7 +78,7 @@ export class RoomsComponent implements OnInit {
         ele.style.display = 'none';
       }
     }
-
+   
 
   }
 
