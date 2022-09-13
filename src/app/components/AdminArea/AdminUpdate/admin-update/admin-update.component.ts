@@ -27,12 +27,12 @@ export class AdminUpdateComponent {
   Rooms!: Array<Room>;
   constructor(private roomService: RoomService) { }
 
-  UpdateRoomHandler(title: string, description: string,
+  UpdateRoomHandler(id:number, title: string, description: string,
     duration: number, genre: string, capacity: number,
     difficulty: string, hasActor: boolean, rating: number, escapeRate: number, isActive: boolean,
     startingPricePerPerson: number,
     discountPerPerson: number, imageUrl: string, videoId: string): void {
-    this.roomService.updateRoom({
+    this.roomService.updateRoom({Id: id,
       Title: title,
       Description: description, Duration: duration
       , Genre: Number(genre), Capacity: capacity, Difficulty: Number(difficulty), HasActor: hasActor, Rating: rating, EscapeRate: escapeRate, IsActive: isActive,
