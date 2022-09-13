@@ -6,19 +6,9 @@
         <div class="textinImage active">
             <p class="title display-4">{{room.Title}}</p>
             <hr>
-            <div class="card-text" style="text-align:center;" [ngSwitch]="room.Difficulty">
-                <p *ngSwitchCase="0">
-                    <app-bomb title="Difficulty: Begginer"></app-bomb>
-                </p>
-                <p *ngSwitchCase="1">
-                    <app-bomb title="Difficulty: Intermediate"></app-bomb>
-                    <app-bomb title="Difficulty: Intermediate"></app-bomb>
-                </p>
-                <p *ngSwitchCase="2">
-                    <app-bomb title="Difficulty: Advanced"></app-bomb>
-                    <app-bomb title="Difficulty: Advanced"></app-bomb>
-                    <app-bomb title="Difficulty: Advanced"></app-bomb>
-                </p>
+          
+            <div class="card-text" style="text-align:center;">
+                <p><span *ngFor="let a of howManyBombs(room)"><app-bomb></app-bomb></span>{{room.Difficulty}}</p>
             </div>
             <p class="card-text">
                 <app-users aria-hidden="true" title="Capacity"></app-users>up to {{room.Capacity}}
@@ -26,28 +16,9 @@
             <p class="card-text">
                 <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
             </p>
-            <div class="card-text" [ngSwitch]="room.Genre">
-                <p *ngSwitchCase="0">
-                    <app-hashtag title="Genre"></app-hashtag>Horror
-                </p>
-                <p *ngSwitchCase="1">
-                    <app-hashtag title="Genre"></app-hashtag>Comedy
-                </p>
-                <p *ngSwitchCase="2">
-                    <app-hashtag title="Genre"></app-hashtag>Thriller
-                </p>
-                <p *ngSwitchCase="3">
-                    <app-hashtag title="Genre"></app-hashtag>KidsFriendly
-                </p>
-                <p *ngSwitchCase="4">
-                    <app-hashtag title="Genre"></app-hashtag>RolePlaying
-                </p>
-                <p *ngSwitchCase="5">
-                    <app-hashtag title="Genre"></app-hashtag>SciFi
-                </p>
-                <p *ngSwitchCase="6">
-                    <app-hashtag title="Genre"></app-hashtag>Mystery
-                </p>
+          
+            <div  class="card-text">
+                <p><app-hashtag></app-hashtag>{{room.Genre}}</p>
             </div>
             <div *ngIf="room.HasActor==true" class="actor">
                 <app-user-secret></app-user-secret>

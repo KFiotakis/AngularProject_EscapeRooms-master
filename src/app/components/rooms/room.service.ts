@@ -34,5 +34,6 @@ export class RoomService {
     return this.httpService.delete<Room>(this.URL1 + id, this.httpOptions);
   }
 
+  
   constructor(private httpService: HttpClient) { }
 }

@@ -40,7 +40,7 @@
       <th><input #roomTitle class="form-control" type="text" placeholder="New Title"></th>
       <th><input #roomDescription class="form-control" type="text" placeholder="New Description"></th>
       <th><select class="form-control" #roomDifficulty>
-        <option value="0" selected>Begginer</option>
+        <option value="0" selected>Beginner</option>
         <option value="1">Intermediate</option>
         <option value="2">Advanced</option>
       </select>
@@ -56,6 +56,7 @@
           <option value="5">SciFi</option>
           <option value="6">Mystery</option>
         </select>
+      
       </th>
       <th><input #roomCapacity class="form-control" type="number" placeholder="New Capacity"></th>
       <th><input #roomDiscountPerPerson class="form-control" type="number" placeholder="New DiscountPerPerson"></th>
@@ -69,8 +70,8 @@
         <button *ngIf="Rooms" (click)="CreateRoomHandler
         (roomTitle.value
         ,roomDescription.value
-        ,roomDuration.valueAsNumber,+roomGenre.value,roomCapacity.valueAsNumber,
-        +roomDifficulty.value, getBoolean(roomActor.value) , 0, 0, true,  roomStartPricePerPerson.valueAsNumber,roomDiscountPerPerson.valueAsNumber,
+        ,roomDuration.valueAsNumber,roomGenre.value,roomCapacity.valueAsNumber,
+        roomDifficulty.value, getBoolean(roomActor.value) , 0, 0, true,  roomStartPricePerPerson.valueAsNumber,roomDiscountPerPerson.valueAsNumber,
         roomImage.value,
         roomVideoId.value)" class="btn btn-primary" [routerLink]="['/Admin']">Create</button> 
       </th>
@@ -90,47 +91,19 @@
           {{room.Description}}
         </div>
       </td>
+    
       <td>
-        <div style="text-align:center;" [ngSwitch]="room.Difficulty">
-          <p *ngSwitchCase="0">
-            <app-bomb title="Difficulty: Begginer"></app-bomb>
+        <div style="text-align:center;">
+          <p>{{room.Difficulty}}
           </p>
-          <p *ngSwitchCase="1">
-            <app-bomb title="Difficulty: Intermediate"></app-bomb>
-            <app-bomb title="Difficulty: Intermediate"></app-bomb>
-          </p>
-          <p *ngSwitchCase="2">
-            <app-bomb title="Difficulty: Advanced"></app-bomb>
-            <app-bomb title="Difficulty: Advanced"></app-bomb>
-            <app-bomb title="Difficulty: Advanced"></app-bomb>
-          </p>
-        </div>
+       </div>
+ 
       </td>
       <td>{{room.Duration}}</td>
-      <td style="text-align:center;" [ngSwitch]="room.Genre">
-        <p *ngSwitchCase="0">
-          Horror
-        </p>
-        <p *ngSwitchCase="1">
-          Comedy
-        </p>
-        <p *ngSwitchCase="2">
-          Thriller
-        </p>
-        <p *ngSwitchCase="3">
-          KidsFriendly
-        </p>
-        <p *ngSwitchCase="4">
-          RolePlaying
-        </p>
-        <p *ngSwitchCase="5">
-          SciFi
-        </p>
-        <p *ngSwitchCase="6">
-          Mystery
-        </p>
+    
+      <td style="text-align:center;">
+          <p>{{room.Genre}}</p>
       </td>
-
       <td>{{room.Capacity}}</td>
       <td>{{room.DiscountPerPerson}}</td>
       <td>{{room.StartingPricePerPerson}}</td>

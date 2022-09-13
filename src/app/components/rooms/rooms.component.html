@@ -23,21 +23,11 @@
     <div class="card-body">
       <h2 class="card-title">{{room.Title}}</h2>
       <hr>
-
-      <div style="text-align:center;" [ngSwitch]="room.Difficulty">
-        <p *ngSwitchCase="0">
-          <app-bomb title="Difficulty: Begginer"></app-bomb>
-        </p>
-        <p *ngSwitchCase="1">
-          <app-bomb title="Difficulty: Intermediate"></app-bomb>
-          <app-bomb title="Difficulty: Intermediate"></app-bomb>
-        </p>
-        <p *ngSwitchCase="2">
-          <app-bomb title="Difficulty: Advanced"></app-bomb>
-          <app-bomb title="Difficulty: Advanced"></app-bomb>
-          <app-bomb title="Difficulty: Advanced"></app-bomb>
-        </p>
+      <div style="text-align:center;">
+         <p><span *ngFor="let a of howManyBombs(room)"><app-bomb></app-bomb></span>{{room.Difficulty}}
+         </p>
       </div>
+
       <p class="card-text">
         <app-users aria-hidden="true" title="Capacity"></app-users> up to {{room.Capacity}}
       </p>
@@ -45,28 +35,8 @@
         <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
       </p>
 
-      <div style="text-align:center;" [ngSwitch]="room.Genre">
-        <p *ngSwitchCase="0">
-          <app-hashtag title="Genre"></app-hashtag> Horror
-        </p>
-        <p *ngSwitchCase="1">
-          <app-hashtag title="Genre"></app-hashtag> Comedy
-        </p>
-        <p *ngSwitchCase="2">
-          <app-hashtag title="Genre"></app-hashtag> Thriller
-        </p>
-        <p *ngSwitchCase="3">
-          <app-hashtag title="Genre"></app-hashtag> KidsFriendly
-        </p>
-        <p *ngSwitchCase="4">
-          <app-hashtag title="Genre"></app-hashtag> RolePlaying
-        </p>
-        <p *ngSwitchCase="5">
-          <app-hashtag title="Genre"></app-hashtag> SciFi
-        </p>
-        <p *ngSwitchCase="6">
-          <app-hashtag title="Genre"></app-hashtag> Mystery
-        </p>
+      <div style="text-align:center;">
+          <p><app-hashtag title="Genre"></app-hashtag>{{room.Genre}}</p>
       </div>
       <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
 

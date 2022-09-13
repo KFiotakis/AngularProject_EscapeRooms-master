@@ -9,6 +9,7 @@ import { RoomService } from '../room.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+
   // Rooms : any = data;
   dt: any;
   dataDisplay: any;
@@ -32,7 +33,15 @@ export class DetailsComponent implements OnInit {
     );
   }
 
-
+  howManyBombs(room: Room): Array<number>{
+    var arr!:number[];
+    switch(String(room.Difficulty)){
+      case "Beginner": arr = new Array<number>(1); break;
+      case "Intermediate" : arr = new Array<number>(2); break;
+      case "Advanced": arr = new Array<number>(3); break;
+    }
+    return arr;
+  }
 
 }
 

@@ -13,7 +13,6 @@ export class AdminCreateDeleteComponent implements OnInit {
   dataDisplay: any;
   Rooms!: Array<Room>;
   room: Room | undefined;
-
   SelectedRoom!: Room;
   onEditHandler(myRoom: Room) {
     this.SelectedRoom = myRoom;
@@ -23,14 +22,14 @@ export class AdminCreateDeleteComponent implements OnInit {
   constructor(private roomService: RoomService) { }
 
   CreateRoomHandler(title: string, description: string,
-    duration: number, genre: number, capacity: number,
-    difficulty: number, hasActor: boolean, rating: number, escapeRate: number, isActive: boolean,
+    duration: number, genre: string, capacity: number,
+    difficulty: string, hasActor: boolean, rating: number, escapeRate: number, isActive: boolean,
     startingPricePerPerson: number,
     discountPerPerson: number, imageUrl: string, videoId: string): void {
     this.roomService.createRoom({
       Title: title,
       Description: description, Duration: duration
-      , Genre: genre, Capacity: capacity, Difficulty: difficulty, HasActor: hasActor, Rating: rating, EscapeRate: escapeRate, IsActive: isActive,
+      , Genre: Number(genre), Capacity: capacity, Difficulty: Number(difficulty), HasActor: hasActor, Rating: rating, EscapeRate: escapeRate, IsActive: isActive,
       StartingPricePerPerson: startingPricePerPerson,
       DiscountPerPerson: discountPerPerson, ImageUrl: imageUrl, VideoId: videoId
     } as Room).subscribe(
@@ -95,5 +94,9 @@ export class AdminCreateDeleteComponent implements OnInit {
         return false;
     }
   }
+
+
+
+
 }
 

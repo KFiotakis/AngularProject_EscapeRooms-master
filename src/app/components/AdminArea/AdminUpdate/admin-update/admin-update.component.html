@@ -5,18 +5,33 @@
         <input [(ngModel)]="Room.VideoId" name="VideoId" class="form-control m-4" type="text" placeholder="Edit VideoId">
         <input [(ngModel)]="Room.Title" name="Title" class="form-control m-4" type="text" placeholder="Edit Title">
         <input [(ngModel)]="Room.Description" name="Description" class="form-control m-4" type="text" placeholder="Edit Description">
-        <input [(ngModel)]="Room.Difficulty" name="Difficulty" class="form-control m-4" type="text" placeholder="Edit Difficulty">
+        <select style="background-color:#bddcee;"class="form-control m-4" placeholder="Edit Difficulty" [(ngModel)]="Room.Difficulty" name="Difficulty">
+            <option disabled selected>Edit Difficulty</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+        </select>
+
         <input [(ngModel)]="Room.Duration" name="Duration" class="form-control m-4" type="number" placeholder="Edit Duration">
-        <input [(ngModel)]="Room.Genre" name="Genre" class="form-control m-4" type="number" placeholder="Edit Genre">
+        <select style="background-color:#bddcee;"class="form-control m-4" placeholder="Edit Difficulty" [(ngModel)]="Room.Genre" name="Genre">
+          <option disabled selected>Edit Genre</option>
+          <option>Horror</option>
+          <option>Comedy</option>
+          <option>Thriller</option>
+          <option>KidsFriendly</option>
+          <option>RolePlaying</option>
+          <option>SciFi</option>
+          <option>Mystery</option>
+        </select>
         <input [(ngModel)]="Room.Capacity" name="Capacity" class="form-control m-4" type="number" placeholder="Edit Capacity">
         <input [(ngModel)]="Room.DiscountPerPerson" name="DiscountPerPerson" class="form-control m-4" type="number" placeholder="Edit DiscountPerPerson">
         <input [(ngModel)]="Room.StartingPricePerPerson" name="StartingPricePerPerson" class="form-control m-4" type="number" placeholder="Edit StartingPricePerPerson">
-        <input [(ngModel)]="Room.HasActor" name="HasActor" class="form-control m-4" type="text" placeholder="Edit HasActor">
-        <!-- <select style="background-color:#bddcee;"class="form-control m-4" placeholder="Edit HasActor">
+        
+        <select style="background-color:#bddcee;"class="form-control m-4" placeholder="Edit HasActor" [(ngModel)]="Room.HasActor" name="HasActor">
             <option  disabled selected>Edit HasActor</option>
             <option>true</option>
             <option>false</option>
-        </select> -->
+        </select>
         <button class="btn btn-primary m-4">Save Changes</button>
         <button (click)="onCloseHandler()" class="btn btn-warning m-4">Close</button>
     </form>

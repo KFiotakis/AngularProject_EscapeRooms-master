@@ -44,6 +44,17 @@ export class BookComponent implements OnInit {
           this.room = response;
           this.dt = response;
           this.dataDisplay = this.dt.data;
+          this.bookService.getAvailableDates(this.id).subscribe(
+            {
+              next: response => {
+                this.book = response;
+                this.dt = response;
+                this.dataDisplay = this.dt.data;
+            },
+            error: e => console.log(e),
+            complete: () => console.log(this.book)
+          }
+          )
         },
         error: e => console.log(e),
         complete: () => console.log(this.room)
