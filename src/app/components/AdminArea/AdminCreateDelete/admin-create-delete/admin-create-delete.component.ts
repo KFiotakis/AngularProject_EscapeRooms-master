@@ -145,6 +145,9 @@ export class AdminCreateDeleteComponent implements OnInit {
           this.Rooms = response;
           this.dt = response;
           this.dataDisplay = this.dt.data;
+          this.FilteredRooms=response;
+          this.Genres = [...new Set(this.Rooms.map(x => x.Genre))];
+          console.log(this.Genres)
         },
         error: e => console.log(e),
         complete: () => console.log("Get Rooms Succesfull!")
