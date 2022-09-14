@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Room } from 'src/app/components/rooms/roomsModels';
 import { RoomService } from 'src/app/components/rooms/room.service';
 
@@ -10,24 +10,30 @@ import { RoomService } from 'src/app/components/rooms/room.service';
 export class AdminUpdateComponent {
 
   @Input() Room!: Room;
-  dt: any;
-  dataDisplay: any;
-  Rooms!: Array<Room>;
 
-  isVisible: boolean = true;
+  @Output() myEvent = new EventEmitter<string>();
+
+  @Output() isClosedEvent = new EventEmitter<boolean>();
+
+
+  @Input() isVisible: boolean = true;
   onCloseHandler() {
-    this.isVisible = !this.isVisible;
+    this.isVisible = false;
+    this.myEvent.emit("Close pushed")
+    this.isClosedEvent.emit(false);
   }
 
+
+  Rooms!: Array<Room>;
   constructor(private roomService: RoomService) { }
 
-
-  UpdateRoomHandler(title: string, description: string,
+  UpdateRoomHandler(id:number, title: string, description: string,
     duration: number, genre: string, capacity: number,
     difficulty: string, hasActor: boolean, rating: number, escapeRate: number, isActive: boolean,
     startingPricePerPerson: number,
     discountPerPerson: number, imageUrl: string, videoId: string): void {
-    this.roomService.updateRoom({Title: title,
+    this.roomService.updateRoom({Id: id,
+      Title: title,
       Description: description, Duration: duration
       , Genre: Number(genre), Capacity: capacity, Difficulty: Number(difficulty), HasActor: hasActor, Rating: rating, EscapeRate: escapeRate, IsActive: isActive,
       StartingPricePerPerson: startingPricePerPerson,
@@ -39,9 +45,8 @@ export class AdminUpdateComponent {
         complete: () => console.log(this.Room)
       }
     );
-   
-  }
 
+  }
 
   getBoolean(value: string) {
 
@@ -55,7 +60,7 @@ export class AdminUpdateComponent {
   }
 
   ngOnInit(): void {
-   
+
   }
 
 }

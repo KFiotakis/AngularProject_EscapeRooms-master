@@ -14,9 +14,21 @@ export class AdminCreateDeleteComponent implements OnInit {
   Rooms!: Array<Room>;
   room: Room | undefined;
   SelectedRoom!: Room;
+
+  EditVisible:boolean = false;
   onEditHandler(myRoom: Room) {
     this.SelectedRoom = myRoom;
-    console.log(this.SelectedRoom);
+    this.EditVisible = true;
+  }
+
+  Meth(myString:string)
+  {
+    console.log(myString);
+  }
+
+  onCloseDetailsWindow(vis:boolean)
+  {
+    this.EditVisible = vis;
   }
 
   constructor(private roomService: RoomService) { }
@@ -36,7 +48,7 @@ export class AdminCreateDeleteComponent implements OnInit {
       {
         next: response => console.log(response),
         error: err => console.log(err),
-        complete: () => console.log("Created a new Room!"+this.room)
+        complete: () => console.log("Created a new Room!")
       }
     );
     window.location.reload();
@@ -135,7 +147,7 @@ export class AdminCreateDeleteComponent implements OnInit {
           this.dataDisplay = this.dt.data;
         },
         error: e => console.log(e),
-        complete: () => console.log(this.Rooms)
+        complete: () => console.log("Get Rooms Succesfull!")
       }
     );
     // Function is defined
