@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from './room.service';
-import { Room, Genre } from './roomsModels';
+import { Room } from './roomsModels';
 import { IWithActorSettings, WithActorSettings } from './roomSettings';
 import { ICardSettings, CardSettings } from './roomSettings';
 import { ICardImgBodySettings, CardImgBodySettings } from './roomSettings';

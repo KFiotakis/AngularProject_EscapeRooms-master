@@ -17,13 +17,4 @@ export interface Room
     VideoId:string
 }
 
-export enum Genre
-{
-        Horror,
-        Comedy,
-        Thriller,
-        KidsFriendly,
-        RolePlaying,
-        SciFi,
-        Mystery
-}
+

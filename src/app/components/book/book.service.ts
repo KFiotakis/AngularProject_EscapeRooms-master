@@ -9,7 +9,6 @@ import { Book } from './bookModel';
 })
 export class BookService {
 
-
   private URL = "https://localhost:44368/api/ReservationApi"
   private availabilityURL = "https://localhost:44368/api/ReservationApi?roomId="
   private cardPaymentURL = "https://localhost:44368/api/CardPaymentApi"
@@ -19,8 +18,8 @@ export class BookService {
   }
   
 
-  getAvailableDates(id: string): Observable<Book> {
-    return this.httpService.get<Book>(this.availabilityURL + id);
+  getAvailableDates(id: number): Observable<Book[]> {
+    return this.httpService.get<Book[]>(this.availabilityURL + id);
   }
 
 

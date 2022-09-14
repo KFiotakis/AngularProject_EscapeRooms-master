@@ -22,14 +22,15 @@ export class BookComponent implements OnInit {
   dataDisplay: any;
   room: Room | undefined;
   book!: Book;
+  books!: Array<Book>;
   isHidden:boolean = false;
 
   title = 'stipe-angular';
   amount!: number;
   token: any;
-
-
- paymentMethod!:string;
+  
+  today = new Date().toJSON().split('T')[0];
+  selectedDate!: Date;
 
   id = this.actRoute.snapshot.params['roomId'];
 
@@ -44,15 +45,16 @@ export class BookComponent implements OnInit {
           this.room = response;
           this.dt = response;
           this.dataDisplay = this.dt.data;
+          
           this.bookService.getAvailableDates(this.id).subscribe(
             {
               next: response => {
-                this.book = response;
+                this.books = response;
                 this.dt = response;
                 this.dataDisplay = this.dt.data;
             },
             error: e => console.log(e),
-            complete: () => console.log(this.book)
+            complete: () => console.log(this.books)
           }
           )
         },
@@ -64,7 +66,17 @@ export class BookComponent implements OnInit {
 
   }
 
+showAvailability(){
+  if (this.book){
 
+  }
+}
+
+GetBookDate(e:any){
+   if (this.books){
+       console.log(e.target.value)
+   }
+}
 
   onCheckout(roomId:number, firstName:string, lastName:string,  gameDate:Date, numberOfPlayers:string, gameTime:string) {
     var kati = numberOfPlayers.substring(0,1);
@@ -154,16 +166,18 @@ getTimeArray(duration: number) : Array<Date>{
 
 
   ConvertStringForGameHour(dateString: string) : Date{
-    const date = 'Wed Sep 07 2022 00:00:00 GMT+0000 (Atlantic Standard Time)';
-
+    //const date = 'Wed Sep 07 2022 00:00:00 GMT+0000 (Atlantic Standard Time)';
+    const date = 'Wed Sep 07 2022 00:00:00 GMT';
     const t1: any = dateString.split(' ');
     const t2: any = t1[0].split(':');
     t2[0] = (t1[1] === 'PM' ? (1*t2[0] + 12) : t2[0]);
     const time24 = (t2[0] < 10 ? '0' + t2[0] : t2[0]) + ':' + t2[1] + ':00';
     var completeDate = date.replace("00:00:00", time24.toString());
     let newDate = new Date(completeDate);
-
-    return newDate;
+    var utc_date = new Date(newDate.getUTCFullYear(), newDate.getUTCMonth(),
+    newDate.getUTCDate(), newDate.getUTCHours(),
+    newDate.getUTCMinutes(), newDate.getUTCSeconds());
+    return utc_date;
   }
   
   
@@ -173,10 +187,9 @@ getTimeArray(duration: number) : Array<Date>{
 
     var kati = numberOfPlayers.substring(0,1);
     console.log(kati);
+    console.log(gameTime);
     var newDate = this.ConvertStringForGameHour(gameTime);
-    console.log(newDate);
-    console.log(this.paymentMethod)
-
+    
     console.log(newDate);
       this.bookService.createBook({RoomId:roomId, FirstName:firstName, LastName:lastName, GameDate:gameDate, NumberOfPlayers:+kati,GameTime:newDate} as Book).subscribe(
         {

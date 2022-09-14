@@ -12,18 +12,18 @@
 
             <label>Firstname </label> 
             <br>
-            <input #firstName type="text"  placeholder="Write your First Name" />
+            <input #firstName type="text"  placeholder="Write your First Name" required/>
             <br>
             <br>
             <label >Lastname </label>  
             <br>
-            <input #lastName type="text" placeholder="Write your Last Name" />
+            <input #lastName type="text" placeholder="Write your Last Name" required/>
             <br>
             <br>
 
             <label>Game Date </label>
             <br>
-            <input #gameDate style="color:white"  type="date" min="2022-09-03" max="2022-09-20"/>
+            <input #gameDate style="color:white"  type="date"  min="2022-09-01" max="2022-09-20" [(ngModel)]="selectedDate"  (input)="GetBookDate($event)" required/>
             
             <br>
             <br>
@@ -33,14 +33,14 @@
             <br>
            
 
-            <select #gameTime>
+            <select #gameTime required>
               <option  *ngFor="let dateObj of getTimeArray(room.Duration)">{{ dateObj | date:'shortTime' }}</option>
             </select>
               <br>
               <br>
 
              <label>Number of Players </label>
-                <select #numberOfPlayers>
+                <select #numberOfPlayers required>
                     <option *ngFor="let item of getNumberOfPlayers(room.Capacity)" >{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
                 </select>
              <br>
