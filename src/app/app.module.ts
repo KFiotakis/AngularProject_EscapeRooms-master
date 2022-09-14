@@ -17,7 +17,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { HomephotosComponent } from './components/home/homephotos/homephotos/homephotos.component';
 import { YoutubeplayerComponent } from './components/home/youtubeplayer/youtubeplayer/youtubeplayer.component';
 import { MapComponent } from './components/home/map/map/map.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule,HTTP_INTERCEPTORS} from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -34,6 +34,11 @@ import { ChartComponent } from './components/chart/chart.component';
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import { AdminCreateDeleteComponent } from './components/AdminArea/AdminCreateDelete/admin-create-delete/admin-create-delete.component';
 import { AdminUpdateComponent } from './components/AdminArea/AdminUpdate/admin-update/admin-update.component';
+import { LoginComponent } from './Authentication/login/login.component';
+import { RegisterComponent } from './Authentication/register/register.component';
+import { UserprofileComponent } from './Authentication/userprofile/userprofile.component';
+
+import { AuthInterceptor } from './Authentication/userprofile/auth.interceptor';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 
@@ -67,7 +72,10 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     CanvasJSChart,
     ChartComponent,
     AdminCreateDeleteComponent,
-    AdminUpdateComponent
+    AdminUpdateComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserprofileComponent
    
   ],
   imports: [
@@ -98,7 +106,13 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
       ])
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
