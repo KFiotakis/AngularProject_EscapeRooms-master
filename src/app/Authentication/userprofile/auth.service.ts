@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { User } from './userModel';
+import { _countGroupLabelsBeforeOption } from '@angular/material/core';
 
 
 @Injectable({
@@ -14,28 +15,34 @@ import { User } from './userModel';
 })
 
 export class AuthService {
-  API_URL: string = 'http://localhost:4000';
+  API_URL: string = 'https://localhost:44368';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
   constructor(private httpClient: HttpClient,public router: Router){}
 
+  // https://localhost:44368/api/account/register
   register(user: User): Observable<any> {
 
-    return this.httpClient.post(`${this.API_URL}/users/register`, user).pipe(
+    return this.httpClient.post(`${this.API_URL}/api/account/register`, user).pipe(
         catchError(this.handleError)
+        
     )
+    
   }
 
   login(user: User) {
-    return this.httpClient.post<any>(`${this.API_URL}/users/login`, user)
+    return this.httpClient.post<any>(`${this.API_URL}/api/account/externallogin`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token)
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
           this.router.navigate(['users/profile/' + res.msg._id]);
         })
+        console.log(res.token)
+        console.log(user)
       })
+      
   }
 
   getAccessToken() {

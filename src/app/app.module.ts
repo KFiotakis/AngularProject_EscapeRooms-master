@@ -36,7 +36,7 @@ import { AdminCreateDeleteComponent } from './components/AdminArea/AdminCreateDe
 import { AdminUpdateComponent } from './components/AdminArea/AdminUpdate/admin-update/admin-update.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { RegisterComponent } from './Authentication/register/register.component';
-import { UserprofileComponent } from './Authentication/userprofile/userprofile.component';
+import { UserProfileComponent } from './Authentication/userprofile/userprofile.component';
 
 import { AuthInterceptor } from './Authentication/userprofile/auth.interceptor';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
@@ -75,7 +75,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     AdminUpdateComponent,
     LoginComponent,
     RegisterComponent,
-    UserprofileComponent
+    UserProfileComponent
    
   ],
   imports: [
