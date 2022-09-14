@@ -52,7 +52,7 @@ export class AdminUpdateComponent {
 
     switch (value) {
 
-      case "true":
+      case "1":
         return true;
       default:
         return false;

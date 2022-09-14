@@ -178,7 +178,7 @@ export class AdminCreateDeleteComponent implements OnInit {
 
     switch (value) {
 
-      case "true":
+      case "1":
         return true;
       default:
         return false;
