@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from 'src/app/components/rooms/roomsModels';
+import { Room ,SortOptions } from 'src/app/components/rooms/roomsModels';
 import { RoomService } from 'src/app/components/rooms/room.service';
 
 @Component({
@@ -26,6 +26,7 @@ export class AdminCreateDeleteComponent implements OnInit {
   {
     this.CreateHidden =!this.CreateHidden;
   }
+
 
 
   Meth(myString:string)
@@ -72,6 +73,75 @@ export class AdminCreateDeleteComponent implements OnInit {
     window.location.reload();
   }
 
+
+
+  //Filtering Sorting
+  searchTitle!: string;
+  selectedGenre!: number;
+  FilteredRooms!: Array<Room>;
+  Genres: any[] = [];
+
+  SortOptions:SortOptions=SortOptions.durationAsc;
+
+
+  onFilterRoomHandler() {
+    this.FilteredRooms = this.Rooms;
+    if (this.searchTitle) {
+      this.FilteredRooms = this.FilteredRooms
+        .filter(x => x.Title.toUpperCase()
+          .includes(this.searchTitle.toUpperCase()))
+    }
+    if (this.selectedGenre) {
+      this.FilteredRooms = this.FilteredRooms
+        .filter(x => x.Genre == this.selectedGenre)
+    }
+
+    //Sorting
+    switch(this.SortOptions){
+      case SortOptions.difficultyAsc: this.FilteredRooms = this.FilteredRooms.sort((a,b)=> a.Difficulty < b.Difficulty?-1:1); break;
+      case SortOptions.difficultyDesc:  this.FilteredRooms= this.FilteredRooms.sort((a,b)=> a.Difficulty > b.Difficulty?-1:1);break;
+      case SortOptions.durationAsc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Duration - b.Duration);break;
+      case SortOptions.durationDesc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>b.Duration - a.Duration);break;
+      default: this.FilteredRooms = this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Title < b.Title?-1:1); break;
+
+    }
+
+  }
+
+  difficultyIsAsc:boolean =true;
+
+  ToggleSortDifficulty(){
+    this.difficultyIsAsc = !this.difficultyIsAsc
+
+    if(this.difficultyIsAsc){
+      this.SortOptions = SortOptions.difficultyAsc
+    }
+    else{
+      this.SortOptions = SortOptions.difficultyDesc
+    }
+
+    this.onFilterRoomHandler();
+  }
+
+
+  durationIsAsc:boolean =true;
+
+  ToggleSortDuration(){
+    this.durationIsAsc = !this.durationIsAsc
+
+    if(this.durationIsAsc){
+      this.SortOptions = SortOptions.durationAsc
+    }
+    else{
+      this.SortOptions = SortOptions.durationDesc
+    }
+
+    this.onFilterRoomHandler();
+  }
+ 
+
+
+
   ngOnInit(): void {
     this.roomService.getRooms().subscribe(
       {
@@ -82,6 +152,9 @@ export class AdminCreateDeleteComponent implements OnInit {
           this.Rooms = response;
           this.dt = response;
           this.dataDisplay = this.dt.data;
+          this.FilteredRooms=response;
+          this.Genres = [...new Set(this.Rooms.map(x => x.Genre))];
+          console.log(this.Genres)
         },
         error: e => console.log(e),
         complete: () => console.log("Get Rooms Succesfull!")
