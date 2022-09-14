@@ -1,27 +1,66 @@
 <app-homephotos></app-homephotos>
 <app-loading-spinner></app-loading-spinner>
-<div class="form__group field">
-  <input  [(ngModel)]="searchTitle" (input)="FilterRooms()" type="text" class="form__field" placeholder="Search Title" name="name" id='name' required />
+
+<div class="form__group field" style="margin-right: 0;">
+  <div style="display:flex;  justify-content: space-between; " class="container">
+    <div style="width:20%;">
+      <br>
+      <br>
+      <input  [(ngModel)]="searchTitle" (input)="onFilterRoomHandler()" type="text" class="form__field" placeholder="Search Title" name="name" id='name' required />
+    </div>
+
+
+    <div style="width:20%;" >
+      <div (click)="ToggleSortDifficulty()" style="cursor:pointer;" class="button2">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        {{difficultyIsAsc? "SORT BY DIFFICULTY ASC" : "SORT BY DIFFICULTY DESC"}} 
+      </div>
+    </div>
+    
+
+    <div style="width:20%;" >
+      <div (click)="ToggleSortDuration()" style="cursor:pointer;" class="button2">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        {{durationIsAsc? "SORT BY DURATION ASC" : "SORT BY DURATION DESC"}} 
+      </div>
+    </div>
+   
+
+    <div style="width:20%;">
+      <br>
+      <label class="select" for="slct">
+        <div id="labeld">Genre</div>
+          <select [(ngModel)]="selectedGenre" (change)="onFilterRoomHandler()" type="text" id="slct" >
+            <option value="" selected>All</option>
+            <option *ngFor="let genre of Genres" value={{genre}} >{{genre}}</option>
+          </select>
+          <svg>
+            <use xlink:href="#select-arrow-down"></use>
+          </svg>
+      </label>
+    <!-- SVG Sprites-->
+          <svg class="sprites">
+            <symbol id="select-arrow-down" viewbox="0 0 10 6">
+              <polyline points="1 1 5 5 9 1"></polyline>
+            </symbol>
+          </svg>
+    </div>
+  
+  </div>    
 </div>
+
 <br>
 <br>
 
-<label class="select" for="slct">
-  <div id="labeld">Search Genre</div>
-  <select [(ngModel)]="selectedGenre" (change)="FilterRooms()" type="text" id="slct" >
-      <option value="" selected>All</option>
-      <option *ngFor="let genre of Genres" value={{genre}} >{{genre}}</option>
-  </select>
-  <svg>
-    <use xlink:href="#select-arrow-down"></use>
-  </svg>
-</label>
-<!-- SVG Sprites-->
-<svg class="sprites">
-  <symbol id="select-arrow-down" viewbox="0 0 10 6">
-    <polyline points="1 1 5 5 9 1"></polyline>
-  </symbol>
-</svg>
+
+
+
 <div *ngFor="let room of FilteredRooms" class="card-group">
   <div class="card" [style.border]="CSettings.border" [style.background-color]="CSettings.backColor"
     [style.border-radius.px]="CSettings.borderRadius" [style.box-shadow]="CSettings.boxShadow"

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from './room.service';
-import { Room } from './roomsModels';
+import { Room ,SortOptions} from './roomsModels';
 import { IWithActorSettings, WithActorSettings } from './roomSettings';
 import { ICardSettings, CardSettings } from './roomSettings';
 import { ICardImgBodySettings, CardImgBodySettings } from './roomSettings';
@@ -30,8 +30,11 @@ export class RoomsComponent implements OnInit {
   selectedGenre!: number;
   FilteredRooms!: Array<Room>;
   Genres: any[] = [];
-  FilterRooms() {
-   
+
+  SortOptions:SortOptions=SortOptions.durationAsc;
+
+
+  onFilterRoomHandler() {
     this.FilteredRooms = this.Rooms;
     if (this.searchTitle) {
       this.FilteredRooms = this.FilteredRooms
@@ -42,6 +45,52 @@ export class RoomsComponent implements OnInit {
       this.FilteredRooms = this.FilteredRooms
         .filter(x => x.Genre == this.selectedGenre)
     }
+
+    //Sorting
+    switch(this.SortOptions){
+      case SortOptions.difficultyAsc: this.FilteredRooms = this.FilteredRooms.sort((a,b)=> a.Difficulty < b.Difficulty?-1:1); break;
+      case SortOptions.difficultyDesc:  this.FilteredRooms= this.FilteredRooms.sort((a,b)=> a.Difficulty > b.Difficulty?-1:1);break;
+      case SortOptions.durationAsc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Duration - b.Duration);break;
+      case SortOptions.durationDesc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>b.Duration - a.Duration);break;
+      default: this.FilteredRooms = this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Title < b.Title?-1:1); break;
+
+    }
+
+
+
+
+  }
+
+
+  difficultyIsAsc:boolean =true;
+
+  ToggleSortDifficulty(){
+    this.difficultyIsAsc = !this.difficultyIsAsc
+
+    if(this.difficultyIsAsc){
+      this.SortOptions = SortOptions.difficultyAsc
+    }
+    else{
+      this.SortOptions = SortOptions.difficultyDesc
+    }
+
+    this.onFilterRoomHandler();
+  }
+
+
+  durationIsAsc:boolean =true;
+
+  ToggleSortDuration(){
+    this.durationIsAsc = !this.durationIsAsc
+
+    if(this.durationIsAsc){
+      this.SortOptions = SortOptions.durationAsc
+    }
+    else{
+      this.SortOptions = SortOptions.durationDesc
+    }
+
+    this.onFilterRoomHandler();
   }
  
 

@@ -30,6 +30,12 @@ export class RoomService {
     return this.httpService.post<Room>(this.URL, room, this.httpOptions);
   }
 
+  updateRoom(room:Room): Observable<Room>
+  {
+    console.log(room);
+    return this.httpService.put<Room>(this.URL, room, this.httpOptions);
+  }
+
   deleteRoom(id: number) {
     return this.httpService.delete<Room>(this.URL1 + id, this.httpOptions);
   }

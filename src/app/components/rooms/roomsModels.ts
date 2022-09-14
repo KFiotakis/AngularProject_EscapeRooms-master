@@ -17,4 +17,9 @@ export interface Room
     VideoId:string
 }
 
-
+export enum SortOptions{
+    difficultyAsc="difficultyAsc",
+    difficultyDesc="difficultyDesc",
+    durationAsc="durationAsc",
+    durationDesc="durationDesc"
+}
