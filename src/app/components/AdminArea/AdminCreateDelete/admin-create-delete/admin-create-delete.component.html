@@ -136,7 +136,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let room of Rooms" style="text-align:center">
+    <tr *ngFor="let room of FilteredRooms" style="text-align:center">
       <td>{{room.Id}}</td>
       <td>
         <img style="width:140px; height: 100%;" [src]="room.ImageUrl">
