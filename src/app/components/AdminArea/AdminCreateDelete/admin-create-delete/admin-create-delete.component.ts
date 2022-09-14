@@ -18,8 +18,15 @@ export class AdminCreateDeleteComponent implements OnInit {
   EditVisible:boolean = false;
   onEditHandler(myRoom: Room) {
     this.SelectedRoom = myRoom;
-    this.EditVisible = true;
+    this.EditVisible = !this.EditVisible;
   }
+
+  CreateHidden:boolean=false;
+  ToggleCreate()
+  {
+    this.CreateHidden =!this.CreateHidden;
+  }
+
 
   Meth(myString:string)
   {
@@ -54,7 +61,6 @@ export class AdminCreateDeleteComponent implements OnInit {
     window.location.reload();
   }
 
-
   DeleteRoomHandler(id: number) {
     this.roomService.deleteRoom(id).subscribe(
       {
@@ -65,7 +71,6 @@ export class AdminCreateDeleteComponent implements OnInit {
     )
     window.location.reload();
   }
-
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe(

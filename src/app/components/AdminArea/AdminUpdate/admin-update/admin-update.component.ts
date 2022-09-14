@@ -45,7 +45,7 @@ export class AdminUpdateComponent {
         complete: () => console.log(this.Room)
       }
     );
-
+    window.location.reload();
   }
 
   getBoolean(value: string) {

@@ -9,7 +9,7 @@
       </div>
     </div>
      <div>
-    <button style="margin-top: 10px; margin-left: 210px;"  class="btn btn-warning">Show Create</button>
+    <button style="margin-top: 10px; margin-left: 210px;" (click)="ToggleCreate()" class="btn btn-warning">{{CreateHidden?"Hide Create Button" : "Show Create Button"}}</button>
   </div>
 
   </div>
@@ -33,7 +33,7 @@
       <th>HasActor</th>
       <th>Action</th>
     </tr>
-    <tr>
+    <tr *ngIf="CreateHidden" >
       <th></th>
       <th><input #roomImage class="form-control" type="text" placeholder="New Image"></th>
       <th><input #roomVideoId  class="form-control" type="text" placeholder="New VideoId"></th>
@@ -66,7 +66,7 @@
         <option value="0">False</option>
       </select></th>
 
-      <th>
+      <th >
         <button *ngIf="Rooms" (click)="
         CreateRoomHandler
         (roomTitle.value
@@ -111,7 +111,7 @@
       <td>{{room.HasActor}}</td>
 
       <td>
-        <button (click)="onEditHandler(room)" class="btn btn-success m-2">Edit</button>
+        <button (click)="onEditHandler(room)"  class="btn btn-success m-2">Edit</button>
         <button (click)="DeleteRoomHandler(room.Id)" class="btn btn-danger m-2">Delete</button>
       </td>
       <br>
@@ -125,3 +125,4 @@
  (myEvent)="Meth($event)" 
  (isClosedEvent)="onCloseDetailsWindow($event)"
   ></app-admin-update>
+
