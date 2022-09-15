@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RoomService } from '../rooms/room.service';
 import { Room } from '../rooms/roomsModels';
-import { Book } from './bookModel';
+import { Book, TimeSelectObject } from './bookModel';
 import { BookService } from './book.service';
 
 
@@ -24,13 +24,13 @@ export class BookComponent implements OnInit {
   book!: Book;
   books!: Array<Book>;
   isHidden:boolean = false;
-
+  isDisabled:boolean = true;
+  
   title = 'stipe-angular';
   amount!: number;
   token: any;
-  
-  today = new Date().toJSON().split('T')[0];
-  selectedDate!: Date;
+  hourList: TimeSelectObject[] = [];
+  //today = new Date().toJSON().split('T')[0];
 
   id = this.actRoute.snapshot.params['roomId'];
 
@@ -62,19 +62,41 @@ export class BookComponent implements OnInit {
         complete: () => console.log(this.room)
       }
     );
-
-
-  }
-
-showAvailability(){
-  if (this.book){
+   
 
   }
-}
 
-GetBookDate(e:any){
-   if (this.books){
-       console.log(e.target.value)
+showAvailability(bookings:Book[]){
+  var hours:string[] = [];
+  bookings.forEach(book => {
+      var playTime = book.GameTime.toString().substring(11,16)
+      hours.push(playTime)
+   })
+   for (let i = 0; i < this.hourList.length; i++) {
+    var time = this.hourList[i].Time.toTimeString().substring(0,5);
+   if (hours.includes(time)){
+    this.hourList[i].IsDisabled = true;
+    this.hourList[i].Color = "red";
+   }
+   }
+  }
+  
+ 
+GetBookDate(e:any) {
+  this.isDisabled = false;
+   if (this.books.length != 0){
+       var date = e.target.value
+       var filteredBooks :Book[] = [];
+       this.books.forEach(element => {
+        
+        var playDay = element.GameDate.toString().substring(0,10)
+        if (playDay == date){
+          filteredBooks.push(element);
+        }
+      
+       });
+     
+      this.showAvailability(filteredBooks);
    }
 }
 
@@ -116,22 +138,26 @@ GetBookDate(e:any){
   GoToPayPal(roomId:number, firstName:string, lastName:string, numberOfPlayers:string, gameDate:Date, gameTime:string){
     var kati = numberOfPlayers.substring(0,1);
     var newDate = this.ConvertStringForGameHour(gameTime);
-   window.location.href = 'https://localhost:44368/Reservation?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName 
-   + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON();
+    window.location.href = 'https://localhost:44368/Reservation?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName 
+    + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON();
    
   }
 
-getTimeArray(duration: number) : Array<Date>{
+
+
+getTimeArray(duration: number):void{
   let startDate: Date = new Date(2022,9,5,18,0,0);
   let endDate: Date = new Date(2022,9,5,23,0,0);
-
-  var arr: Date[] = [];
+  this.hourList = [];
   var dt: Date = new Date(startDate);
   while(dt <= endDate){
-    arr.push(new Date(dt));
+    var obj = new TimeSelectObject;
+    obj.Time = new Date(dt);
+    obj.IsDisabled = false;
+    this.hourList.push(obj);
     dt.setMinutes(dt.getMinutes() + duration + 10);
   }
-  return arr;
+  
 }
 
 
@@ -159,14 +185,13 @@ getTimeArray(duration: number) : Array<Date>{
   submitdone(message: string)
   {
     this.alert = !this.alert;
-  this.alert=true;
-  this.message = message;
-  this.isHidden = true;
+    this.alert=true;
+    this.message = message;
+    this.isHidden = true;
   }
 
 
   ConvertStringForGameHour(dateString: string) : Date{
-    //const date = 'Wed Sep 07 2022 00:00:00 GMT+0000 (Atlantic Standard Time)';
     const date = 'Wed Sep 07 2022 00:00:00 GMT';
     const t1: any = dateString.split(' ');
     const t2: any = t1[0].split(':');

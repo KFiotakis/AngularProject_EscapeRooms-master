@@ -15,3 +15,11 @@ export interface Book
     PhoneNumber:number,
     IsSubscribed:boolean
 }
+
+
+export class TimeSelectObject
+{
+   Time!:Date
+   IsDisabled!:boolean
+   Color!:string
+}
