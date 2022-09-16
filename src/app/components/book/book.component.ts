@@ -30,7 +30,8 @@ export class BookComponent implements OnInit {
   amount!: number;
   token: any;
   hourList: TimeSelectObject[] = [];
-  //today = new Date().toJSON().split('T')[0];
+  today = new Date();
+  maxDate = new Date(new Date().setMonth(new Date().getMonth()+3));
 
   id = this.actRoute.snapshot.params['roomId'];
 
@@ -39,6 +40,7 @@ export class BookComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.roomService.getRoom(this.id).subscribe(
       {
         next: response => {
@@ -85,10 +87,9 @@ showAvailability(bookings:Book[]){
 GetBookDate(e:any) {
   this.isDisabled = false;
    if (this.books.length != 0){
-       var date = e.target.value
+       var date = e.target.value;
        var filteredBooks :Book[] = [];
        this.books.forEach(element => {
-        
         var playDay = element.GameDate.toString().substring(0,10)
         if (playDay == date){
           filteredBooks.push(element);

@@ -1,4 +1,5 @@
 import { Time } from "@angular/common";
+import { Room } from "../rooms/roomsModels";
 
 export interface Book
 {
@@ -13,7 +14,8 @@ export interface Book
     IsPayed:boolean,
     Email:string,
     PhoneNumber:number,
-    IsSubscribed:boolean
+    IsSubscribed:boolean,
+    Room:Room
 }
 
 
