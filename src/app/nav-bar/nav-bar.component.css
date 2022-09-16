@@ -15,12 +15,13 @@
 li>a.active {
   color: #F97924;
 }
-li{
+
+li {
   margin-left: 100px;
 }
 
 .navbar {
-  background-color:0 0;
+  background-color: 0 0;
   background-size: cover;
   min-width: 600px;
   display: flex;
@@ -31,10 +32,13 @@ li{
 }
 
 
-.navbar::after
-{
-  background-color:  rgba(0, 0, 0, 0.655);
+.navbar-inverse {
+  background-color:
+    #212529;
+  transition: 0.8s;
 }
+
+
 
 .nav-logo {
   width: 80px;
@@ -42,7 +46,7 @@ li{
   border-radius: 5px;
 }
 
-a{
+a {
   position: relative;
   text-decoration: none;
   font-size: 22px;
@@ -50,19 +54,18 @@ a{
 }
 
 
-a:after
-{
+a:after {
   content: "";
   position: absolute;
   background-color: #F97924;
-  height:3px;
-  width:0;
-  left:0;
-  bottom:-1px;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -1px;
   transition: 0.3s;
 }
 
 
-a:hover:after{
-width: 100%;
+a:hover:after {
+  width: 100%;
 }
