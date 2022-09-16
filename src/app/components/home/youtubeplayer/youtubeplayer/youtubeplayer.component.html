@@ -2,23 +2,15 @@
     <h3>Check Out Our Videos! <i class="fa fa-youtube-play"></i></h3>
     <app-loading-spinner></app-loading-spinner>
 
-    
-    <br>
 
-    <ngx-slick-carousel style="margin-left:33.5%; margin-right:33.5%; margin-top:5%; margin-bottom:5%;" class="carousel video" 
+
+    <ngx-slick-carousel   class="video" 
                             #slickModal="slick-carousel" 
-                            [config]="slideConfig" 
+                            [config]="slideConfig" >
                             
-                            >
-                            
-                            <div ngxSlickItem *ngFor="let room of Rooms" class="slide" style="height: 390px; width:80%;" >
-
-
-                                    <youtube-player class="heresy" videoId="{{ room.VideoId }}" suggestedQuality="hd1080" [startSeconds]="0"> </youtube-player>
-
+                            <div ngxSlickItem *ngFor="let room of Rooms" class="slide" >
+                                    <youtube-player  [videoId]="room.VideoId" suggestedQuality="hd1080" [startSeconds]="0"> </youtube-player>
                             </div>
-                            
-                            
     </ngx-slick-carousel>
     
 </div>

@@ -1,23 +1,27 @@
+.slide {
+  height: 390px;
+  width: 80%;
+}
 
 
- .check {
-    margin-top: 150px;
-    color: white;
-    text-align: center;
-  }
-  
-  .video {
-    margin-top: 100px; 
-    box-shadow: -3px 0px 50px 5px #fff;
-    margin-bottom: 200px;
-    align-items: center;
-    
-  }
+.check {
+  margin-top: 150px;
+  color: white;
+  text-align: center;
+}
 
-  .fa-youtube-play
-  {
-    font-size:30px;color:red;
-  }
-  
-  
-  
+.video {
+  margin-top: 100px;
+  box-shadow: -3px 0px 50px 5px #fff;
+  margin-bottom: 200px;
+  align-items: center;
+  margin-left: 33.5%;
+  margin-right: 33.5%;
+
+
+}
+
+.fa-youtube-play {
+  font-size: 30px;
+  color: red;
+}

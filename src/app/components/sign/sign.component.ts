@@ -10,6 +10,8 @@ export class SignComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.signIn();
+    this.signUp();
   }
 
   signUp() {

@@ -14,7 +14,9 @@ export class YoutubeplayerComponent implements OnInit {
   Rooms!: Array<Room>;
   
 
-  slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
+  slideConfig = {"slidesToShow": 1,
+   "slidesToScroll": 1,
+  };
 
   constructor(private roomService: RoomService) {
   }

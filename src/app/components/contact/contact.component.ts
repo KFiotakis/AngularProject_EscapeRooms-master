@@ -25,8 +25,7 @@ export class ContactComponent implements OnInit {
 			honeypot: this.honeypot
 		});
 	}
-	ngOnInit(): void {
-	}
+
 	onSubmit() {
 		if (this.form.status == "VALID" && this.honeypot.value == "") {
 			this.form.disable(); // disable the form if it's valid to disable multiple submissions
@@ -36,7 +35,7 @@ export class ContactComponent implements OnInit {
 			formData.append("message", this.form.get("message")!.value);
 			this.isLoading = true; // sending the post request async so it's in progress
 			this.submitted = false; // hide the response message on multiple submits
-			this.http.post("https://localhost:44368/", formData).subscribe(
+			this.http.post("https://localhost:44368/api/admin/emailfromcontact", formData).subscribe(
 				(response) => {
 					console.log(response)
 					// choose the response message
@@ -60,4 +59,9 @@ export class ContactComponent implements OnInit {
 			);
 		}
 	}
+
+	ngOnInit(): void {
+		this.onSubmit();
+	}
+
 }

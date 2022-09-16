@@ -23,7 +23,7 @@
             <div *ngIf="room.HasActor==true" class="actor">
                 <app-user-secret></app-user-secret>
             </div>
-            <p class="card-text"> <i class="fa fa-star"></i>{{room.Rating}}</p>
+            <!-- <p class="card-text"> <i class="fa fa-star"></i>{{room.Rating}}</p> -->
             <hr>
             <p>{{room.Description}}</p>
             <youtube-player style="margin-top:200px;" videoId="{{ room.VideoId }}" suggestedQuality="hd1080"
@@ -32,5 +32,8 @@
             <div class="book-button">
                 <button [routerLink]="['/Book',room.Id]" class="btn btn-success "> Book Now!</button>
             </div>
+            <br>
+            <button class="btn btn-warning back" type="button" routerLink="/Rooms">Go back</button>
         </div>
+        
     </div>

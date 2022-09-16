@@ -1,0 +1,17 @@
+.textinImage h2 {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-20%, -50%);
+    color: white;
+    transition: 2s;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .textinImage h2:hover {
+    font-size: xx-large;
+    color:
+      #d69f44;
+  }
+
+  

@@ -39,6 +39,7 @@ import { RegisterComponent } from './Authentication/register/register.component'
 import { UserProfileComponent } from './Authentication/userprofile/userprofile.component';
 
 import { AuthInterceptor } from './Authentication/userprofile/auth.interceptor';
+import { LockedInComponent } from './components/home/locked-in/locked-in.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 
@@ -75,7 +76,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     AdminUpdateComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    LockedInComponent
    
   ],
   imports: [
@@ -103,7 +105,12 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
         { path: '', redirectTo: "/Home", pathMatch: 'full' },
         { path: '**', component: PageNotFoundComponent }
 
-      ])
+      ], {
+        anchorScrolling: 'enabled',
+        relativeLinkResolution: 'corrected',
+        initialNavigation: 'enabledBlocking',
+        scrollPositionRestoration: 'enabled'
+    })
 
   ],
   providers: [

@@ -1,63 +1,71 @@
 .nav-link {
-    color:
-#4f5b62;
-    font-size: large;
-    margin-left: 150px;
-  }
-  
-  .nav-button {
-    margin-left: 150px;
-  }
-  
-  .nav-button .signin-btn:hover {
-    background-color: rgba(255, 0, 0, 0.419);
-    height: 100%;
-    border-radius: 5px;
-    left: 20%;
-  }
-  
-  
-  .nav-link:hover {
-    color: #d5b251;
-  }
-  
-  
-  li>a.active {
-    color: #F97924
-  }
-  
-  .navbar {
-    background-color: rgba(0, 0, 0, 0.655);
-    background-size: cover;
-  }
-  
-  .nav-logo {
-    width: 80px;
-    height: 40px;
-    border-radius: 5px;
-  }
-  
-  .foo {
-    background-color: #b46119;
-  }
-  
-  
-  @media only screen and (min-width: 600px) {
-  
-    /* For tablets: */
-    .nav-link {
-      width: 100%;
-    }
-  }
-  
-  @media only screen and (max-width: 1460px) {
-  
-    /* For desktop: */
-    .nav-link {
-     
-      margin-left: 90px;
-    }
-  
-  }
-  
-  
+  color: white;
+  font-size: medium;
+}
+
+
+.nav-button .signin-btn:hover {
+  background-color: rgba(60, 0, 255, 0.419);
+  height: 100%;
+  border-radius: 5px;
+  left: 20%;
+}
+
+
+li>a.active {
+  color: #F97924;
+}
+
+li {
+  margin-left: 100px;
+}
+
+.navbar {
+  background-color: 0 0;
+  background-size: cover;
+  min-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.navbar-inverse {
+  background-color:
+    #212529;
+  transition: 0.8s;
+}
+
+
+
+.nav-logo {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+a {
+  position: relative;
+  text-decoration: none;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+}
+
+
+a:after {
+  content: "";
+  position: absolute;
+  background-color: #F97924;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -1px;
+  transition: 0.3s;
+}
+
+
+a:hover:after {
+  width: 100%;
+}
