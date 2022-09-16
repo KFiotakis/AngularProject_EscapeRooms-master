@@ -60,43 +60,51 @@
 
 
 
-
-<div *ngFor="let room of FilteredRooms" class="card-group">
-  <div class="card" [style.border]="CSettings.border" [style.background-color]="CSettings.backColor"
-    [style.border-radius.px]="CSettings.borderRadius" [style.box-shadow]="CSettings.boxShadow"
-    [style.margin-top.px]="CSettings.marginTop" [style.margin-bottom.px]="CSettings.marginBot"
-    [style.margin-left.%]="CSettings.marginL" [style.margin-right.%]="CSettings.marginR"
-    [style.flex-flow]="CSettings.flexflow" [style.flex.%]="CSettings.flex" [style.display]="CSettings.display"
-    [style.cursor]="CSettings.cursor">
-    <app-heart></app-heart>
-    <app-user-secret [style.position]="AcSettings.posAbsol" [style.z-index]="AcSettings.zIndex"
-      [style.top.px]="AcSettings.top" [style.right.px]="AcSettings.right" [style.font-size.px]="AcSettings.fontSize"
-      [style.cursor]="AcSettings.cursor" [style.color]="AcSettings.color" *ngIf="room.HasActor"></app-user-secret>
-    <div class="card-img-body" [style.flex]="CImgSettings.flex" [style.overflow]="CImgSettings.overflow"
-      [style.position]="CImgSettings.posRel" [style.height.%]="CImgSettings.height"
-      [style.margin-top.%]="CImgSettings.marginTop" [style.margin-left.%]="CImgSettings.marginL"
-      [style.margin-right.%]="CImgSettings.marginR" [style.box-shadow]="CImgSettings.boxShadow">
-      <img class="card-img" [title]="room.Title + ' relative image'" [src]="room.ImageUrl">
-    </div>
-    <div class="card-body">
-      <h2 class="card-title">{{room.Title}}</h2>
-      <hr>
-      <div style="text-align:center;">
-        <p><span *ngFor="let a of howManyBombs(room)"><app-bomb></app-bomb></span>{{room.Difficulty}}
-        </p>
-     </div>
-
-      <p class="card-text">
-        <app-users aria-hidden="true" title="Capacity"></app-users> up to {{room.Capacity}}
-      </p>
-      <p class="card-text">
-        <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
-      </p>
-      <div style="text-align:center;">
-        <p><app-hashtag title="Genre"></app-hashtag>{{room.Genre}}</p>
+<div *ngIf="FilteredRooms && FilteredRooms.length; else NoRoomsData" > 
+  <div *ngFor="let room of FilteredRooms" >
+    <div *ngIf="room.IsActive; " class="card-group">
+      <div class="card" [style.border]="CSettings.border" [style.background-color]="CSettings.backColor"
+      [style.border-radius.px]="CSettings.borderRadius" [style.box-shadow]="CSettings.boxShadow"
+      [style.margin-top.px]="CSettings.marginTop" [style.margin-bottom.px]="CSettings.marginBot"
+      [style.margin-left.%]="CSettings.marginL" [style.margin-right.%]="CSettings.marginR"
+      [style.flex-flow]="CSettings.flexflow" [style.flex.%]="CSettings.flex" [style.display]="CSettings.display"
+      [style.cursor]="CSettings.cursor">
+      <app-heart></app-heart>
+      <app-user-secret [style.position]="AcSettings.posAbsol" [style.z-index]="AcSettings.zIndex"
+        [style.top.px]="AcSettings.top" [style.right.px]="AcSettings.right" [style.font-size.px]="AcSettings.fontSize"
+        [style.cursor]="AcSettings.cursor" [style.color]="AcSettings.color" *ngIf="room.HasActor"></app-user-secret>
+      <div class="card-img-body" [style.flex]="CImgSettings.flex" [style.overflow]="CImgSettings.overflow"
+        [style.position]="CImgSettings.posRel" [style.height.%]="CImgSettings.height"
+        [style.margin-top.%]="CImgSettings.marginTop" [style.margin-left.%]="CImgSettings.marginL"
+        [style.margin-right.%]="CImgSettings.marginR" [style.box-shadow]="CImgSettings.boxShadow">
+        <img class="card-img" [title]="room.Title + ' relative image'" [src]="room.ImageUrl">
       </div>
-      <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
+      <div class="card-body">
+        <h2 class="card-title">{{room.Title}}</h2>
+        <hr>
+        <div style="text-align:center;">
+          <p><span *ngFor="let a of howManyBombs(room)"><app-bomb></app-bomb></span>{{room.Difficulty}}
+          </p>
+       </div>
+  
+        <p class="card-text">
+          <app-users aria-hidden="true" title="Capacity"></app-users> up to {{room.Capacity}}
+        </p>
+        <p class="card-text">
+          <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
+        </p>
+        <div style="text-align:center;">
+          <p><app-hashtag title="Genre"></app-hashtag>{{room.Genre}}</p>
+        </div>
+        <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<ng-template #NoRoomsData>
+  <div>
+      <h1 id="noRooms">No Rooms found</h1>
+  </div>
+</ng-template>
 <router-outlet></router-outlet>

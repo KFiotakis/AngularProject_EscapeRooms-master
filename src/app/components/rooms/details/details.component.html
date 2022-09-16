@@ -23,7 +23,7 @@
             <div *ngIf="room.HasActor==true" class="actor">
                 <app-user-secret></app-user-secret>
             </div>
-            <p class="card-text"> <i class="fa fa-star"></i>{{room.Rating}}</p>
+            <!-- <p class="card-text"> <i class="fa fa-star"></i>{{room.Rating}}</p> -->
             <hr>
             <p>{{room.Description}}</p>
             <youtube-player style="margin-top:200px;" videoId="{{ room.VideoId }}" suggestedQuality="hd1080"

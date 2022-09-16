@@ -38,7 +38,7 @@
 }
 
 /*Title centered*/
-.card-title {
+.card-title{
     text-align: center;
     letter-spacing: 2px;
     font-weight: bold;
@@ -433,3 +433,9 @@ body {
   padding-left: 0;
 }
 
+#noRooms{
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #e74c3c;
+}
