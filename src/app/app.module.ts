@@ -105,7 +105,12 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
         { path: '', redirectTo: "/Home", pathMatch: 'full' },
         { path: '**', component: PageNotFoundComponent }
 
-      ])
+      ], {
+        anchorScrolling: 'enabled',
+        relativeLinkResolution: 'corrected',
+        initialNavigation: 'enabledBlocking',
+        scrollPositionRestoration: 'enabled'
+    })
 
   ],
   providers: [
