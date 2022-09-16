@@ -25,8 +25,7 @@ export class ContactComponent implements OnInit {
 			honeypot: this.honeypot
 		});
 	}
-	ngOnInit(): void {
-	}
+
 	onSubmit() {
 		if (this.form.status == "VALID" && this.honeypot.value == "") {
 			this.form.disable(); // disable the form if it's valid to disable multiple submissions
@@ -60,4 +59,9 @@ export class ContactComponent implements OnInit {
 			);
 		}
 	}
+
+	ngOnInit(): void {
+		this.onSubmit();
+	}
+
 }

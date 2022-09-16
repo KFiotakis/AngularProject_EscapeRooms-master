@@ -4,7 +4,7 @@
          
       <div>
        
-         <img class="detailsImage w-100" src={{room.ImageUrl}}> 
+         <img class="detailsImage w-100" [src]="room.ImageUrl"> 
         <form action="" [hidden]="isHidden"> 
             <h2>Fill the Reservation Form <br>for "{{room.Title}}"</h2>
             <br>

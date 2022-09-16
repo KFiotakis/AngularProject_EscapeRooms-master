@@ -1,23 +1,5 @@
-    <ngx-slick-carousel style="margin:2%;" class="carousel" 
-                            #slickModal="slick-carousel" 
-                            [config]="slideConfig" 
-                           
-                            >
-                          
-                            <div ngxSlickItem *ngFor="let room of Rooms" class="slide" style="height: 500px; width:80%;" >
-                                  
-                                    <img src="{{ room.ImageUrl }}" alt="" >
-                                  
-                            </div>
-                            
-                            
-    </ngx-slick-carousel>
-    
-             
-
-    <div class="textinImage active">
-      <h2 class="display-4">You Are Locked In!</h2>
-    </div>
-
-
-
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+  <div ngxSlickItem *ngFor="let room of Rooms" class="slide">
+    <img [src]="room.ImageUrl">
+  </div>
+</ngx-slick-carousel>

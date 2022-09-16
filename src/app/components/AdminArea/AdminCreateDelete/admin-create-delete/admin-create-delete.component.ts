@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Room ,SortOptions } from 'src/app/components/rooms/roomsModels';
+import { Room, SortOptions } from 'src/app/components/rooms/roomsModels';
 import { RoomService } from 'src/app/components/rooms/room.service';
 
 @Component({
@@ -14,28 +14,26 @@ export class AdminCreateDeleteComponent implements OnInit {
   Rooms!: Array<Room>;
   room: Room | undefined;
   SelectedRoom!: Room;
+  EditVisible: boolean = false;
+  CreateHidden: boolean = false;
+  searchTitle!: string;
+  selectedGenre!: number;
+  FilteredRooms!: Array<Room>;
+  Genres: any[] = [];
+  SortOptions: SortOptions = SortOptions.durationAsc;
+  difficultyIsAsc: boolean = true;
+  durationIsAsc: boolean = true;
 
-  EditVisible:boolean = false;
   onEditHandler(myRoom: Room) {
     this.SelectedRoom = myRoom;
     this.EditVisible = !this.EditVisible;
   }
 
-  CreateHidden:boolean=false;
-  ToggleCreate()
-  {
-    this.CreateHidden =!this.CreateHidden;
+  ToggleCreate() {
+    this.CreateHidden = !this.CreateHidden;
   }
 
-
-
-  Meth(myString:string)
-  {
-    console.log(myString);
-  }
-
-  onCloseDetailsWindow(vis:boolean)
-  {
+  onCloseDetailsWindow(vis: boolean) {
     this.EditVisible = vis;
   }
 
@@ -73,17 +71,6 @@ export class AdminCreateDeleteComponent implements OnInit {
     window.location.reload();
   }
 
-
-
-  //Filtering Sorting
-  searchTitle!: string;
-  selectedGenre!: number;
-  FilteredRooms!: Array<Room>;
-  Genres: any[] = [];
-
-  SortOptions:SortOptions=SortOptions.durationAsc;
-
-
   onFilterRoomHandler() {
     this.FilteredRooms = this.Rooms;
     if (this.searchTitle) {
@@ -97,50 +84,41 @@ export class AdminCreateDeleteComponent implements OnInit {
     }
 
     //Sorting
-    switch(this.SortOptions){
-      case SortOptions.difficultyAsc: this.FilteredRooms = this.FilteredRooms.sort((a,b)=> a.Difficulty < b.Difficulty?-1:1); break;
-      case SortOptions.difficultyDesc:  this.FilteredRooms= this.FilteredRooms.sort((a,b)=> a.Difficulty > b.Difficulty?-1:1);break;
-      case SortOptions.durationAsc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Duration - b.Duration);break;
-      case SortOptions.durationDesc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>b.Duration - a.Duration);break;
-      default: this.FilteredRooms = this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Title < b.Title?-1:1); break;
-
+    switch (this.SortOptions) {
+      case SortOptions.difficultyAsc: this.FilteredRooms = this.FilteredRooms.sort((a, b) => a.Difficulty < b.Difficulty ? -1 : 1); break;
+      case SortOptions.difficultyDesc: this.FilteredRooms = this.FilteredRooms.sort((a, b) => a.Difficulty > b.Difficulty ? -1 : 1); break;
+      case SortOptions.durationAsc: this.FilteredRooms = this.FilteredRooms.sort((a, b) => a.Duration - b.Duration); break;
+      case SortOptions.durationDesc: this.FilteredRooms = this.FilteredRooms.sort((a, b) => b.Duration - a.Duration); break;
+      default: this.FilteredRooms = this.FilteredRooms = this.FilteredRooms.sort((a, b) => a.Title < b.Title ? -1 : 1); break;
     }
 
   }
 
-  difficultyIsAsc:boolean =true;
-
-  ToggleSortDifficulty(){
+  ToggleSortDifficulty() {
     this.difficultyIsAsc = !this.difficultyIsAsc
 
-    if(this.difficultyIsAsc){
+    if (this.difficultyIsAsc) {
       this.SortOptions = SortOptions.difficultyAsc
     }
-    else{
+    else {
       this.SortOptions = SortOptions.difficultyDesc
     }
 
     this.onFilterRoomHandler();
   }
 
-
-  durationIsAsc:boolean =true;
-
-  ToggleSortDuration(){
+  ToggleSortDuration() {
     this.durationIsAsc = !this.durationIsAsc
 
-    if(this.durationIsAsc){
+    if (this.durationIsAsc) {
       this.SortOptions = SortOptions.durationAsc
     }
-    else{
+    else {
       this.SortOptions = SortOptions.durationDesc
     }
 
     this.onFilterRoomHandler();
   }
- 
-
-
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe(
@@ -152,7 +130,7 @@ export class AdminCreateDeleteComponent implements OnInit {
           this.Rooms = response;
           this.dt = response;
           this.dataDisplay = this.dt.data;
-          this.FilteredRooms=response;
+          this.FilteredRooms = response;
           this.Genres = [...new Set(this.Rooms.map(x => x.Genre))];
           console.log(this.Genres)
         },
