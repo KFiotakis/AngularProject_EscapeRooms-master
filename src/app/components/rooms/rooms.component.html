@@ -69,16 +69,18 @@
       [style.margin-left.%]="CSettings.marginL" [style.margin-right.%]="CSettings.marginR"
       [style.flex-flow]="CSettings.flexflow" [style.flex.%]="CSettings.flex" [style.display]="CSettings.display"
       [style.cursor]="CSettings.cursor">
-      <app-heart></app-heart>
-      <app-user-secret [style.position]="AcSettings.posAbsol" [style.z-index]="AcSettings.zIndex"
-        [style.top.px]="AcSettings.top" [style.right.px]="AcSettings.right" [style.font-size.px]="AcSettings.fontSize"
-        [style.cursor]="AcSettings.cursor" [style.color]="AcSettings.color" *ngIf="room.HasActor"></app-user-secret>
+      
+        <app-heart></app-heart>
+        <app-user-secret *ngIf="room.HasActor"></app-user-secret>
+      
       <div class="card-img-body" [style.flex]="CImgSettings.flex" [style.overflow]="CImgSettings.overflow"
         [style.position]="CImgSettings.posRel" [style.height.%]="CImgSettings.height"
         [style.margin-top.%]="CImgSettings.marginTop" [style.margin-left.%]="CImgSettings.marginL"
         [style.margin-right.%]="CImgSettings.marginR" [style.box-shadow]="CImgSettings.boxShadow">
         <img class="card-img" [title]="room.Title + ' relative image'" [src]="room.ImageUrl">
+        
       </div>
+      
       <div class="card-body">
         <h2 class="card-title">{{room.Title}}</h2>
         <hr>
