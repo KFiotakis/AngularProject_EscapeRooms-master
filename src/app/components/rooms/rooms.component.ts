@@ -135,9 +135,9 @@ export class RoomsComponent implements OnInit {
     howManyBombs(room: Room): Array<number>{
       var arr!:number[];
       switch(String(room.Difficulty)){
-        case "Beginner": arr = new Array<number>(1); break;
-        case "Intermediate" : arr = new Array<number>(2); break;
-        case "Advanced": arr = new Array<number>(3); break;
+        case "Easy": arr = new Array<number>(1); break;
+        case "Hard" : arr = new Array<number>(2); break;
+        case "Nightmare": arr = new Array<number>(3); break;
       }
       return arr;
     }

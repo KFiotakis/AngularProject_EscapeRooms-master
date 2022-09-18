@@ -9,8 +9,8 @@ import { Book } from './bookModel';
 })
 export class BookService {
 
-  private URL = "https://localhost:44368/api/ReservationApi"
-  private availabilityURL = "https://localhost:44368/api/ReservationApi?roomId="
+  private URL = "https://localhost:44368/api/BookingApi"
+  private availabilityURL = "https://localhost:44368/api/BookingApi?roomId="
   private cardPaymentURL = "https://localhost:44368/api/CardPaymentApi"
 
   httpOptions = {

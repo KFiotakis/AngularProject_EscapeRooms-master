@@ -9,7 +9,6 @@ import { Room } from './roomsModels';
 export class RoomService {
 
   private URL = "https://localhost:44368/api/RoomApi";
-  private URL1 = "https://localhost:44368/api/RoomApi?roomid=";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,26 +17,26 @@ export class RoomService {
   };
 
   getRooms(): Observable<Room[]> {
-    return this.httpService.get<Room[]>(this.URL);
+    return this.httpService.get<Room[]>(this.URL+"/GetRooms");
   }
 
   getRoom(id: string): Observable<Room> {
-    return this.httpService.get<Room>(this.URL1 + id);
+    return this.httpService.get<Room>(this.URL+"/GetRoom?roomid=" + id);
   }
 
   createRoom(room: Room): Observable<Room> {
     console.log(room);
-    return this.httpService.post<Room>(this.URL, room, this.httpOptions);
+    return this.httpService.post<Room>(this.URL+"/CreateRoom", room, this.httpOptions);
   }
 
   updateRoom(room:Room): Observable<Room>
   {
     console.log(room);
-    return this.httpService.put<Room>(this.URL, room, this.httpOptions);
+    return this.httpService.put<Room>(this.URL+"/UpdateRoom", room, this.httpOptions);
   }
 
   deleteRoom(id: number) {
-    return this.httpService.delete<Room>(this.URL1 + id, this.httpOptions);
+    return this.httpService.delete<Room>(this.URL+"/DeleteRoom?roomid="+ id, this.httpOptions);
   }
 
   
