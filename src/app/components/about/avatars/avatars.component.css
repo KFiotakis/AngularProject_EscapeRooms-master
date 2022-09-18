@@ -45,7 +45,7 @@ body {
   }
   .container .card:hover .card__head {
     text-align: center;
-    top: calc(100% - 2em);
+    top: calc(80%);
     color: white;
     background: rgba(0, 0, 0, 0.5);
     font-size: 2em;
