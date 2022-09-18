@@ -15,28 +15,28 @@ import { BookService } from './book.service';
 
 export class BookComponent implements OnInit {
 
-  Rooms : any;
-  alert:boolean=false;
+  Rooms: any;
+  alert: boolean = false;
   message!: string;
   dt: any;
   dataDisplay: any;
   room: Room | undefined;
   book!: Book;
   books!: Array<Book>;
-  isHidden:boolean = false;
-  isDisabled:boolean = true;
-  
+  isHidden: boolean = false;
+  isDisabled: boolean = true;
+
   title = 'stipe-angular';
   amount!: number;
   token: any;
   hourList: TimeSelectObject[] = [];
   today = new Date();
-  maxDate = new Date(new Date().setMonth(new Date().getMonth()+3));
+  maxDate = new Date(new Date().setMonth(new Date().getMonth() + 3));
 
   id = this.actRoute.snapshot.params['roomId'];
 
-  constructor(private actRoute: ActivatedRoute, private roomService: RoomService, private bookService: BookService) { 
-    
+  constructor(private actRoute: ActivatedRoute, private roomService: RoomService, private bookService: BookService) {
+
   }
 
   ngOnInit(): void {
@@ -47,62 +47,62 @@ export class BookComponent implements OnInit {
           this.room = response;
           this.dt = response;
           this.dataDisplay = this.dt.data;
-          
+
           this.bookService.getAvailableDates(this.id).subscribe(
             {
               next: response => {
                 this.books = response;
                 this.dt = response;
                 this.dataDisplay = this.dt.data;
-            },
-            error: e => console.log(e),
-            complete: () => console.log(this.books)
-          }
+              },
+              error: e => console.log(e),
+              complete: () => console.log(this.books)
+            }
           )
         },
         error: e => console.log(e),
         complete: () => console.log(this.room)
       }
     );
-   
+
 
   }
 
-showAvailability(bookings:Book[]){
-  var hours:string[] = [];
-  bookings.forEach(book => {
-      var playTime = book.GameTime.toString().substring(11,16)
+  showAvailability(bookings: Book[]) {
+    var hours: string[] = [];
+    bookings.forEach(book => {
+      var playTime = book.GameTime.toString().substring(11, 16)
       hours.push(playTime)
-   })
-   for (let i = 0; i < this.hourList.length; i++) {
-    var time = this.hourList[i].Time.toTimeString().substring(0,5);
-   if (hours.includes(time)){
-    this.hourList[i].IsDisabled = true;
-    this.hourList[i].Color = "red";
-   }
-   }
+    })
+    for (let i = 0; i < this.hourList.length; i++) {
+      var time = this.hourList[i].Time.toTimeString().substring(0, 5);
+      if (hours.includes(time)) {
+        this.hourList[i].IsDisabled = true;
+        this.hourList[i].Color = "red";
+      }
+    }
   }
-  
- 
-GetBookDate(e:any) {
-  this.isDisabled = false;
-   if (this.books.length != 0){
-       var date = e.target.value;
-       var filteredBooks :Book[] = [];
-       this.books.forEach(element => {
-        var playDay = element.GameDate.toString().substring(0,10)
-        if (playDay == date){
+
+
+  GetBookDate(e: any) {
+    this.isDisabled = false;
+    if (this.books.length != 0) {
+      var date = e.target.value;
+      var filteredBooks: Book[] = [];
+      this.books.forEach(element => {
+        var playDay = element.GameDate.toString().substring(0, 10)
+        if (playDay == date) {
           filteredBooks.push(element);
         }
-      
-       });
-     
-      this.showAvailability(filteredBooks);
-   }
-}
 
-  onCheckout(roomId:number, firstName:string, lastName:string,  gameDate:Date, numberOfPlayers:string, gameTime:string) {
-    var kati = numberOfPlayers.substring(0,1);
+      });
+
+      this.showAvailability(filteredBooks);
+    }
+  }
+
+  onCheckout(roomId: number, firstName: string, lastName: string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
+    var kati = numberOfPlayers.substring(0, 1);
     var totalPrice = this.showTotalPrice(+kati);
     var newDate = this.ConvertStringForGameHour(gameTime);
     var handler = (<any>window).StripeCheckout.configure({
@@ -110,21 +110,21 @@ GetBookDate(e:any) {
       locale: 'auto',
       token: (token: any) => {
         this.token = `token : ${token.id}`;
-          this.bookService.payBookWithCard({RoomId:roomId, FirstName:firstName, LastName:lastName, GameDate:gameDate, NumberOfPlayers:+kati,GameTime:newDate} as Book).subscribe(
-            {
-      
-              next: response => console.log(response),
-      
-              error : error => console.log(error),
-      
-              complete: () => console.log("Petuxe")
-      
-            }
-      
-          )
-          this.submitdone("Payment");
-        }
-      
+        this.bookService.payBookWithCard({ RoomId: roomId, FirstName: firstName, LastName: lastName, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate } as Book).subscribe(
+          {
+
+            next: response => console.log(response),
+
+            error: error => console.log(error),
+
+            complete: () => console.log("Petuxe")
+
+          }
+
+        )
+        this.submitdone("Payment");
+      }
+
     });
     handler.open({
       name: 'Anikhtoi',
@@ -132,50 +132,50 @@ GetBookDate(e:any) {
       amount: totalPrice * 100,
       currency: 'eur'
     });
-    
-  
+
+
   }
 
-  GoToPayPal(roomId:number, firstName:string, lastName:string, numberOfPlayers:string, gameDate:Date, gameTime:string){
-    var kati = numberOfPlayers.substring(0,1);
+  GoToPayPal(roomId: number, firstName: string, lastName: string, numberOfPlayers: string, gameDate: Date, gameTime: string) {
+    var kati = numberOfPlayers.substring(0, 1);
     var newDate = this.ConvertStringForGameHour(gameTime);
-    window.location.href = 'https://localhost:44368/Reservation?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName 
-    + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON();
-   
+    window.location.href = 'https://localhost:44368/Reservation?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName
+      + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON();
+
   }
 
 
 
-getTimeArray(duration: number):void{
-  let startDate: Date = new Date(2022,9,5,18,0,0);
-  let endDate: Date = new Date(2022,9,5,23,0,0);
-  this.hourList = [];
-  var dt: Date = new Date(startDate);
-  while(dt <= endDate){
-    var obj = new TimeSelectObject;
-    obj.Time = new Date(dt);
-    obj.IsDisabled = false;
-    this.hourList.push(obj);
-    dt.setMinutes(dt.getMinutes() + duration + 10);
+  getTimeArray(duration: number): void {
+    let startDate: Date = new Date(2022, 9, 5, 18, 0, 0);
+    let endDate: Date = new Date(2022, 9, 5, 23, 0, 0);
+    this.hourList = [];
+    var dt: Date = new Date(startDate);
+    while (dt <= endDate) {
+      var obj = new TimeSelectObject;
+      obj.Time = new Date(dt);
+      obj.IsDisabled = false;
+      this.hourList.push(obj);
+      dt.setMinutes(dt.getMinutes() + duration + 10);
+    }
+
   }
-  
-}
 
 
   getNumberOfPlayers(length: number): Array<number> {
     var arr: number[] = [];
-    for (let i = 2 ; i <= length; i++){
+    for (let i = 2; i <= length; i++) {
       arr.push(i);
     }
-    
+
     return arr;
   }
 
-  showTotalPrice(players : number): number{
-    
-    if (this.room){
+  showTotalPrice(players: number): number {
+
+    if (this.room) {
       var price = (players > 2 ? (this.room.StartingPricePerPerson * players) - (this.room.StartingPricePerPerson * players * this.room.DiscountPerPerson)
-                  : this.room.StartingPricePerPerson * players)
+        : this.room.StartingPricePerPerson * players)
       return Math.floor(price);
     }
     else {
@@ -183,50 +183,49 @@ getTimeArray(duration: number):void{
     }
   }
 
-  submitdone(message: string)
-  {
+  submitdone(message: string) {
     this.alert = !this.alert;
-    this.alert=true;
+    this.alert = true;
     this.message = message;
     this.isHidden = true;
   }
 
 
-  ConvertStringForGameHour(dateString: string) : Date{
+  ConvertStringForGameHour(dateString: string): Date {
     const date = 'Wed Sep 07 2022 00:00:00 GMT';
     const t1: any = dateString.split(' ');
     const t2: any = t1[0].split(':');
-    t2[0] = (t1[1] === 'PM' ? (1*t2[0] + 12) : t2[0]);
+    t2[0] = (t1[1] === 'PM' ? (1 * t2[0] + 12) : t2[0]);
     const time24 = (t2[0] < 10 ? '0' + t2[0] : t2[0]) + ':' + t2[1] + ':00';
     var completeDate = date.replace("00:00:00", time24.toString());
     let newDate = new Date(completeDate);
     var utc_date = new Date(newDate.getUTCFullYear(), newDate.getUTCMonth(),
-    newDate.getUTCDate(), newDate.getUTCHours(),
-    newDate.getUTCMinutes(), newDate.getUTCSeconds());
+      newDate.getUTCDate(), newDate.getUTCHours(),
+      newDate.getUTCMinutes(), newDate.getUTCSeconds());
     return utc_date;
   }
-  
-  
-  CreateBookHandler(roomId:number, firstName:string, lastName:string,  gameDate:Date, numberOfPlayers:string, gameTime:string){
 
-    console.log(roomId, firstName, lastName, gameDate,  numberOfPlayers, gameTime);
 
-    var kati = numberOfPlayers.substring(0,1);
+  CreateBookHandler(roomId: number, firstName: string, lastName: string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
+
+    console.log(roomId, firstName, lastName, gameDate, numberOfPlayers, gameTime);
+
+    var kati = numberOfPlayers.substring(0, 1);
     console.log(kati);
     console.log(gameTime);
     var newDate = this.ConvertStringForGameHour(gameTime);
-    
+
     console.log(newDate);
-      this.bookService.createBook({RoomId:roomId, FirstName:firstName, LastName:lastName, GameDate:gameDate, NumberOfPlayers:+kati,GameTime:newDate} as Book).subscribe(
-        {
-  
-          next: response => console.log(response),
-  
-          error : error => console.log(error),
-  
-          complete: () => console.log("Petuxe")
-  
-        })
-        this.submitdone("Booking");
+    this.bookService.createBook({ RoomId: roomId, FirstName: firstName, LastName: lastName, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate } as Book).subscribe(
+      {
+
+        next: response => console.log(response),
+
+        error: error => console.log(error),
+
+        complete: () => console.log("Petuxe")
+
+      })
+    this.submitdone("Booking");
   }
 }

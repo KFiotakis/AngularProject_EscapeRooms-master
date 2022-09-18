@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { faBullseye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,7 +8,14 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  isScrolled = false;
+
+
+  isOpen: boolean = false;
+  isScrolled: boolean = false;
+
+  toggleMenu(): void {
+    this.isOpen = !this.isOpen;
+  }
 
   @HostListener("window:scroll")
   scrollEvent() {

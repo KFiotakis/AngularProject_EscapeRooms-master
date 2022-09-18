@@ -3,7 +3,6 @@
   font-size: medium;
 }
 
-
 .nav-button .signin-btn:hover {
   background-color: rgba(60, 0, 255, 0.419);
   height: 100%;
@@ -11,8 +10,13 @@
   left: 20%;
 }
 
+.nav-logo {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+}
 
-li>a.active {
+a.active {
   color: #F97924;
 }
 
@@ -29,28 +33,22 @@ li {
   justify-content: space-around;
   margin: auto;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  transition: 1s;
 }
 
 
 .navbar-inverse {
   background-color:
-    #212529;
-  transition: 0.8s;
-}
-
-
-
-.nav-logo {
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
+    #765da9;
+  transition: 1s;
+  display: flex;
 }
 
 a {
   position: relative;
   text-decoration: none;
   font-size: 22px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 
@@ -68,4 +66,65 @@ a:after {
 
 a:hover:after {
   width: 100%;
+}
+
+
+
+/* Extra small devices (phones, 600px and down)
+@media only screen and (max-width: 600px) {...}
+
+/* Small devices (portrait tablets and large phones, 600px and up) 
+@media only screen and (min-width: 600px) {...} */
+
+/* Medium devices (landscape tablets, 768px and up) 
+@media only screen and (min-width: 768px) {...}*/
+
+/* Large devices (laptops/desktops, 992px and up) 
+@media only screen and (min-width: 992px) {...} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) 
+@media only screen and (min-width: 1200px) {
+} */
+
+
+.burger {
+  display: none;
+}
+
+
+@media (max-width:400px) {
+  .nav-link,.nav-button {
+    display: none;
+  }
+
+
+  .burger {
+    display: block;
+  }
+
+  .is-open {
+    position: absolute;
+    top: 1px;
+    width: 100%;
+  }
+
+  .is-open .nav-livk
+  {
+    display: block;
+    position: absolute;
+    top:30px;
+    width:100%;
+  }
+
+
+
+
+
+
+  .material-icons
+  {
+    color:rgba(51, 0, 255, 0.793);
+  }
+
+
 }
