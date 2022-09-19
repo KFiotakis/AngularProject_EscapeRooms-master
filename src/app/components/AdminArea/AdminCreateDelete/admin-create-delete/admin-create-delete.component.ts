@@ -16,6 +16,8 @@ export class AdminCreateDeleteComponent implements OnInit {
   SelectedRoom!: Room;
   EditVisible: boolean = false;
   CreateHidden: boolean = false;
+  RoomsHidden: boolean = true;
+  ReservationsHidden: boolean = true;
   searchTitle!: string;
   selectedGenre!: number;
   FilteredRooms!: Array<Room>;
@@ -31,6 +33,13 @@ export class AdminCreateDeleteComponent implements OnInit {
 
   ToggleCreate() {
     this.CreateHidden = !this.CreateHidden;
+  }
+
+  ToggleRooms() {
+    this.RoomsHidden = !this.RoomsHidden;
+  }
+  ToggleReservations() {
+    this.ReservationsHidden = !this.ReservationsHidden;
   }
 
   onCloseDetailsWindow(vis: boolean) {

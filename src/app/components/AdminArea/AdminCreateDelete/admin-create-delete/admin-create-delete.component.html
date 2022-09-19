@@ -1,128 +1,141 @@
-<h1 style="margin-top:200px; color: #d5b215; text-align: center;">Rooms List</h1>
+<h1 style="margin-top:200px; color: #d5b215; text-align: center; letter-spacing: 1px;">Welcome Admin!</h1>
+<p style="color: #d5b215; text-align: center;">
+  Here you can CRUD the Rooms and Reservations!
+</p>
+<div style=" text-align: center; margin-bottom: 10%;">
+  <button (click)="ToggleRooms()" class="btn btn-outline-light">
+    {{RoomsHidden?"Rooms":"Hide Rooms"}}</button>
+  <button (click)="ToggleReservations()" class="btn btn-outline-light">
+    {{ReservationsHidden?"Reservations":"Hide Reservations"}}</button>
+</div>
 
-<div class="form__group field" style="margin-right: 0;">
-  <div style="display:flex;  justify-content: space-between; " class="container">
-    <div style="width:20%;">
-      <br>
-      <br>
-      <input  [(ngModel)]="searchTitle" (input)="onFilterRoomHandler()" type="text" class="form__field" placeholder="Search Title" name="name" id='name' required />
-    </div>
 
 
-    <div style="width:20%;" >
-      <div (click)="ToggleSortDifficulty()" style="cursor:pointer;" class="button2">
-        {{difficultyIsAsc? "SORT BY DIFFICULTY ASC" : "SORT BY DIFFICULTY DESC"}} 
+<div *ngIf="!RoomsHidden">
+
+  <h1 style="margin-top:50px; color: #d5b215; text-align: center; letter-spacing: 1px;">Rooms List</h1>
+
+  <div class="form__group field" style=" text-align: center;">
+    <div style="display:flex;  justify-content: space-between;  text-align: center;" class="container">
+      <div style="width:10%;">
+        <br>
+        <br>
+        <input style="width:100%;" [(ngModel)]="searchTitle" (input)="onFilterRoomHandler()" type="text"
+          class="form__field" placeholder="Search Title" name="name" id='name' required />
       </div>
-    </div>
-    
 
-    <div style="width:20%;" >
-      <div (click)="ToggleSortDuration()" style="cursor:pointer;" class="button2">
-        {{durationIsAsc? "SORT BY DURATION ASC" : "SORT BY DURATION DESC"}} 
+
+      <div style="width:20%;">
+        <div (click)="ToggleSortDifficulty()" style="cursor:pointer;" class="button2">
+          {{difficultyIsAsc? "SORT BY DIFFICULTY ASC" : "SORT BY DIFFICULTY DESC"}}
+        </div>
       </div>
-    </div>
-   
 
-    <div style="width:20%;">
-      <br>
-      <label class="select" for="slct">
-        <div id="labeld">Genre</div>
-          <select [(ngModel)]="selectedGenre" (change)="onFilterRoomHandler()" type="text" id="slct" >
+
+      <div style="width:20%;">
+        <div (click)="ToggleSortDuration()" style="cursor:pointer;" class="button2">
+          {{durationIsAsc? "SORT BY DURATION ASC" : "SORT BY DURATION DESC"}}
+        </div>
+      </div>
+
+
+      <div style="width:20%;">
+        <br>
+        <label class="select" for="slct">
+          <div id="labeld">Genre</div>
+          <select [(ngModel)]="selectedGenre" (change)="onFilterRoomHandler()" type="text" id="slct">
             <option value="" selected>All</option>
-            <option *ngFor="let genre of Genres" value={{genre}} >{{genre}}</option>
+            <option *ngFor="let genre of Genres" value={{genre}}>{{genre}}</option>
           </select>
           <svg>
             <use xlink:href="#select-arrow-down"></use>
           </svg>
-      </label>
-    <!-- SVG Sprites-->
-          <svg class="sprites">
-            <symbol id="select-arrow-down" viewbox="0 0 10 6">
-              <polyline points="1 1 5 5 9 1"></polyline>
-            </symbol>
-          </svg>
+        </label>
+        <!-- SVG Sprites-->
+        <svg class="sprites">
+          <symbol id="select-arrow-down" viewbox="0 0 10 6">
+            <polyline points="1 1 5 5 9 1"></polyline>
+          </symbol>
+        </svg>
+      </div>
+
     </div>
-  
-  </div>    
-</div>
-
-<br>
-<br>
-
-
-  <div style="margin-left: 35%;" class="row">
-    <div>
-      <button style="margin-top: 10px; margin-left: 210px;" (click)="ToggleCreate()" class="btn btn-warning">{{CreateHidden?"Hide Create Button" : "Show Create Button"}}</button>
+  </div>
+  <div class="row">
+    <div style=" text-align: center;">
+      <button style="margin-top: 10px;" (click)="ToggleCreate()" class="btn btn-warning">{{CreateHidden?"Hide Create Button" : "Show Create Button"}} </button>
     </div>
 
   </div>
 
- 
-<br>
-<table style="margin: 10px; " class="table table-dark" *ngIf="FilteredRooms && FilteredRooms.length; else NoRoomsData">
-  <thead>
-    <tr style="text-align:center">
-      <th>Id</th>
-      <th>ImageUrl</th>
-      <th>VideoId</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Difficulty</th>
-      <th>Duration</th>
-      <th>Genre</th>
-      <th>Capacity</th>
-      <th>DiscountPerPerson</th>
-      <th>StartingPricePerPerson</th>
-      <th>HasActor</th>
-      <th>Action</th>
-    </tr>
-    <tr *ngIf="CreateHidden" >
-      <th></th>
-      <th><input #roomImage class="form-control" type="text" placeholder="New Image"></th>
-      <th><input #roomVideoId  class="form-control" type="text" placeholder="New VideoId"></th>
-      <th><input #roomTitle class="form-control" type="text" placeholder="New Title"></th>
-      <th><input #roomDescription class="form-control" type="text" placeholder="New Description"></th>
-      <th><select class="form-control" #roomDifficulty>
-        <option value="0" selected>Beginner</option>
-        <option value="1">Intermediate</option>
-        <option value="2">Advanced</option>
-      </select>
-      </th>
-      <th><input #roomDuration class="form-control" type="number" placeholder="New Duration"></th>
-      <th>
-        <select class="form-control" #roomGenre>
-          <option value="0" selected>Horror</option>
-          <option value="1">Comedy</option>
-          <option value="2">Thriller</option>
-          <option value="3">KidsFriendly</option>
-          <option value="4">RolePlaying</option>
-          <option value="5">SciFi</option>
-          <option value="6">Mystery</option>
-        </select>
-      
-      </th>
-      <th><input #roomCapacity class="form-control" type="number" placeholder="New Capacity"></th>
-      <th><input #roomDiscountPerPerson class="form-control" type="number" placeholder="New DiscountPerPerson"></th>
-      <th><input #roomStartPricePerPerson class="form-control" type="number" placeholder="New StartingPricePerPerson"></th>
-      <th><select class="form-control" #roomActor>
-        <option value="1" selected>True</option>
-        <option value="0">False</option>
-      </select></th>
 
-      <th >
-        <button *ngIf="Rooms" (click)="
+  <br>
+  <table style="margin: 10px; " class="table table-dark"
+    *ngIf="FilteredRooms && FilteredRooms.length; else NoRoomsData">
+    <thead>
+      <tr style="text-align:center">
+        <th>Id</th>
+        <th>ImageUrl</th>
+        <th>VideoId</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Difficulty</th>
+        <th>Duration</th>
+        <th>Genre</th>
+        <th>Capacity</th>
+        <th>DiscountPerPerson</th>
+        <th>StartingPricePerPerson</th>
+        <th>HasActor</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngIf="CreateHidden">
+        <th></th>
+        <th><input #roomImage class="form-control" type="text" placeholder="New Image"></th>
+        <th><input #roomVideoId class="form-control" type="text" placeholder="New VideoId"></th>
+        <th><input #roomTitle class="form-control" type="text" placeholder="New Title"></th>
+        <th><input #roomDescription class="form-control" type="text" placeholder="New Description"></th>
+        <th><select class="form-control" #roomDifficulty>
+            <option value="0" selected>Beginner</option>
+            <option value="1">Intermediate</option>
+            <option value="2">Advanced</option>
+          </select>
+        </th>
+        <th><input #roomDuration class="form-control" type="number" placeholder="New Duration"></th>
+        <th>
+          <select class="form-control" #roomGenre>
+            <option value="0" selected>Horror</option>
+            <option value="1">Comedy</option>
+            <option value="2">Thriller</option>
+            <option value="3">KidsFriendly</option>
+            <option value="4">RolePlaying</option>
+            <option value="5">SciFi</option>
+            <option value="6">Mystery</option>
+          </select>
+
+        </th>
+        <th><input #roomCapacity class="form-control" type="number" placeholder="New Capacity"></th>
+        <th><input #roomDiscountPerPerson class="form-control" type="number" placeholder="New DiscountPerPerson"></th>
+        <th><input #roomStartPricePerPerson class="form-control" type="number" placeholder="New StartingPricePerPerson">
+        </th>
+        <th><select class="form-control" #roomActor>
+            <option value="1" selected>True</option>
+            <option value="0">False</option>
+          </select></th>
+
+        <th>
+          <button *ngIf="Rooms" (click)="
         CreateRoomHandler
         (roomTitle.value
         ,roomDescription.value
         ,roomDuration.valueAsNumber,roomGenre.value,roomCapacity.valueAsNumber,
         roomDifficulty.value, getBoolean(roomActor.value) , 0, 0, true,  roomStartPricePerPerson.valueAsNumber,roomDiscountPerPerson.valueAsNumber,
         roomImage.value,
-        roomVideoId.value)" class="btn btn-primary" [routerLink]="['/Admin']">Create</button> 
-      </th>
-    </tr>
-  </thead>
-  <tbody >
-    
+        roomVideoId.value)" class="btn btn-primary" [routerLink]="['/Admin']">Create</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
       <tr *ngFor="let room of FilteredRooms" style="text-align:center">
         <td>{{room.Id}}</td>
         <td>
@@ -136,46 +149,75 @@
             {{room.Description}}
           </div>
         </td>
-      
+
         <td>
           <div style="text-align:center;">
             <p>{{room.Difficulty}}
             </p>
-         </div>
-   
+          </div>
+
         </td>
         <td>{{room.Duration}}</td>
-      
+
         <td style="text-align:center;">
-            <p>{{room.Genre}}</p>
+          <p>{{room.Genre}}</p>
         </td>
         <td>{{room.Capacity}}</td>
         <td>{{room.DiscountPerPerson}}</td>
         <td>{{room.StartingPricePerPerson}}</td>
         <td>{{room.HasActor}}</td>
-  
+
         <td>
-          <button (click)="onEditHandler(room)"  class="btn btn-success m-2">Edit</button>
+          <button (click)="onEditHandler(room)" class="btn btn-success m-2">Edit</button>
           <button (click)="DeleteRoomHandler(room.Id)" class="btn btn-danger m-2">Delete</button>
         </td>
         <br>
       </tr>
-    
-    
-  </tbody>
 
-</table>
-<app-admin-update
- [Room]="SelectedRoom"
- [isVisible]="EditVisible" 
- (isClosedEvent)="onCloseDetailsWindow($event)"
-  ></app-admin-update>
+
+    </tbody>
+
+  </table>
+  <app-admin-update [Room]="SelectedRoom" [isVisible]="EditVisible" (isClosedEvent)="onCloseDetailsWindow($event)">
+  </app-admin-update>
 
   <ng-template #NoRoomsData>
     <div>
-        <h1 id="noRooms">No Rooms found</h1>
-        <br>
+      <h1 id="noRooms">No Rooms found</h1>
+      <br>
     </div>
   </ng-template>
-  <router-outlet></router-outlet>
 
+</div>
+
+<div *ngIf="!ReservationsHidden">
+
+  <h1 style="margin-top:50px; color: #d5b215; text-align: center; letter-spacing: 1px;">Reservations List</h1>
+
+  <div class="form__group field" style=" text-align: center; margin-left:20%">
+    <div style="display:flex;  justify-content: space-between;  text-align: center;" class="container">
+    </div>
+    <table class="table table-dark">
+      <thead>
+        <tr style="text-align:center">
+          <th>Id</th>
+          <th>RoomTitle</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>NumberofPlayers</th>
+          <th>GameDate</th>
+          <th>GameTime</th>
+          <th>TotalPrice</th>
+          <th>IsPayed</th>
+          <th>Email</th>
+          <th>PhoneNumber</th>
+          <th>IsSubscribed</th>
+        </tr>
+     
+      </thead>
+    </table>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>

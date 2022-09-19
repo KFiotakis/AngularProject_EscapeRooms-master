@@ -1,14 +1,15 @@
 .nav-link {
   color: white;
-  font-size: medium;
+  font-size: small;
 }
 
 .nav-button .signin-btn:hover {
-  background-color: rgba(60, 0, 255, 0.419);
+  background-color:#F97924;
   height: 100%;
   border-radius: 5px;
   left: 20%;
 }
+
 
 .nav-logo {
   width: 80px;

@@ -11,6 +11,10 @@ td:hover{
   background-color:#373e46;
 }
 
+button{
+  margin-left: 20px;
+}
+
 /* Gia to search input*/
 .form__group {
     position: relative;

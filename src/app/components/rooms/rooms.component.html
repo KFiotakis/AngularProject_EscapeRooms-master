@@ -6,53 +6,54 @@
     <div style="width:20%;">
       <br>
       <br>
-      <input [(ngModel)]="searchTitle" (input)="onFilterRoomHandler()" type="text" class="form__field" placeholder="Search Title" name="name" id='name' required />
+      <input [(ngModel)]="searchTitle" (input)="onFilterRoomHandler()" type="text" class="form__field"
+        placeholder="Search Title" name="name" id='name' required />
     </div>
 
 
-    <div style="width:20%;" >
+    <div style="width:20%;">
       <div (click)="ToggleSortDifficulty()" style="cursor:pointer;" class="button2">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-        {{difficultyIsAsc? "SORT BY DIFFICULTY ASC" : "SORT BY DIFFICULTY DESC"}} 
+        {{difficultyIsAsc? "SORT BY DIFFICULTY ASC" : "SORT BY DIFFICULTY DESC"}}
       </div>
     </div>
-    
 
-    <div style="width:20%;" >
+
+    <div style="width:20%;">
       <div (click)="ToggleSortDuration()" style="cursor:pointer;" class="button2">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-        {{durationIsAsc? "SORT BY DURATION ASC" : "SORT BY DURATION DESC"}} 
+        {{durationIsAsc? "SORT BY DURATION ASC" : "SORT BY DURATION DESC"}}
       </div>
     </div>
-   
+
 
     <div style="width:20%;">
       <br>
       <label class="select" for="slct">
         <div id="labeld">Genre</div>
-          <select [(ngModel)]="selectedGenre" (change)="onFilterRoomHandler()" type="text" id="slct" >
-            <option value="" selected>All</option>
-            <option *ngFor="let genre of Genres" value={{genre}} >{{genre}}</option>
-          </select>
-          <svg>
-            <use xlink:href="#select-arrow-down"></use>
-          </svg>
+        <select [(ngModel)]="selectedGenre" (change)="onFilterRoomHandler()" type="text" id="slct">
+          <option value="" selected>All</option>
+          <option *ngFor="let genre of Genres" value={{genre}}>{{genre}}</option>
+        </select>
+        <svg>
+          <use xlink:href="#select-arrow-down"></use>
+        </svg>
       </label>
-    <!-- SVG Sprites-->
-          <svg class="sprites">
-            <symbol id="select-arrow-down" viewbox="0 0 10 6">
-              <polyline points="1 1 5 5 9 1"></polyline>
-            </symbol>
-          </svg>
+      <!-- SVG Sprites-->
+      <svg class="sprites">
+        <symbol id="select-arrow-down" viewbox="0 0 10 6">
+          <polyline points="1 1 5 5 9 1"></polyline>
+        </symbol>
+      </svg>
     </div>
-  
-  </div>    
+
+  </div>
 </div>
 
 <br>
@@ -60,45 +61,51 @@
 
 
 
-<div *ngIf="FilteredRooms && FilteredRooms.length; else NoRoomsData" > 
-  <div *ngFor="let room of FilteredRooms" >
+<div *ngIf="FilteredRooms && FilteredRooms.length; else NoRoomsData">
+  <div *ngFor="let room of FilteredRooms">
     <div *ngIf="room.IsActive; " class="card-group">
       <div class="card" [style.border]="CSettings.border" [style.background-color]="CSettings.backColor"
-      [style.border-radius.px]="CSettings.borderRadius" [style.box-shadow]="CSettings.boxShadow"
-      [style.margin-top.px]="CSettings.marginTop" [style.margin-bottom.px]="CSettings.marginBot"
-      [style.margin-left.%]="CSettings.marginL" [style.margin-right.%]="CSettings.marginR"
-      [style.flex-flow]="CSettings.flexflow" [style.flex.%]="CSettings.flex" [style.display]="CSettings.display"
-      [style.cursor]="CSettings.cursor">
-      
+        [style.border-radius.px]="CSettings.borderRadius" [style.box-shadow]="CSettings.boxShadow"
+        [style.margin-top.px]="CSettings.marginTop" [style.margin-bottom.px]="CSettings.marginBot"
+        [style.margin-left.%]="CSettings.marginL" [style.margin-right.%]="CSettings.marginR"
+        [style.flex-flow]="CSettings.flexflow" [style.flex.%]="CSettings.flex" [style.display]="CSettings.display"
+        [style.cursor]="CSettings.cursor">
+
         <app-heart></app-heart>
         <app-user-secret *ngIf="room.HasActor"></app-user-secret>
-      
-      <div class="card-img-body" [style.flex]="CImgSettings.flex" [style.overflow]="CImgSettings.overflow"
-        [style.position]="CImgSettings.posRel" [style.height.%]="CImgSettings.height"
-        [style.margin-top.%]="CImgSettings.marginTop" [style.margin-left.%]="CImgSettings.marginL"
-        [style.margin-right.%]="CImgSettings.marginR" [style.box-shadow]="CImgSettings.boxShadow">
-        <img class="card-img" [title]="room.Title + ' relative image'" [src]="room.ImageUrl">
-        
-      </div>
-      
-      <div class="card-body">
-        <h2 class="card-title">{{room.Title}}</h2>
-        <hr>
-        <div style="text-align:center;">
-          <p><span *ngFor="let a of howManyBombs(room)"><app-bomb></app-bomb></span>{{room.Difficulty}}
-          </p>
-       </div>
-  
-        <p class="card-text">
-          <app-users aria-hidden="true" title="Capacity"></app-users> up to {{room.Capacity}}
-        </p>
-        <p class="card-text">
-          <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
-        </p>
-        <div style="text-align:center;">
-          <p><app-hashtag title="Genre"></app-hashtag>{{room.Genre}}</p>
+
+        <div class="card-img-body" [style.flex]="CImgSettings.flex" [style.overflow]="CImgSettings.overflow"
+          [style.position]="CImgSettings.posRel" [style.height.%]="CImgSettings.height"
+          [style.margin-top.%]="CImgSettings.marginTop" [style.margin-left.%]="CImgSettings.marginL"
+          [style.margin-right.%]="CImgSettings.marginR" [style.box-shadow]="CImgSettings.boxShadow">
+          <img class="card-img" [title]="room.Title + ' relative image'" [src]="room.ImageUrl">
+
         </div>
-        <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
+
+        <div class="card-body">
+          <h2 class="card-title">{{room.Title}}</h2>
+          <hr>
+          <div style="text-align:center;">
+            <p><span *ngFor="let a of howManyBombs(room)">
+                <app-bomb></app-bomb>
+              </span>{{room.Difficulty}}
+            </p>
+          </div>
+
+          <p class="card-text">
+            <app-users aria-hidden="true" title="Capacity"></app-users> up to {{room.Capacity}}
+          </p>
+          <p class="card-text">
+            <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
+          </p>
+          <div style="text-align:center;">
+            <p>
+              <app-hashtag title="Genre"></app-hashtag>{{room.Genre}}
+            </p>
+          </div>
+          <a [routerLink]="['/Rooms',room.Id]" class="btn btn-outline-danger">Room Details</a>
+        <br>
+        <a [routerLink]="['/Book',room.Id]" class="btn btn-outline-success "> Book Now!</a>
         </div>
       </div>
     </div>
@@ -106,7 +113,7 @@
 </div>
 <ng-template #NoRoomsData>
   <div>
-      <h1 id="noRooms">No Rooms found</h1>
+    <h1 id="noRooms">No Rooms found</h1>
   </div>
 </ng-template>
 <router-outlet></router-outlet>
