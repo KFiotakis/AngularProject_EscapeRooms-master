@@ -12,9 +12,5 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  GoToChat(){
-
-   window.location.href = 'https://localhost:44368/SigRContact/Index';
-   
-  }
+ 
 }
