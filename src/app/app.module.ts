@@ -41,6 +41,7 @@ import { UserProfileComponent } from './Authentication/userprofile/userprofile.c
 import { AuthInterceptor } from './Authentication/userprofile/auth.interceptor';
 import { LockedInComponent } from './components/home/locked-in/locked-in.component';
 import { AvatarsComponent } from './components/about/avatars/avatars.component';
+import { ChatComponent } from './chat/chat.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 
@@ -79,7 +80,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     RegisterComponent,
     UserProfileComponent,
     LockedInComponent,
-    AvatarsComponent
+    AvatarsComponent,
+    ChatComponent
    
   ],
   imports: [
