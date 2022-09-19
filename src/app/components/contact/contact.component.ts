@@ -38,7 +38,7 @@ export class ContactComponent implements OnInit {
 			this.submitted = false; // hide the response message on multiple submits
 			this.contactService.createContact({Name: name, Email: email, Message: message} as Contact).subscribe(
 				{
-					next: response => this.CreateRoomHandler(response) ,
+					next: response => this.CreateContactHandler(response) ,
 					error: error => {
 						this.responseMessage = "Oops! An error occurred... Reload the page and try again."
 						this.form.enable(); // re enable the form after a success
@@ -51,7 +51,7 @@ export class ContactComponent implements OnInit {
 		}
 	};
 
-	CreateRoomHandler(response: any){
+	CreateContactHandler(response: any){
 		 this.responseMessage = "Thanks for the message! I'll get back to you soon!";
 		 this.form.enable(); // re enable the form after a success
 		 this.submitted = true; // show the response message

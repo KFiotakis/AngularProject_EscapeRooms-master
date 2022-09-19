@@ -2,7 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 10%;
   background-color: #f8f005;
 }
 button,
@@ -93,4 +93,9 @@ button:hover::after {
     clip-path: var(--slice-1);
     transform: translate(0);
   }
+}
+
+h3 {
+  text-align: center;
+  color: #fff;
 }
