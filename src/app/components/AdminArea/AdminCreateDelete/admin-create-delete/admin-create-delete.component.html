@@ -8,9 +8,6 @@
   <button (click)="ToggleReservations()" class="btn btn-outline-light">
     {{ReservationsHidden?"Reservations":"Hide Reservations"}}</button>
 </div>
-
-
-
 <div *ngIf="!RoomsHidden">
 
   <h1 style="margin-top:50px; color: #d5b215; text-align: center; letter-spacing: 1px;">Rooms List</h1>
@@ -149,7 +146,6 @@
             {{room.Description}}
           </div>
         </td>
-
         <td>
           <div style="text-align:center;">
             <p>{{room.Difficulty}}
@@ -158,7 +154,6 @@
 
         </td>
         <td>{{room.Duration}}</td>
-
         <td style="text-align:center;">
           <p>{{room.Genre}}</p>
         </td>
@@ -166,38 +161,29 @@
         <td>{{room.DiscountPerPerson}}</td>
         <td>{{room.StartingPricePerPerson}}</td>
         <td>{{room.HasActor}}</td>
-
         <td>
           <button (click)="onEditHandler(room)" class="btn btn-success m-2">Edit</button>
           <button (click)="DeleteRoomHandler(room.Id)" class="btn btn-danger m-2">Delete</button>
         </td>
         <br>
       </tr>
-
-
     </tbody>
-
   </table>
   <app-admin-update [Room]="SelectedRoom" [isVisible]="EditVisible" (isClosedEvent)="onCloseDetailsWindow($event)">
   </app-admin-update>
-
   <ng-template #NoRoomsData>
     <div>
       <h1 id="noRooms">No Rooms found</h1>
       <br>
     </div>
   </ng-template>
-
 </div>
-
 <div *ngIf="!ReservationsHidden">
-
   <h1 style="margin-top:50px; color: #d5b215; text-align: center; letter-spacing: 1px;">Reservations List</h1>
-
   <div class="form__group field" style=" text-align: center; margin-left:20%">
     <div style="display:flex;  justify-content: space-between;  text-align: center;" class="container">
     </div>
-    <table class="table table-dark">
+    <table class="table table-dark"  *ngIf="Books else NoBooksData" >
       <thead>
         <tr style="text-align:center">
           <th>Id</th>
@@ -213,10 +199,33 @@
           <th>PhoneNumber</th>
           <th>IsSubscribed</th>
         </tr>
-     
       </thead>
+      <tbody>
+        <tr *ngFor="let book of Books">
+          <td>{{book.Id}}</td>
+          <td>{{book.Room.Title}}</td>
+          <td>{{book.FirstName}}</td>
+          <td>{{book.LastName}}</td>
+          <td>{{book.NumberOfPlayers}}</td>
+          <td>{{book.GameDate}}</td>
+          <td>{{book.GameTime}}</td>
+          <td>{{book.TotalPrice}}</td>
+          <td>{{book.IsPayed}}</td>
+          <td>{{book.Email}}</td>
+          <td>{{book.PhoneNumber}}</td>
+          <td>{{book.IsSubscribed}}</td> 
+        </tr>
+      </tbody>
     </table>
   </div>
+
+  <ng-template #NoBooksData>
+    <div>
+      <h1 id="noBooks">No Books found</h1>
+      <br>
+    </div>
+  </ng-template>
+
 </div>
 
 

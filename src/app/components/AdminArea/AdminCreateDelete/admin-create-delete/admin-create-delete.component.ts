@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Room, SortOptions } from 'src/app/components/rooms/roomsModels';
+import {Book} from 'src/app/components/book/bookModel';
 import { RoomService } from 'src/app/components/rooms/room.service';
+import { BookService } from 'src/app/components/book/book.service';
 
 @Component({
   selector: 'app-admin-create-delete',
@@ -12,6 +14,7 @@ export class AdminCreateDeleteComponent implements OnInit {
   dt: any;
   dataDisplay: any;
   Rooms!: Array<Room>;
+  Books!:Array<Book>;
   room: Room | undefined;
   SelectedRoom!: Room;
   EditVisible: boolean = false;
@@ -46,7 +49,7 @@ export class AdminCreateDeleteComponent implements OnInit {
     this.EditVisible = vis;
   }
 
-  constructor(private roomService: RoomService) { }
+  constructor(private roomService: RoomService,private bookService : BookService) { }
 
   CreateRoomHandler(title: string, description: string,
     duration: number, genre: string, capacity: number,
@@ -129,6 +132,38 @@ export class AdminCreateDeleteComponent implements OnInit {
     this.onFilterRoomHandler();
   }
 
+
+GetBookHandler()
+{
+  this.bookService.getBooks().subscribe(
+    {
+      next: response => {
+        if (response) {
+          hideloader();
+        }
+        this.Books = response;
+        this.dt = response;
+        this.dataDisplay = this.dt.data;
+      },
+      error: e => console.log(e),
+      complete: () => console.log("Get Booms Succesfull!")
+    }
+  );
+  // Function is defined
+  function hideloader() {
+
+    // Setting display of spinner
+    // element to none
+    let ele = document.getElementById('loading');
+    if (ele) {
+      ele.style.display = 'none';
+    }
+  }
+
+}
+
+
+
   ngOnInit(): void {
     this.roomService.getRooms().subscribe(
       {
@@ -147,6 +182,7 @@ export class AdminCreateDeleteComponent implements OnInit {
         complete: () => console.log("Get Rooms Succesfull!")
       }
     );
+    this.GetBookHandler();
     // Function is defined
     function hideloader() {
 
@@ -162,9 +198,7 @@ export class AdminCreateDeleteComponent implements OnInit {
   }
 
   getBoolean(value: string) {
-
     switch (value) {
-
       case "1":
         return true;
       default:

@@ -26,7 +26,6 @@ export class BookService {
   }
 
   createBook(book: Book): Observable<Book> {
-
     return this.httpService.post<Book>(this.URL + '/StoreBooking', book, this.httpOptions)
   }
 
