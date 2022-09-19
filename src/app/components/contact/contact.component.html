@@ -9,19 +9,19 @@
 	  <h3>Fill out the form!</h3>
 	</div>
 	<div class="row body">
-	  <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()" action="#">
+	  <form class="contact" [formGroup]="form" method="post" action="#">
 		<ul>
 		  <li>
 			<p class="left">
 			  <label for="first_name">Name </label>
-			  <input [formControl]="name" required type="text" name="first_name" placeholder="Enter your name" />
+			  <input #fullName [formControl]="name" required type="text" name="first_name" placeholder="Enter your name" />
 			  <mat-error *ngIf="name.invalid"> Required field</mat-error>
 			</p>
 		  </li>
 		  <li>
 			<p>
 			  <label for="email">E-mail <span class="req">*</span></label>
-			  <input type="email" [formControl]="email" name="email" placeholder="email@example.com" required/>
+			  <input #eMail type="email" [formControl]="email" name="email" placeholder="email@example.com" required/>
 			  <mat-error *ngIf="email.invalid"> Required field</mat-error>
 			</p>
 		  </li>
@@ -31,12 +31,12 @@
 		  <li>
 			<label for="comments">Message</label>
 			<mat-error *ngIf="message.invalid">Required field</mat-error>
-			<textarea [formControl]="message" maxlength="256" placeholder="I'm interested in..." required cols="46" rows="3" name="comments"></textarea>
+			<textarea #textMessage [formControl]="message" maxlength="256" placeholder="I'm interested in..." required cols="46" rows="3" name="comments"></textarea>
 			<mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
 			
 		  </li>
 		  <li>
-			<input [disabled]="isLoading" class="btn btn-submit submit" type="submit" value="Submit" />
+			<input [disabled]="isLoading" class="btn btn-submit submit" (click)="onSubmit(fullName.value, eMail.value, textMessage.value)"  type="submit" value="Submit" />
 			<small>or press <strong>enter</strong></small>
 			<input [formControl]="honeypot" hidden class="hidden" type="text" />
 			<div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
