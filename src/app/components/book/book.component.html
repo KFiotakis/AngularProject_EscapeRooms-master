@@ -11,18 +11,28 @@
 
             <label>Firstname </label> 
             <br>
-            <input #firstName type="text" placeholder="Write your First Name" required/>
+            <input #firstName type="text" placeholder="Write your First Name"/>
             <br>
             <br>
             <label >Lastname </label>  
             <br>
-            <input #lastName type="text" placeholder="Write your Last Name" required/>
+            <input #lastName type="text" placeholder="Write your Last Name"/>
+            <br>
+            <br>
+            <label >Email </label>  
+            <br>
+            <input #email type="email" placeholder="Enter your email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"/>
+            <br>
+            <br>
+            <label >Phone Number </label>  
+            <br>
+            <input #phoneNumber type="tel" placeholder="Write your phone number" pattern="[0-9]{10}"/>
             <br>
             <br>
 
             <label>Game Date </label>
             <br>
-            <input #gameDate style="color:white" type="date" min="{{ today | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" (input)="getTimeArray(room.Duration)" (input)="GetBookDate($event)" required/>
+            <input #gameDate style="color:white" type="date" min="{{ today | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" (input)="getTimeArray(room.Duration)" (input)="GetBookDate($event)"/>
             
             <br>
             <br>
@@ -31,7 +41,7 @@
             <label>Select Hours</label> 
             <br>
            
-            <select #gameTime [disabled]="isDisabled" required>
+            <select #gameTime [disabled]="isDisabled">
               <option selected hidden></option>
               <option *ngFor="let dateObj of hourList" [disabled]="dateObj.IsDisabled" [style.backgroundColor]="dateObj.Color">{{ dateObj.Time | date:'shortTime' }}</option>
             </select>
@@ -39,22 +49,27 @@
               <br>
 
              <label>Number of Players </label>
-                <select #numberOfPlayers required>
+                <select #numberOfPlayers>
                     <option *ngFor="let item of getNumberOfPlayers(room.Capacity)">{{item}} Players / {{showTotalPrice(item)}} EUR Total</option>
                 </select>
              <br>
              <br>
+
+             <label >Subscribe to our newsletter:  </label>  
+              <input #subscribe type="checkbox" (change)="hasSubscribed($event)"/>
+             <br>
+             <br>
            
-             <button (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, gameDate.valueAsDate!, numberOfPlayers.value, gameTime.value)" class="btn btn-danger">Book Now 
+             <button (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, email.value, phoneNumber.value, gameDate.valueAsDate!, numberOfPlayers.value, gameTime.value)" class="btn btn-danger">Book Now 
               <span class="fa fa-money"></span> 
              </button> 
           <br>
           <br>
-          <button class="btn btn-success" (click)="GoToPayPal(room.Id, firstName.value, lastName.value, numberOfPlayers.value, gameDate.valueAsDate!, gameTime.value)">Pay with Paypal <span class="fa fa-paypal"></span></button>
+          <button class="btn btn-success" (click)="GoToPayPal(room.Id, firstName.value, lastName.value, email.value, phoneNumber.value, numberOfPlayers.value, gameDate.valueAsDate!, gameTime.value)">Pay with Paypal <span class="fa fa-paypal"></span></button>
           <br/>
           
            <br />
-          <button class="btn btn-primary" (click)="onCheckout(room.Id, firstName.value, lastName.value, gameDate.valueAsDate!, numberOfPlayers.value, gameTime.value)">Pay with card 
+          <button class="btn btn-primary" (click)="onCheckout(room.Id, firstName.value, lastName.value,  email.value, phoneNumber.value, gameDate.valueAsDate!, numberOfPlayers.value, gameTime.value)">Pay with card 
             <span class="fa fa-credit-card"></span> 
             </button>
           <br />
@@ -64,6 +79,10 @@
         <div *ngIf="alert"  class="alert alert-success message"  role="alert">
           <h4 class="alert-heading">Successfull {{message}}!</h4>
           <p>Thank you for your reservation!</p>
+        </div>
+        <div *ngIf="errorAlert"  class="alert alert-danger message"  role="alert">
+          <h4 class="alert-heading">Something went wrong.</h4>
+          <p>Please try again.</p>
         </div>
         <br/>
         <br/>

@@ -17,6 +17,7 @@ export class BookComponent implements OnInit {
 
   Rooms: any;
   alert: boolean = false;
+  errorAlert: boolean = false;
   message!: string;
   dt: any;
   dataDisplay: any;
@@ -25,7 +26,7 @@ export class BookComponent implements OnInit {
   books!: Array<Book>;
   isHidden: boolean = false;
   isDisabled: boolean = true;
-
+  isChecked!:boolean;
   title = 'stipe-angular';
   amount!: number;
   token: any;
@@ -101,7 +102,7 @@ export class BookComponent implements OnInit {
     }
   }
 
-  onCheckout(roomId: number, firstName: string, lastName: string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
+  onCheckout(roomId: number, firstName: string, lastName: string, email:string, phoneNumber:string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
     var kati = numberOfPlayers.substring(0, 1);
     var totalPrice = this.showTotalPrice(+kati);
     var newDate = this.ConvertStringForGameHour(gameTime);
@@ -110,19 +111,20 @@ export class BookComponent implements OnInit {
       locale: 'auto',
       token: (token: any) => {
         this.token = `token : ${token.id}`;
-        this.bookService.payBookWithCard({ RoomId: roomId, FirstName: firstName, LastName: lastName, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate } as Book).subscribe(
+        this.bookService.payBookWithCard({ RoomId: roomId, FirstName: firstName, LastName: lastName, Email:email, PhoneNumber:phoneNumber, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate, IsSubscribed:this.isChecked } as Book).subscribe(
           {
 
             next: response => console.log(response),
 
-            error: error => console.log(error),
+            error: () => this.errorHandler(),//error => console.log(error),
 
-            complete: () => console.log("Petuxe")
+            complete: () => this.submitdone("Payment")//console.log("Petuxe")
 
           }
 
         )
-        this.submitdone("Payment");
+       
+        //this.submitdone("Payment");
       }
 
     });
@@ -136,11 +138,13 @@ export class BookComponent implements OnInit {
 
   }
 
-  GoToPayPal(roomId: number, firstName: string, lastName: string, numberOfPlayers: string, gameDate: Date, gameTime: string) {
+  GoToPayPal(roomId: number, firstName: string, lastName: string, email:string, phoneNumber:string, numberOfPlayers: string, gameDate: Date, gameTime: string) {
     var kati = numberOfPlayers.substring(0, 1);
     var newDate = this.ConvertStringForGameHour(gameTime);
-    window.location.href = 'https://localhost:44368/Reservation?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName
-      + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON();
+    var sub = this.isChecked == true? "true" : "false"
+    window.location.href = 'https://localhost:44368/PaypalPayment/PreparationForPayment?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName
+      + '&email=' + email + '&phoneNumber=' + phoneNumber + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON() 
+      + '&subscribed=' + sub;
 
   }
 
@@ -190,6 +194,12 @@ export class BookComponent implements OnInit {
     this.isHidden = true;
   }
 
+  errorHandler() {
+    this.errorAlert = !this.errorAlert;
+    this.errorAlert = true;
+    this.isHidden = true;
+  }
+
 
   ConvertStringForGameHour(dateString: string): Date {
     const date = 'Wed Sep 07 2022 00:00:00 GMT';
@@ -206,26 +216,36 @@ export class BookComponent implements OnInit {
   }
 
 
-  CreateBookHandler(roomId: number, firstName: string, lastName: string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
+  hasSubscribed(e:any){
+    if (e.target.checked == true){
+      this.isChecked = true;
+    }
+    else{
+      this.isChecked = false;
+    }
+  }
+  
 
-    console.log(roomId, firstName, lastName, gameDate, numberOfPlayers, gameTime);
+  CreateBookHandler(roomId: number, firstName: string, lastName: string, email:string, phoneNumber:string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
+
+    console.log(roomId, firstName, lastName, gameDate, numberOfPlayers, gameTime,email, phoneNumber);
 
     var kati = numberOfPlayers.substring(0, 1);
     console.log(kati);
     console.log(gameTime);
     var newDate = this.ConvertStringForGameHour(gameTime);
-
+    
     console.log(newDate);
-    this.bookService.createBook({ RoomId: roomId, FirstName: firstName, LastName: lastName, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate } as Book).subscribe(
+    this.bookService.createBook({ RoomId: roomId, FirstName: firstName, LastName: lastName, Email:email, PhoneNumber:phoneNumber, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate, IsSubscribed:this.isChecked } as Book).subscribe(
       {
 
         next: response => console.log(response),
 
-        error: error => console.log(error),
+        error: () => this.errorHandler(),//error => console.log(error),
 
-        complete: () => console.log("Petuxe")
+        complete: () => this.submitdone("Booking")//console.log("Petuxe")
 
       })
-    this.submitdone("Booking");
+    
   }
 }

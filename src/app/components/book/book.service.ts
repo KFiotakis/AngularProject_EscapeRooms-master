@@ -10,25 +10,24 @@ import { Book } from './bookModel';
 export class BookService {
 
   private URL = "https://localhost:44368/api/BookingApi"
-  private availabilityURL = "https://localhost:44368/api/BookingApi?roomId="
-  private cardPaymentURL = "https://localhost:44368/api/CardPaymentApi"
+  private cardPaymentURL = "https://localhost:44368/api/CardPayment/Post"
 
   httpOptions = {
     headers: new HttpHeaders({ 'content-Type': 'application/json' })
   }
 
 
-  getAvailableDates(id: number): Observable<Book[]> {
-    return this.httpService.get<Book[]>(this.availabilityURL + id);
+  getAvailableDates(id: string): Observable<Book[]> {
+    return this.httpService.get<Book[]>(this.URL + '/GetBookingsByRoomId?roomId=' + id);
   }
 
   getBooks(): Observable<Book[]> {
-    return this.httpService.get<Book[]>(this.URL);
+    return this.httpService.get<Book[]>(this.URL + '/GetAllBookings');
   }
 
   createBook(book: Book): Observable<Book> {
 
-    return this.httpService.post<Book>(this.URL, book, this.httpOptions)
+    return this.httpService.post<Book>(this.URL + '/StoreBooking', book, this.httpOptions)
   }
 
 

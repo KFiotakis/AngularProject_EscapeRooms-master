@@ -13,7 +13,7 @@ export interface Book
     TotalPrice:number,
     IsPayed:boolean,
     Email:string,
-    PhoneNumber:number,
+    PhoneNumber:string,
     IsSubscribed:boolean,
     Room:Room
 }
