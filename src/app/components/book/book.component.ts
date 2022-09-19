@@ -142,7 +142,7 @@ export class BookComponent implements OnInit {
     var kati = numberOfPlayers.substring(0, 1);
     var newDate = this.ConvertStringForGameHour(gameTime);
     var sub = this.isChecked == true? "true" : "false"
-    window.location.href = 'https://localhost:44368/PaypalPayment/PreparationForPayment?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName
+    window.location.href = 'https://localhost:44368/Paypal/Index?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName
       + '&email=' + email + '&phoneNumber=' + phoneNumber + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON() 
       + '&subscribed=' + sub;
 
