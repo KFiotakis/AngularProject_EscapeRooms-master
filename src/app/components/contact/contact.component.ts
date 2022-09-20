@@ -54,6 +54,7 @@ export class ContactComponent implements OnInit {
 	CreateContactHandler(response: any){
 		 this.responseMessage = "Thanks for the message! I'll get back to you soon!";
 		 this.form.enable(); // re enable the form after a success
+		 this.form.reset();
 		 this.submitted = true; // show the response message
 		 this.isLoading = false; // re enable the submit button
 		 console.log(response);
