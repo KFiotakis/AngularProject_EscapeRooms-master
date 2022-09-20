@@ -72,7 +72,13 @@
         [style.cursor]="CSettings.cursor">
 
         <app-heart></app-heart>
-        <app-user-secret *ngIf="room.HasActor"></app-user-secret>
+        <app-user-secret style="position: absolute;
+        z-index: 1;
+        top:-25px;
+        left:42%;
+        font-size: 22px;
+        cursor: pointer;
+        color:  rgba(255, 255, 255, 0.878);" *ngIf="room.HasActor"></app-user-secret>
 
         <div class="card-img-body" [style.flex]="CImgSettings.flex" [style.overflow]="CImgSettings.overflow"
           [style.position]="CImgSettings.posRel" [style.height.%]="CImgSettings.height"
