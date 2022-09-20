@@ -48,10 +48,10 @@ export class RoomsComponent implements OnInit {
 
     //Sorting
     switch(this.SortOptions){
-      case SortOptions.difficultyAsc: this.FilteredRooms = this.FilteredRooms.sort((a,b)=> a.Difficulty < b.Difficulty?-1:1); break;
-      case SortOptions.difficultyDesc:  this.FilteredRooms= this.FilteredRooms.sort((a,b)=> a.Difficulty > b.Difficulty?-1:1);break;
-      case SortOptions.durationAsc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Duration - b.Duration);break;
-      case SortOptions.durationDesc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>b.Duration - a.Duration);break;
+      case SortOptions.difficultyAsc: this.FilteredRooms = this.FilteredRooms.sort((a,b)=> a.Difficulty > b.Difficulty?-1:1);break;
+      case SortOptions.difficultyDesc:  this.FilteredRooms= this.FilteredRooms.sort((a,b)=> a.Difficulty < b.Difficulty?-1:1); break;
+      case SortOptions.durationAsc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>b.Duration - a.Duration);break;
+      case SortOptions.durationDesc: this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Duration - b.Duration);break;
       default: this.FilteredRooms = this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Title < b.Title?-1:1); break;
 
     }
