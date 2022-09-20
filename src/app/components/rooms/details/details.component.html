@@ -20,7 +20,9 @@
             <div  class="card-text">
                 <p><app-hashtag></app-hashtag>{{room.Genre}}</p>
             </div>
-            <div *ngIf="room.HasActor==true" class="actor">
+            
+            <div style="position:relative;  display:-moz-deck; margin-left: 100px; font-size: medium;"  *ngIf="room.HasActor==true" class="actor">
+
                 <app-user-secret></app-user-secret>
             </div>
             <!-- <p class="card-text"> <i class="fa fa-star"></i>{{room.Rating}}</p> -->
