@@ -59,6 +59,9 @@ select {
 
 .back{
     margin-top: 50;
-    margin-left: 0%;
+    margin-left: 48%;
 }
 
+.req{
+    color: #ee9cb4;
+}

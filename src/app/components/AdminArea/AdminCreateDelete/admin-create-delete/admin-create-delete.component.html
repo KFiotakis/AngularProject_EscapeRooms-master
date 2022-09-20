@@ -207,8 +207,8 @@
           <td>{{book.FirstName}}</td>
           <td>{{book.LastName}}</td>
           <td>{{book.NumberOfPlayers}}</td>
-          <td>{{book.GameDate}}</td>
-          <td>{{book.GameTime}}</td>
+          <td>{{book.GameDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{book.GameTime | date: 'shortTime'}}</td>
           <td>{{book.TotalPrice}}</td>
           <td>{{book.IsPayed}}</td>
           <td>{{book.Email}}</td>

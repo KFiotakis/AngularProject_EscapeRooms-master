@@ -4,7 +4,7 @@ import { RoomService } from '../rooms/room.service';
 import { Room } from '../rooms/roomsModels';
 import { Book, TimeSelectObject } from './bookModel';
 import { BookService } from './book.service';
-
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-book',
@@ -14,6 +14,18 @@ import { BookService } from './book.service';
 
 
 export class BookComponent implements OnInit {
+
+
+  form: FormGroup;
+  first_name: FormControl = new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z ]*"), Validators.minLength(3)]);
+  last_name: FormControl = new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z ]*"),Validators.minLength(3)]);
+  e_mail: FormControl = new FormControl("", [Validators.required, Validators.email]);
+  phone_number: FormControl = new FormControl("", [Validators.required, Validators.pattern("[0-9]{10}")])
+  game_date: FormControl = new FormControl("", [Validators.required]);
+  game_time: FormControl = new FormControl("", [Validators.required]);
+  players: FormControl = new FormControl("", [Validators.required]);
+  isLoading: boolean = false;
+  errorHidden: boolean = true;
 
   Rooms: any;
   alert: boolean = false;
@@ -26,7 +38,7 @@ export class BookComponent implements OnInit {
   books!: Array<Book>;
   isHidden: boolean = false;
   isDisabled: boolean = true;
-  isChecked!:boolean;
+  isChecked!: boolean;
   title = 'stipe-angular';
   amount!: number;
   token: any;
@@ -36,8 +48,16 @@ export class BookComponent implements OnInit {
 
   id = this.actRoute.snapshot.params['roomId'];
 
-  constructor(private actRoute: ActivatedRoute, private roomService: RoomService, private bookService: BookService) {
-
+  constructor(private formBuilder: FormBuilder, private actRoute: ActivatedRoute, private roomService: RoomService, private bookService: BookService) {
+    this.form = this.formBuilder.group({
+      first_name: this.first_name,
+      last_name: this.last_name,
+      e_mail: this.e_mail,
+      phone_number: this.phone_number,
+      game_date: this.game_date,
+      game_time: this.game_time,
+      players: this.players
+    });
   }
 
   ngOnInit(): void {
@@ -102,53 +122,55 @@ export class BookComponent implements OnInit {
     }
   }
 
-  onCheckout(roomId: number, firstName: string, lastName: string, email:string, phoneNumber:string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
-    var kati = numberOfPlayers.substring(0, 1);
-    var totalPrice = this.showTotalPrice(+kati);
-    var newDate = this.ConvertStringForGameHour(gameTime);
-    var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_51LcUDrDl59dROsBALAOiUYf5Jfza8MYrK8k3fQiOHafJJ8vGpcPawwp9Rd4m2wp4Kf0fQP2wLwjH59eMuOoLUYWS00dfCsCjlI',
-      locale: 'auto',
-      token: (token: any) => {
-        this.token = `token : ${token.id}`;
-        this.bookService.payBookWithCard({ RoomId: roomId, FirstName: firstName, LastName: lastName, Email:email, PhoneNumber:phoneNumber, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate, IsSubscribed:this.isChecked } as Book).subscribe(
-          {
+  onCheckout(roomId: number, firstName: string, lastName: string, email: string, phoneNumber: string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
+    if (this.form.status == "VALID") {
+      this.form.disable();
+      this.isLoading = true;
+      var kati = numberOfPlayers.substring(0, 1);
+      var totalPrice = this.showTotalPrice(+kati);
+      var newDate = this.ConvertStringForGameHour(gameTime);
+      var handler = (<any>window).StripeCheckout.configure({
+        key: 'pk_test_51LcUDrDl59dROsBALAOiUYf5Jfza8MYrK8k3fQiOHafJJ8vGpcPawwp9Rd4m2wp4Kf0fQP2wLwjH59eMuOoLUYWS00dfCsCjlI',
+        locale: 'auto',
+        token: (token: any) => {
+          this.token = `token : ${token.id}`;
+          this.bookService.payBookWithCard({ RoomId: roomId, FirstName: firstName, LastName: lastName, Email: email, PhoneNumber: phoneNumber, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate, IsSubscribed: this.isChecked } as Book).subscribe(
+            {
 
-            next: response => console.log(response),
+              next: response => console.log(response),
 
-            error: () => this.errorHandler(),//error => console.log(error),
+              error: () => this.errorHandler(),
 
-            complete: () => this.submitdone("Payment")//console.log("Petuxe")
+              complete: () => this.submitdone("Payment")
 
-          }
+            }
+          )
+        }
 
-        )
-       
-        //this.submitdone("Payment");
-      }
-
-    });
-    handler.open({
-      name: 'Anikhtoi',
-      description: 'Escape Room Project',
-      amount: totalPrice * 100,
-      currency: 'eur'
-    });
-
-
+      });
+      handler.open({
+        name: 'Anikhtoi',
+        description: 'Escape Room Project',
+        amount: totalPrice * 100,
+        currency: 'eur'
+      });
+    }
   }
 
-  GoToPayPal(roomId: number, firstName: string, lastName: string, email:string, phoneNumber:string, numberOfPlayers: string, gameDate: Date, gameTime: string) {
-    var kati = numberOfPlayers.substring(0, 1);
-    var newDate = this.ConvertStringForGameHour(gameTime);
-    var sub = this.isChecked == true? "true" : "false"
-    window.location.href = 'https://localhost:44368/Paypal/Index?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName
-      + '&email=' + email + '&phoneNumber=' + phoneNumber + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON() 
-      + '&subscribed=' + sub;
+  GoToPayPal(roomId: number, firstName: string, lastName: string, email: string, phoneNumber: string, numberOfPlayers: string, gameDate: Date, gameTime: string) {
+    if (this.form.status == "VALID") {
+      this.form.disable();
+      this.isLoading = true;
+      var kati = numberOfPlayers.substring(0, 1);
+      var newDate = this.ConvertStringForGameHour(gameTime);
+      var sub = this.isChecked == true ? "true" : "false"
+      window.location.href = 'https://localhost:44368/Paypal/Index?roomId=' + roomId + '&firstName=' + firstName + '&lastName=' + lastName
+        + '&email=' + email + '&phoneNumber=' + phoneNumber + '&numberOfPlayers=' + +kati + '&gameDate=' + gameDate.toJSON() + '&gameTime=' + newDate.toJSON()
+        + '&subscribed=' + sub;
+
+    }
 
   }
-
-
 
   getTimeArray(duration: number): void {
     let startDate: Date = new Date(2022, 9, 5, 18, 0, 0);
@@ -216,36 +238,41 @@ export class BookComponent implements OnInit {
   }
 
 
-  hasSubscribed(e:any){
-    if (e.target.checked == true){
+  hasSubscribed(e: any) {
+    if (e.target.checked == true) {
       this.isChecked = true;
     }
-    else{
+    else {
       this.isChecked = false;
     }
   }
-  
 
-  CreateBookHandler(roomId: number, firstName: string, lastName: string, email:string, phoneNumber:string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
 
-    console.log(roomId, firstName, lastName, gameDate, numberOfPlayers, gameTime,email, phoneNumber);
+  CreateBookHandler(roomId: number, firstName: string, lastName: string, email: string, phoneNumber: string, gameDate: Date, numberOfPlayers: string, gameTime: string) {
+    if (this.form.status == "VALID") {
+      this.form.disable();
+      this.isLoading = true;
+      console.log(roomId, firstName, lastName, gameDate, numberOfPlayers, gameTime, email, phoneNumber);
 
-    var kati = numberOfPlayers.substring(0, 1);
-    console.log(kati);
-    console.log(gameTime);
-    var newDate = this.ConvertStringForGameHour(gameTime);
-    
-    console.log(newDate);
-    this.bookService.createBook({ RoomId: roomId, FirstName: firstName, LastName: lastName, Email:email, PhoneNumber:phoneNumber, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate, IsSubscribed:this.isChecked } as Book).subscribe(
-      {
+      var kati = numberOfPlayers.substring(0, 1);
+      console.log(kati);
+      console.log(gameTime);
+      var newDate = this.ConvertStringForGameHour(gameTime);
 
-        next: response => console.log(response),
+      console.log(newDate);
+      this.bookService.createBook({ RoomId: roomId, FirstName: firstName, LastName: lastName, Email: email, PhoneNumber: phoneNumber, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate, IsSubscribed: this.isChecked } as Book).subscribe(
+        {
 
-        error: () => this.errorHandler(),//error => console.log(error),
+          next: response => console.log(response),
 
-        complete: () => this.submitdone("Booking")//console.log("Petuxe")
+          error: () => this.errorHandler(),//error => console.log(error),
 
-      })
-    
+          complete: () => this.submitdone("Booking")//console.log("Petuxe")
+
+        })
+
+    }
   }
+
+
 }
