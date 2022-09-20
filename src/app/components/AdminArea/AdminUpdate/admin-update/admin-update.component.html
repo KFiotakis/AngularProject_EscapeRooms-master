@@ -29,9 +29,9 @@
         <select #roomDifficulty style="background-color:#bddcee;" class="form-control m-4" placeholder="Edit Difficulty"
             [(ngModel)]="Room.Difficulty" name="Difficulty">
             <option disabled selected>Edit Difficulty</option>
-            <option value="0">Beginner</option>
-            <option value="1">Intermediate</option>
-            <option value="2">Advanced</option>
+            <option value="0">Easy</option>
+            <option value="1">Hard</option>
+            <option value="2">Nightmare</option>
         </select>
 
         <select #roomActor style="background-color:#bddcee;" class="form-control m-4" placeholder="Edit HasActor"
@@ -61,6 +61,6 @@
         roomVideoId.value)" class="btn btn-primary m-4">Save Changes</button>
         <button (click)="onCloseHandler()" class="btn btn-warning m-4">Close</button>
     </form>
+
 </div>
 
-<app-chart></app-chart>
