@@ -28,6 +28,7 @@ export class AdminCreateDeleteComponent implements OnInit {
   SortOptions: SortOptions = SortOptions.durationAsc;
   difficultyIsAsc: boolean = true;
   durationIsAsc: boolean = true;
+  FiltersHidden:boolean= false;
 
   onEditHandler(myRoom: Room) {
     this.SelectedRoom = myRoom;
@@ -40,6 +41,11 @@ export class AdminCreateDeleteComponent implements OnInit {
 
   ToggleRooms() {
     this.RoomsHidden = !this.RoomsHidden;
+  }
+
+  ToggleFilters()
+  {
+    this.FiltersHidden =!this.FiltersHidden;
   }
   ToggleReservations() {
     this.ReservationsHidden = !this.ReservationsHidden;

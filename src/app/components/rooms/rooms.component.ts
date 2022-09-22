@@ -19,6 +19,7 @@ export class RoomsComponent implements OnInit {
   dt: any;
   dataDisplay: any;
   Rooms!: Array<Room>;
+  FiltersHidden:boolean=false;
 
   AcSettings: IWithActorSettings = WithActorSettings;
   CSettings: ICardSettings = CardSettings;
@@ -33,6 +34,9 @@ export class RoomsComponent implements OnInit {
 
   SortOptions:SortOptions=SortOptions.durationAsc;
 
+  ToggleFilters() {
+    this.FiltersHidden = !this.FiltersHidden;
+  }
 
   onFilterRoomHandler() {
     this.FilteredRooms = this.Rooms;
@@ -55,8 +59,6 @@ export class RoomsComponent implements OnInit {
       default: this.FilteredRooms = this.FilteredRooms= this.FilteredRooms.sort((a,b)=>a.Title < b.Title?-1:1); break;
 
     }
-
-
 
 
   }

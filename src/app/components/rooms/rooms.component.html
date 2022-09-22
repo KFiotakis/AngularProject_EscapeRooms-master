@@ -1,7 +1,11 @@
 <app-homephotos></app-homephotos>
 <app-loading-spinner></app-loading-spinner>
 
-<div class="form__group field" style="margin-right: 0;">
+<div style=" text-align: center;">
+  <button style="margin-top: 10px;" (click)="ToggleFilters()" class="btn btn-lg  btn-outline-warning">{{FiltersHidden?"Hide Filters" : "Show Filters"}}</button>
+</div>
+
+<div *ngIf="FiltersHidden" class="form__group field" style="margin-right: 0;">
   <div style="display:flex;  justify-content: space-between; " class="container">
     <div style="width:20%;">
       <br>
@@ -13,14 +17,14 @@
 
     <div style="width:20%;">
       <div (click)="ToggleSortDifficulty()" style="cursor:pointer;" class="button2">
-        {{difficultyIsAsc? "SORT BY DIFFICULTY ASC" : "SORT BY DIFFICULTY DESC"}}
+        {{difficultyIsAsc?  "Sort By  Easy to Nightmare" :"Sort By  Nightmare to Easy"}}
       </div>
     </div>
 
 
     <div style="width:20%;">
       <div (click)="ToggleSortDuration()" style="cursor:pointer;" class="button2">
-        {{durationIsAsc? "SORT BY DURATION ASC" : "SORT BY DURATION DESC"}}
+        {{durationIsAsc?"SORT BY shortest DURATION" : "SORT BY Longest DURATION" }}
       </div>
     </div>
 
@@ -28,8 +32,9 @@
     <div style="width:20%;">
       <br>
       <label class="select" for="slct">
-        <div id="labeld">Genre</div>
-        <select [(ngModel)]="selectedGenre" (change)="onFilterRoomHandler()" type="text" id="slct">
+       
+        <select [(ngModel)]="selectedGenre"  style="margin-top:20%;" (change)="onFilterRoomHandler()" type="text" id="slct">
+          <option disabled selected value="undefined">Select Genre</option>
           <option selected value="" >All</option>
           <option *ngFor="let genre of Genres" value={{genre}}>{{genre}}</option>
         </select>
@@ -47,9 +52,6 @@
 
   </div>
 </div>
-
-<br>
-<br>
 
 
 

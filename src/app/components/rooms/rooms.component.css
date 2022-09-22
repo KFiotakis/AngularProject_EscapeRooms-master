@@ -46,6 +46,11 @@
     padding-right: 5rem;
 }
 
+
+input{
+  border-radius: 4px;
+}
+
 ::placeholder
 {
   text-align: center;

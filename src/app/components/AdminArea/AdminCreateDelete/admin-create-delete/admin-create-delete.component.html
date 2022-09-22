@@ -12,36 +12,40 @@
 
   <h1 style="margin-top:50px; color: #d5b215; text-align: center; letter-spacing: 1px;">Rooms List</h1>
 
-  <div class="form__group field" style=" text-align: center;">
-    <div style="display:flex;  justify-content: space-between;  text-align: center;" class="container">
-      <div style="width:10%;">
+  <div style=" text-align: center;">
+    <button style="margin-top: 10px;" (click)="ToggleFilters()" class="btn btn-lg  btn-outline-warning">{{FiltersHidden?"Hide Filters" : "Show Filters"}}</button>
+  </div>
+  
+  <div *ngIf="FiltersHidden" class="form__group field" style="margin-right: 0;">
+    <div style="display:flex;  justify-content: space-between; " class="container">
+      <div style="width:20%;">
         <br>
         <br>
-        <input style="width:100%;" [(ngModel)]="searchTitle" (input)="onFilterRoomHandler()" type="text"
-          class="form__field" placeholder="Search Title" name="name" id='name' required />
+        <input [(ngModel)]="searchTitle" (input)="onFilterRoomHandler()" type="text" class="form__field"
+          placeholder="Search Title" name="name" id='name' required />
       </div>
-
-
+  
+  
       <div style="width:20%;">
         <div (click)="ToggleSortDifficulty()" style="cursor:pointer;" class="button2">
-          {{difficultyIsAsc? "SORT BY DIFFICULTY ASC" : "SORT BY DIFFICULTY DESC"}}
+          {{difficultyIsAsc?  "Sort By  Easy to Nightmare" :"Sort By  Nightmare to Easy"}}
         </div>
       </div>
-
-
+  
+  
       <div style="width:20%;">
         <div (click)="ToggleSortDuration()" style="cursor:pointer;" class="button2">
-          {{durationIsAsc? "SORT BY DURATION ASC" : "SORT BY DURATION DESC"}}
+          {{durationIsAsc?"SORT BY shortest DURATION" : "SORT BY Longest DURATION" }}
         </div>
       </div>
-
-
+  
+  
       <div style="width:20%;">
         <br>
         <label class="select" for="slct">
-          <div id="labeld">Genre</div>
-          <select [(ngModel)]="selectedGenre" (change)="onFilterRoomHandler()" type="text" id="slct">
-            <option value="" selected>All</option>
+          <select [(ngModel)]="selectedGenre"  style="margin-top:20%;" (change)="onFilterRoomHandler()" type="text" id="slct">
+            <option disabled selected value="undefined">Select Genre</option>
+            <option selected value="" >All</option>
             <option *ngFor="let genre of Genres" value={{genre}}>{{genre}}</option>
           </select>
           <svg>
@@ -55,12 +59,13 @@
           </symbol>
         </svg>
       </div>
-
+  
     </div>
   </div>
+  
   <div class="row">
     <div style=" text-align: center;">
-      <button style="margin-top: 10px;" (click)="ToggleCreate()" class="btn btn-warning">{{CreateHidden?"Hide Create Button" : "Show Create Button"}}</button>
+      <button style="margin-top: 10px;" (click)="ToggleCreate()" class="btn btn-outline-warning">{{CreateHidden?"Hide Create Button" : "Show Create Button"}}</button>
     </div>
 
   </div>
@@ -111,7 +116,7 @@
         </th>
         <th><input #roomCapacity class="form-control" type="number" placeholder="New Capacity" required min="2" max="8"></th>
         <th><input #roomDiscountPerPerson class="form-control" type="number" placeholder="New DiscountPerPerson" required min="0" step="0.01" max="0.5"></th>
-        <th><input #roomStartPricePerPerson class="form-control" type="number" placeholder="New StartingPricePerPerson" required>
+        <th><input #roomStartPricePerPerson  class="form-control" type="number" placeholder="New StartingPricePerPerson" required min="10">
         </th>
         <th><select class="form-control" #roomActor>
             <option value="1" >True</option>

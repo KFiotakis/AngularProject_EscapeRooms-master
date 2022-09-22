@@ -15,6 +15,13 @@ button{
   margin-left: 20px;
 }
 
+input{
+  border-radius: 4px;
+
+}
+
+
+
 /* Gia to search input*/
 .form__group {
     position: relative;
