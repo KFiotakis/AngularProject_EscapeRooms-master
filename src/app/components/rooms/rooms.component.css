@@ -1,35 +1,4 @@
 
-
-/*Για τη κάθε κάρτα properties
-.card {
-    background-color: #bddcee;
-    border: none;
-    box-shadow: 5px 5px 5px #f60b0f57; 
-    border-radius: none;
-    margin-top: 100px;
-    display: flex;
-    flex-flow: wrap;
-    flex: 100%;
-    margin-bottom: 250px;
-    border-radius: 4px;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-*/
-
-/*Για κάθε φωτογραφία πως θα εμφανίζεται 
-.card-img-body {
-    flex: 2.20; 
-    overflow: hidden;
-    position: relative;
-    height: 130%;
-    margin-top: -4%;
-    margin-left: -0.5%;
-    margin-right: -1%;
-    box-shadow: 10px 10px 8px #00000069; 
-}
-*/
-/*Link centered*/
 .card-body a {
     display: block;
     width: 155px;
@@ -58,17 +27,15 @@
     transform: translateX(-50%);
     border-radius: 4px;
     padding-right: 0%;
-    filter: brightness(0.7);
-    transition: 0.3s;
+    transition: 0.5s;
     cursor: pointer;
-    filter: grayscale(90%);
     height: 100%;
     width: 100%;
      object-fit: cover;
 }
 
 .card-img:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.5);
 }
 
 
@@ -77,6 +44,11 @@
     padding: 1 0 0 3rem;
     padding-left: 5rem;
     padding-right: 5rem;
+}
+
+::placeholder
+{
+  text-align: center;
 }
 
 

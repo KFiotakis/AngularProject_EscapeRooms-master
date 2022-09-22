@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Room, SortOptions } from 'src/app/components/rooms/roomsModels';
-import {Book} from 'src/app/components/book/bookModel';
+import { Book } from 'src/app/components/book/bookModel';
 import { RoomService } from 'src/app/components/rooms/room.service';
 import { BookService } from 'src/app/components/book/book.service';
 
@@ -14,7 +14,7 @@ export class AdminCreateDeleteComponent implements OnInit {
   dt: any;
   dataDisplay: any;
   Rooms!: Array<Room>;
-  Books!:Array<Book>;
+  Books!: Array<Book>;
   room: Room | undefined;
   SelectedRoom!: Room;
   EditVisible: boolean = false;
@@ -49,7 +49,7 @@ export class AdminCreateDeleteComponent implements OnInit {
     this.EditVisible = vis;
   }
 
-  constructor(private roomService: RoomService,private bookService : BookService) { }
+  constructor(private roomService: RoomService, private bookService: BookService) { }
 
   CreateRoomHandler(title: string, description: string,
     duration: number, genre: string, capacity: number,
@@ -132,37 +132,33 @@ export class AdminCreateDeleteComponent implements OnInit {
     this.onFilterRoomHandler();
   }
 
+  GetBookHandler() {
+    this.bookService.getBooks().subscribe(
+      {
+        next: response => {
+          if (response) {
+            hideloader();
+          }
+          this.Books = response;
+          this.dt = response;
+          this.dataDisplay = this.dt.data;
+        },
+        error: e => console.log(e),
+        complete: () => console.log("Get Booms Succesfull!")
+      }
+    );
+    // Function is defined
+    function hideloader() {
 
-GetBookHandler()
-{
-  this.bookService.getBooks().subscribe(
-    {
-      next: response => {
-        if (response) {
-          hideloader();
-        }
-        this.Books = response;
-        this.dt = response;
-        this.dataDisplay = this.dt.data;
-      },
-      error: e => console.log(e),
-      complete: () => console.log("Get Booms Succesfull!")
+      // Setting display of spinner
+      // element to none
+      let ele = document.getElementById('loading');
+      if (ele) {
+        ele.style.display = 'none';
+      }
     }
-  );
-  // Function is defined
-  function hideloader() {
 
-    // Setting display of spinner
-    // element to none
-    let ele = document.getElementById('loading');
-    if (ele) {
-      ele.style.display = 'none';
-    }
   }
-
-}
-
-
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe(

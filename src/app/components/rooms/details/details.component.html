@@ -1,6 +1,6 @@
 <div *ngIf="room">
 
-    <div>
+    <div class="details-form">
         <img class="detailsImage w-100" [src]="room.ImageUrl">
         <br>
         <div class="textinImage active">
@@ -8,24 +8,24 @@
             <hr>
           
             <div class="card-text" style="text-align:center;">
-                <p><span *ngFor="let a of howManyBombs(room)"><app-bomb></app-bomb></span>{{room.Difficulty}}</p>
+                <p><span *ngFor="let a of howManyBombs(room)"><app-bomb></app-bomb></span> {{room.Difficulty}}</p>
             </div>
             <p class="card-text">
-                <app-users aria-hidden="true" title="Capacity"></app-users>up to {{room.Capacity}}
+                <app-users aria-hidden="true" title="Capacity"></app-users> up to {{room.Capacity}}
             </p>
             <p class="card-text">
                 <app-hourglass-end aria-hidden="true" title="Game Duration"></app-hourglass-end> {{room.Duration}} min
             </p>
           
             <div  class="card-text">
-                <p><app-hashtag></app-hashtag>{{room.Genre}}</p>
+                <p><app-hashtag></app-hashtag> {{room.Genre}}</p>
             </div>
             <div *ngIf="room.HasActor==true" class="card-text" >
                 <app-user-secret></app-user-secret>
             </div>
-            <!-- <p class="card-text"> <i class="fa fa-star"></i>{{room.Rating}}</p> -->
+            
             <hr>
-            <p>{{room.Description}}</p>
+            <p class="description">{{room.Description}}</p>
             <youtube-player style="margin-top:200px;" videoId="{{ room.VideoId }}" suggestedQuality="hd1080"
                 [startSeconds]="0"> </youtube-player>
             <br>

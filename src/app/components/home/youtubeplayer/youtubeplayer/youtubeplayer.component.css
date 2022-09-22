@@ -24,4 +24,5 @@
 .fa-youtube-play {
   font-size: 30px;
   color: red;
+  filter: saturate(80%);
 }

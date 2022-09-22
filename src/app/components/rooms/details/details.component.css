@@ -1,17 +1,18 @@
 .detailsImage {
   width: 100%;
-  opacity: 0.55;
-  margin-top: 55px;
+  opacity: 0.35;
+  margin-top: none;
   padding: 0;
   background-size: cover;
 }
 
-img {
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), to(rgb(88, 88, 88, 0)));
+img{
+  -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), to(rgb(88, 88, 88, 0)));
 }
 
 .textinImage {
   position: absolute;
+  margin-top: 10%;
   top: 50%;
   right: 32%;
   text-align: center;
@@ -26,7 +27,6 @@ img {
 
 .title
 {
-  margin-top: 300px; 
   color: #d5b251;
 }
 
@@ -34,5 +34,12 @@ img {
   display: inline-block;
   margin-left: 100px;
   font-size: medium;
-  color: rgba(252, 252, 252, 0.619);
+  color: rgba(252, 252, 252, 0.849);
 }
+
+.description
+{
+  font-size: large;
+  line-height: 210%;
+}
+

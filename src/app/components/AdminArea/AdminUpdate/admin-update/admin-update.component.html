@@ -2,18 +2,25 @@
     <h1 style="margin-top:100px; text-align: center; color: #d5b215;">Make your Changes to the form Below!</h1>
     <form style="margin:100px;" class="form-group">
 
+        <label for="ImageUrl">ImageUrl</label>
+        <input #roomImage [(ngModel)]="Room.ImageUrl" name="ImageUrl" class="form-control m-4" type="text"
+            placeholder="Edit ImageUrl">
+        <label for="VideoId">VideoId</label>
+        <input #roomVideoId [(ngModel)]="Room.VideoId" name="VideoId" class="form-control m-4" type="text"
+            placeholder="Edit VideoId">
+
+        <label for="Title">Title</label>
         <input #roomTitle [(ngModel)]="Room.Title" name="Title" class="form-control m-4" type="text"
             placeholder="Edit Title">
-
+        <label for="Description">Description</label>
         <input #roomDescription [(ngModel)]="Room.Description" name="Description" class="form-control m-4" type="text"
             placeholder="Edit Description">
-
+        <label for="Duration">Duration</label>
         <input #roomDuration [(ngModel)]="Room.Duration" name="Duration" class="form-control m-4" type="number"
             placeholder="Edit Duration">
-
-        <select #roomGenre style="background-color:#bddcee;" class="form-control m-4" placeholder="Edit Difficulty"
-            [(ngModel)]="Room.Genre" name="Genre">
-            <option disabled selected>Edit Genre</option>
+        <label for="Genre">Genre</label>
+        <select #roomGenre style="background-color:#bddcee;" class="form-control m-4" [(ngModel)]="Room.Genre"
+            name="Genre">
             <option value="0" selected>Horror</option>
             <option value="1">Comedy</option>
             <option value="2">Thriller</option>
@@ -22,36 +29,28 @@
             <option value="5">SciFi</option>
             <option value="6">Mystery</option>
         </select>
-
-        <input #roomCapacity [(ngModel)]="Room.Capacity" name="Capacity" class="form-control m-4" type="number"
-            placeholder="Edit Capacity">
-
-        <select #roomDifficulty style="background-color:#bddcee;" class="form-control m-4" placeholder="Edit Difficulty"
-            [(ngModel)]="Room.Difficulty" name="Difficulty">
-            <option disabled selected>Edit Difficulty</option>
+        <label for="Capacity">Capacity</label>
+        <input #roomCapacity [(ngModel)]="Room.Capacity" name="Capacity" class="form-control m-4" type="number">
+        <label for="Difficulty">Difficulty</label>
+        <select #roomDifficulty style="background-color:#bddcee;" class="form-control m-4" [(ngModel)]="Room.Difficulty"
+            name="Difficulty">
             <option value="0">Easy</option>
             <option value="1">Hard</option>
             <option value="2">Nightmare</option>
         </select>
-
+        <label for="Actor">Actor</label>
         <select #roomActor style="background-color:#bddcee;" class="form-control m-4" placeholder="Edit HasActor"
             [(ngModel)]="Room.HasActor" name="HasActor">
-            <option disabled>Edit HasActor</option>
-            <option value="1" selected>True</option>
+            <option value="1">True</option>
             <option value="0">False</option>
         </select>
-
+        <label for="StartingPricePerPerson">StartingPricePerPerson</label>
         <input #roomStartPricePerPerson [(ngModel)]="Room.StartingPricePerPerson" name="StartingPricePerPerson"
-            class="form-control m-4" type="number" placeholder="Edit StartingPricePerPerson">
-
+            class="form-control m-4" type="number">
+        <label for="DiscountPerPerson">DiscountPerPerson</label>
         <input #roomDiscountPerPerson [(ngModel)]="Room.DiscountPerPerson" name="DiscountPerPerson"
-            class="form-control m-4" type="number" placeholder="Edit DiscountPerPerson">
+            class="form-control m-4" type="number">
 
-        <input #roomImage [(ngModel)]="Room.ImageUrl" name="ImageUrl" class="form-control m-4" type="text"
-            placeholder="Edit ImageUrl">
-
-        <input #roomVideoId [(ngModel)]="Room.VideoId" name="VideoId" class="form-control m-4" type="text"
-            placeholder="Edit VideoId">
 
         <button (click)="UpdateRoomHandler(Room.Id, roomTitle.value
         ,roomDescription.value
@@ -61,6 +60,4 @@
         roomVideoId.value)" class="btn btn-primary m-4">Save Changes</button>
         <button (click)="onCloseHandler()" class="btn btn-warning m-4">Close</button>
     </form>
-
 </div>
-

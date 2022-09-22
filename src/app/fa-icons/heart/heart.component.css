@@ -6,4 +6,5 @@
     font-size: 22px;
     cursor: pointer;
     color:  rgba(255, 0, 0, 0.878);
+    filter:saturate(80%);
 }
