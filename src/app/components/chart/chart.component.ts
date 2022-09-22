@@ -19,10 +19,10 @@ export class ChartComponent {
 		theme: "dark2",
 		exportEnabled: true,
 		title: {
-			text: "Most played Room"
+			text: "Users' Preferences"
 		},
 		subtitles: [{
-			text: "Times/week"
+			text: "Percentage of bookings"
 		}],
 		data: [{
 			type: "column", //change type to column, line, area, doughnut, etc

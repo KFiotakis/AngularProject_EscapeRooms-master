@@ -103,23 +103,6 @@ export class SignComponent implements OnInit {
     else {
       this.errorHidden = false
     }
-
-    // if(this.signInForm.status == "VALID"){
-    //   this.signInForm.disable();
-    //  this.isLoading = true;
-
-    //   if (player){
-    //     window.localStorage.setItem("player", JSON.stringify(player))
-    //     console.log(player);
-    //     this.router.navigate(['/Home']).then(() => { window.location.reload()});
-    //   }
-    //   else{
-    //     this.errorHidden = false
-    //  }
-    // }
-
-
   }
-
 
 }
