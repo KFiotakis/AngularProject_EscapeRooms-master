@@ -5,6 +5,7 @@ import { Room } from '../rooms/roomsModels';
 import { Book, TimeSelectObject } from './bookModel';
 import { BookService } from './book.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Player } from '../sign/signModels';
 
 @Component({
   selector: 'app-book',
@@ -17,16 +18,17 @@ export class BookComponent implements OnInit {
 
 
   form: FormGroup;
-  first_name: FormControl = new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z ]*"), Validators.minLength(3)]);
-  last_name: FormControl = new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z ]*"),Validators.minLength(3)]);
-  e_mail: FormControl = new FormControl("", [Validators.required, Validators.email]);
-  phone_number: FormControl = new FormControl("", [Validators.required, Validators.pattern("[0-9]{10}")])
+  first_name: FormControl = new FormControl({value:this.fillFirstName(), disabled:false}, [Validators.required, Validators.pattern("[a-zA-Z ]*"), Validators.minLength(3)]);
+  last_name: FormControl = new FormControl({value:this.fillLastName(), disabled:false}, [Validators.required, Validators.pattern("[a-zA-Z ]*"),Validators.minLength(3)]);
+  e_mail: FormControl = new FormControl({value:this.fillEmail(), disabled:false}, [Validators.required, Validators.email]);
+  phone_number: FormControl = new FormControl({value:this.fillPhoneNumber(), disabled:false}, [Validators.required, Validators.pattern("[0-9]{10}")])
   game_date: FormControl = new FormControl("", [Validators.required]);
   game_time: FormControl = new FormControl("", [Validators.required]);
   players: FormControl = new FormControl("", [Validators.required]);
   isLoading: boolean = false;
   errorHidden: boolean = true;
 
+  Player!:Player;
   Rooms: any;
   alert: boolean = false;
   errorAlert: boolean = false;
@@ -88,6 +90,51 @@ export class BookComponent implements OnInit {
 
 
   }
+
+  fillFirstName():string{
+    var player = window.localStorage.getItem("player")
+    if(player){
+      if (typeof(player) === 'string'){
+        this.Player = JSON.parse(player)
+        return this.Player.FirstName
+      }
+    }
+    return ''
+  }
+
+  fillLastName():string{
+    var player = window.localStorage.getItem("player")
+    if(player){
+      if (typeof(player) === 'string'){
+        this.Player = JSON.parse(player)
+        return this.Player.LastName
+      }
+    }
+    return ''
+  }
+
+  fillEmail():string{
+    var player = window.localStorage.getItem("player")
+    if(player){
+      if (typeof(player) === 'string'){
+        this.Player = JSON.parse(player)
+        return this.Player.Email
+      }
+    }
+    return ''
+  }
+
+  fillPhoneNumber():string{
+    var player = window.localStorage.getItem("player")
+    if(player){
+      if (typeof(player) === 'string'){
+        this.Player = JSON.parse(player)
+        return this.Player.PhoneNumber
+      }
+    }
+    return ''
+  }
+
 
   showAvailability(bookings: Book[]) {
     var hours: string[] = [];
@@ -274,5 +321,6 @@ export class BookComponent implements OnInit {
     }
   }
 
+ 
 
 }
