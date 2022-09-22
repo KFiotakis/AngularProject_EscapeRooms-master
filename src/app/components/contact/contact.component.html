@@ -4,15 +4,18 @@
 
 <div class="container">
 	<div class="row header">
-		<img style="width: 535px; position: absolute; left:585px; top:50%;"  src="https://static.in2life.gr/media/pics/pics680/1184734-escape_room_680.jpg">
 		<span style="position: relative;">
+			<br>
 			<h1>CONTACT US &nbsp;</h1>
-	  <h3>Fill out the form!</h3>
+	  		<h3>Fill out the form!</h3>
+			<br>
+			<br>
 		</span>
 	</div>
 	
 	<div class="row body">
 	  <form class="contact" [formGroup]="form" method="post" action="#">
+		<br>
 		<ul>
 		  <li>
 			<p class="left">
@@ -35,12 +38,12 @@
 			<label for="comments">Message</label>
 			<mat-error *ngIf="message.invalid">Required field</mat-error>
 			<textarea #textMessage [formControl]="message" maxlength="256" placeholder="I'm interested in..." required cols="46" rows="3" name="comments"></textarea>
-			<mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
+			<mat-hint style="color: #ffffff;" align="end"> {{message.value?.length || 0}}/256</mat-hint>
 			
 		  </li>
 		  <li>
+			<br>
 			<input [disabled]="isLoading" class="btn btn-submit submit" (click)="onSubmit(fullName.value, eMail.value, textMessage.value)"  type="submit" value="Submit" />
-			<small>or press <strong>enter</strong></small>
 			<input [formControl]="honeypot" hidden class="hidden" type="text" />
 			<div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
 			<span>{{responseMessage}}</span>

@@ -1,26 +1,30 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
 body {
-  background-color: #e6e6e6;
+  background-color: #a39f9f;
   font-size: 100%;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
+  
 }
 
 div,
 textarea,
-input {
+input,
+btn {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+  box-sizing: border-box; 
+  border-radius: 5px;
 }
 
 .container {
   max-width: 510px;
   margin: 25px auto 0px;
-  background-color: rgb(202, 193, 193);
-  border: 4px solid #cfcfcf;
-  margin-top: 200px;
+  background-color: #202630;
+  border: 4px solid #202630;
+  margin-top: 100px;
+  padding: 0;
 }
 
 .row {
@@ -30,14 +34,17 @@ input {
 }
 
 .row.header {
-  padding: 0 2.5em;
-  color: #fff;
-
+  padding: 0;
+  color: rgb(255, 255, 255);
+  background-image: url(https://static.in2life.gr/media/pics/pics680/1184734-escape_room_680.jpg);
+  margin: 0%;
+  min-height: max-content;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: -10%;
 }
 
-img{
-  margin-top: 170px;
-}
+
 
 .row.body {
   padding: 0;
@@ -74,23 +81,23 @@ h3 {
   border-width: 0 0 0 0;
   border-bottom: 5px solid;
   text-transform: uppercase;
-  background-color: #b3b3b3;
-  border-bottom-color: #8c8c8c;
+  background-color: #202630;
+  border-bottom-color: #202630;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
 
 .btn:hover {
-  background-color: #bfbfbf;
+  background-color: #427960;
 }
 
 .btn.btn-submit {
-  background-color: #a1b5db;
-  border-bottom-color: #374d78;
+  background-color: #427960;
+  color: white;
 }
 
 .btn.btn-submit:hover {
-  background-color: #5f7db6;
+  background-color: #36614d;
 }
 
 form {
@@ -142,13 +149,13 @@ form ul li .req {
 form label {
   display: block;
   margin: 0 0 0.5em 0;
-  color: #4f6fad;
+  color: #ffffff;
   font-size: 1em;
 }
 
 form input {
   margin: 0 0 0.5em 0;
-  border: 1px solid #ccc;
+  border: 1px solid #a39f9f;
   padding: 6px 10px;
   color: #555;
   font-size: 1em;
