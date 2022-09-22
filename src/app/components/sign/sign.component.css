@@ -32,8 +32,9 @@ footer {
 }
 
 footer p {
-    color: #dd8d38;
+    color: #f38d03;
     font-size: 12px;
+    filter: saturate(50%);
 }
 
 h1 {
@@ -52,10 +53,11 @@ hr {
     display: block;
     height: 3px;
     border: 0;
-    border-top: 3px solid #dd8d38;
+    border-top: 3px solid #f38d03;
     margin: 0px 0px 135px 0px;
     padding: 0;
     width: 50px;
+    filter: saturate(50%);
 }
 
 .title {
@@ -73,12 +75,13 @@ a {
 .socialIcons {
     margin: 30px 0;
     text-align: center;
-    color: #dd8d38;
+    color: #f38d03;
+    filter: saturate(50%);
 }
     
 .socialIcons a {
-    border: 1px solid #dd8d38;
-    color: #dd8d38;
+    border: 1px solid #f38d03;
+    color: #f38d03;
     border-radius: 15%;
     display: inline-flex;
     justify-content: center;
@@ -87,12 +90,14 @@ a {
     height: 30px;
     width: 30px;
     text-decoration: none;
+    filter: saturate(50%);
 }
 
 .socialIcons a:hover {
-    background-color: #dd8d38;
+    background-color: #f38d03;
     color: white;
     transition: all .5s ease-out;
+    filter: saturate(50%);
 }
 
 /*====================================
@@ -153,11 +158,12 @@ a {
     border-radius: 50px;
     width: 150px;
     height: 40px;
-    background: linear-gradient(to right, #dd8d38 50%, white 50%);
+    background: linear-gradient(to right, #f38d03 50%, white 50%);
     background-size: 200% 100%;
     background-position: right top;
     transition: all .3s ease-out;
-    color: #dd8d38;
+    color: #f38d03;
+    filter: saturate(50%);
 }
 
 .buttonHeroSignIn:hover {
@@ -204,7 +210,7 @@ input {
     padding: 20px 10px;
 }
 input:focus {
-    border-color: #dd8d38;
+    border-color: #f38d03;
 }
 
 textarea:focus, input:focus {
@@ -213,7 +219,7 @@ textarea:focus, input:focus {
 }
 
 input, select, textarea {
-    color: #dd8d38;
+    color: #f38d03;
 }
 
 input:focus + label, input:active + label {
@@ -230,21 +236,23 @@ input:focus + label, input:active + label {
 
 .buttonFormSignUp {
     font-size: 14px;
-    border: 2px solid #dd8d38;
+    border: 2px solid #f38d03;
     color: white;
     border-radius: 50px;
     width: 150px;
     height: 40px;
-    background: linear-gradient(to right, white 50%, #dd8d38 50%);
+    background: linear-gradient(to right, white 50%, #f38d03 50%);
     background-size: 200% 100%;
     background-position: right top;
     transition: all .3s ease-out;
+    filter: saturate(50%);
 }
 
 .buttonFormSignUp:hover {
     cursor: pointer;
-    color: #dd8d38;
+    color: #f38d03;
     background-position: left bottom;
+    filter: saturate(50%);
 }
 
 .buttonFormSignUp:focus {
@@ -318,11 +326,12 @@ input:focus + label, input:active + label {
     border-radius: 50px;
     width: 150px;
     height: 40px;
-    background: linear-gradient(to right, #dd8d38 50%, white 50%);
+    background: linear-gradient(to right, #f38d03 50%, white 50%);
     background-size: 200% 100%;
     background-position: right top;
     transition: all .3s ease-out;
-    color: #dd8d38;
+    color: #f38d03;
+    filter: saturate(50%);
 }
 
 .buttonHeroSignUp:hover {
@@ -369,7 +378,8 @@ input {
     padding: 20px 10px;
 }
 input:focus {
-    border-color: #dd8d38;
+    border-color: #f38d03;
+    filter: saturate(50%);
 }
 
 textarea:focus, input:focus {
@@ -378,7 +388,8 @@ textarea:focus, input:focus {
 }
 
 input, select, textarea {
-    color: #dd8d38;
+    color: #f38d03;
+    filter: saturate(50%);
 }
 
 input:focus + label, input:active + label {
@@ -395,21 +406,23 @@ input:focus + label, input:active + label {
 
 .buttonFormSignIn {
     font-size: 14px;
-    border: 2px solid #dd8d38;
+    border: 2px solid #f38d03;
     color: white;
     border-radius: 50px;
     width: 150px;
     height: 40px;
-    background: linear-gradient(to right, white 50%, #dd8d38 50%);
+    background: linear-gradient(to right, white 50%, #f38d03 50%);
     background-size: 200% 100%;
     background-position: right top;
     transition: all .3s ease-out;
+    filter: saturate(50%);
 }
 
 .buttonFormSignIn:hover {
     cursor: pointer;
-    color: #dd8d38;
+    color: #f38d03;
     background-position: left bottom;
+    filter: saturate(50%);
 }
 
 .buttonFormSignIn:focus {

@@ -29,11 +29,12 @@
             <youtube-player style="margin-top:200px;" videoId="{{ room.VideoId }}" suggestedQuality="hd1080"
                 [startSeconds]="0"> </youtube-player>
             <br>
+            <br>
             <div class="book-button">
-                <button [routerLink]="['/Book',room.Id]" class="btn btn-success "> Book Now!</button>
+                <button [routerLink]="['/Book',room.Id]" class="btn btn-success btn-lg"> Book Now!</button>
             </div>
             <br>
-            <button class="btn btn-warning back" type="button" routerLink="/Rooms">Go back</button>
+            <button class="btn btn-warning back btn-lg" type="button" routerLink="/Rooms">Go back</button>
         </div>
         
     </div>

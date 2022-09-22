@@ -21,6 +21,10 @@ img{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.btn-lg{
+  filter: saturate(50%);
+}
+
 .textinImage p {
   margin-top: 10px;
 }
