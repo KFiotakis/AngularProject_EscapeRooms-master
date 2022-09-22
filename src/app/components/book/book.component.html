@@ -9,38 +9,33 @@
       <h2>Fill the Reservation Form <br>for "{{room.Title}}"</h2>
       <br>
 
-      <label>Firstname <span class="req">*</span>
-        <mat-error *ngIf="first_name.invalid"> Required field</mat-error>
+      <label>Firstname<span class="req" *ngIf="first_name.invalid">*</span>
       </label>
       <br>
       <input #firstName [formControl]="first_name" required type="text" placeholder="Enter your First Name" />
       <br>
       <br>
-      <label>Lastname <span class="req">*</span>
-        <mat-error *ngIf="last_name.invalid"> Required field</mat-error>
+      <label>Lastname<span class="req" *ngIf="last_name.invalid">*</span>
       </label>
       <br>
       <input #lastName [formControl]="last_name" required type="text" placeholder="Enter your Last Name" />
       <br>
       <br>
-      <label>Email <span class="req">*</span>
-        <mat-error *ngIf="e_mail.invalid"> Required field</mat-error>
+      <label>Email<span class="req" *ngIf="e_mail.invalid">*</span>
       </label>
       <br>
       <input #email [formControl]="e_mail" required type="email" placeholder="email@example.com" />
       <br>
       <br>
 
-      <label>Phone Number <span class="req">*</span>
-        <mat-error *ngIf="phone_number.invalid"> Required field</mat-error>
+      <label>Phone Number<span class="req" *ngIf="phone_number.invalid">*</span>
       </label>
       <br>
       <input #phoneNumber [formControl]="phone_number" required type="tel" placeholder="Enter your phone number" />
       <br>
       <br>
 
-      <label>Game Date <span class="req">*</span>
-        <mat-error *ngIf="game_date.invalid"> Required field</mat-error>
+      <label>Game Date<span class="req" *ngIf="game_date.invalid">*</span>
       </label>
       <br>
       <input #gameDate [formControl]="game_date" required style="color:white" type="date"
@@ -50,9 +45,7 @@
       <br>
       <br>
 
-
-      <label>Select Hours <span class="req">*</span>
-        <mat-error *ngIf="game_time.invalid"> Required field</mat-error>
+      <label>Select Hours<span class="req" *ngIf="game_time.invalid">*</span>
       </label>
       <br>
 
@@ -64,8 +57,7 @@
       <br>
       <br>
 
-      <label>Number of Players <span class="req">*</span>
-        <mat-error *ngIf="players.invalid"> Required field</mat-error>
+      <label>Number of Players<span class="req" *ngIf="players.invalid">*</span>
       </label>
       <br />
       <select #numberOfPlayers [formControl]="players" required>

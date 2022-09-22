@@ -24,16 +24,26 @@
         <a class="nav-link" [routerLink]="['/Contact']" class="nav-link" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact:true}">Contact</a>
       </li>
-      <li [class.is-open]="isOpen">
+      <li *ngIf="Admin" [class.is-open]="isOpen">
         <a class="nav-link" [routerLink]="['/Admin']" class="nav-link" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact:true}">Admin Area</a>
       </li>
-      <li [class.is-open]="isOpen">
+      <li *ngIf="Player" [class.is-open]="isOpen" [hidden]="userLogOut"> 
+        <p class="nav-link" style="color: white;">Hello, {{Player.FirstName}}!</p>
+      </li>
+      <li [class.is-open]="isOpen" [hidden]="userLogIn">
         <div class="nav-button">
           <button routerLink="/Sign" class="signin-btn btn btn-outline-light btn-sm "><i class="fa fa-user-circle"
               aria-hidden="true"></i> Sign In/Sign Up</button>
         </div>
       </li>
+      <li [class.is-open]="isOpen" [hidden]="userLogOut">
+        <div class="nav-button">
+          <button routerLink="/Sign" class="signin-btn btn btn-outline-light btn-sm " (click)="signOut()"><i class="fa fa-user-circle"
+              aria-hidden="true"></i> Sign Out</button>
+        </div>
+      </li>
 
   </ul>
 </nav>
+

@@ -4,82 +4,83 @@ Don't forget to follow me on:
 Dribbble: https://dribbble.com/gardiandesign and 
 LinkedIn: https://www.linkedin.com/in/darjan-gardinovacki-602252132/
 Cheers, Darjan!
--->   
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
 <body>
-        <div class="container_SignUp">
-         <!-- Sign In - Hero Image -->
-            <div class="heroSignInBackground">
-                <div class="heroSignInBackgroundOverlay">
-                    <div class="containerHeroSignIn">
-                        <div class="signInContent">
-                            <h1>Hello friend, welcome!</h1>
-                            <hr>
-                            <p>Login your details to start<br>your journey.</p>
-                        </div> 
-                        <div class="heroSignInButton">   
-                            <button class="buttonHeroSignIn" (click)="signIn()">SIGN IN</button>
-                        </div>
+    <div class="container_SignUp">
+        <!-- Sign In - Hero Image -->
+        <div class="heroSignInBackground">
+            <div class="heroSignInBackgroundOverlay">
+                <div class="containerHeroSignIn">
+                    <div class="signInContent">
+                        <h1>Hello friend, welcome!</h1>
+                        <hr>
+                        <p>Login your details to start<br>your journey.</p>
+                    </div>
+                    <div class="heroSignInButton">
+                        <button class="buttonHeroSignIn" (click)="signIn()">SIGN IN</button>
                     </div>
                 </div>
             </div>
-            <!-- Sign Up - Form --> 
-            <div class="containerSignUp">
-                <div class="socialIcons">
-                    <h1>Create Account</h1>
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <div class="containerFormSignUp">
-                    <form action="#">
-                        <span class ="title">or use your email for registration:</span>
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                    </form>
-                </div>
-                <div class="formSignUpButton">
-                    <button class="buttonFormSignUp">SIGN UP</button>
-                </div>
-           </div>
         </div>
-        <div class="container_SignIn" id="container_SignIn">
-            <!-- Sign In - Form -->
-            <div class="containerSignIn">
-                <div class="socialIcons">
-                    <h1>Sign In</h1>
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <div class="containerFormSignIn">
-                    <form action="#">
-                        <span class ="title">or use your email account:</span>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <a href="#">forgot your password?</a>
-                    </form>
-                </div>
-                <div class="formSignInButton">
-                    <button class="buttonFormSignIn">SIGN IN</button>
-                </div>
+        <!-- Sign Up - Form -->
+        <div class="containerSignUp">
+            <div class="containerFormSignUp">
+                <form action="#" [formGroup]="signUpForm">
+                    <input #firstName [formControl]="first_name" type="text" placeholder="Firstname" />
+                    <input #lastName [formControl]="last_name" type="text" placeholder="Lastname" />
+                    <input #email [formControl]="e_mail" type="email" placeholder="Email" />
+                    <input #password [formControl]="pass_word" type="password" placeholder="Password" />
+                    <input #phoneNumber [formControl]="phone_number" type="tel" placeholder="Phone Number" />
+                    <p class="title" *ngIf="signUpForm.invalid" style="color: rgb(238, 55, 55);">All fields required and
+                        in correct format.</p>
+                </form>
             </div>
-            <!-- Sign Up - Hero Image -->
-            <div class="heroSignUpBackground" id="containerHeroSignUp">
-                <div class="heroSignUpBackgroundOverlay">
-                    <div class="containerHeroSignUp">
-                        <div class="signUpContent">
-                            <h1>Not a member?</h1>
-                            <hr>
-                            <p>Enter your personal details<br>and start your journey.</p>
-                        </div> 
-                        <div class="heroSignUpButton" (click)="signUp()">   
-                            <button class="buttonHeroSignUp">SIGN UP</button>
-                        </div>
+            <div class="formSignUpButton">
+                <button class="buttonFormSignUp" [disabled]="isLoading"
+                    (click)="createPlayerHandler(firstName.value, lastName.value, email.value, phoneNumber.value)">SIGN
+                    UP</button>
+            </div>
+        </div>
+    </div>
+    <div class="container_SignIn" id="container_SignIn">
+        <!-- Sign In - Form -->
+        <div class="containerSignIn">
+            <div class="socialIcons"></div>
+            <div class="containerFormSignIn">
+                <form action="#" [formGroup]="signInForm">
+
+                    <input #emailsign  [formControl]="e_mailSignIn" type="email" placeholder="Email" />
+                    <input type="password" [formControl]="pass_wordSignIn" placeholder="Password" />
+
+                    <!-- <h2 class="title" style="color: rgb(238, 55, 55);" *ngIf="signInForm.invalid">Required fields</h2> -->
+                    <h2 class="title" style="color: rgb(238, 55, 55);" [hidden]="errorHidden">Unable to login. Check
+                        your details and
+                        try again or register.</h2>
+                </form>
+            </div>
+            <div class="formSignInButton">
+                <button class="buttonFormSignIn" [disabled]="isLoading"
+                    (click)="signInPlayerHandler(emailsign.value)">SIGN IN</button>
+            </div>
+        </div>
+        <!-- Sign Up - Hero Image -->
+        <div class="heroSignUpBackground" id="containerHeroSignUp">
+            <div class="heroSignUpBackgroundOverlay">
+                <div class="containerHeroSignUp">
+                    <div class="signUpContent">
+                        <h1>Not a member?</h1>
+                        <hr>
+                        <p>Enter your personal details<br>and start your journey.</p>
+                    </div>
+                    <div class="heroSignUpButton" (click)="signUp()">
+                        <button class="buttonHeroSignUp">SIGN UP</button>
                     </div>
                 </div>
             </div>
-        </div>     
-    </body>
-   
+        </div>
+    </div>
+
+</body>
