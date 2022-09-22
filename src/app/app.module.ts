@@ -124,6 +124,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
       multi: true
     }
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
