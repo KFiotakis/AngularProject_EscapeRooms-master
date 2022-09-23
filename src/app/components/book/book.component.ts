@@ -6,6 +6,7 @@ import { Book, TimeSelectObject } from './bookModel';
 import { BookService } from './book.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Player } from '../sign/signModels';
+import { retry } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -18,10 +19,10 @@ export class BookComponent implements OnInit {
 
 
   form: FormGroup;
-  first_name: FormControl = new FormControl({value:this.fillFirstName(), disabled:false}, [Validators.required, Validators.pattern("[a-zA-Z ]*"), Validators.minLength(3)]);
-  last_name: FormControl = new FormControl({value:this.fillLastName(), disabled:false}, [Validators.required, Validators.pattern("[a-zA-Z ]*"),Validators.minLength(3)]);
-  e_mail: FormControl = new FormControl({value:this.fillEmail(), disabled:false}, [Validators.required, Validators.email]);
-  phone_number: FormControl = new FormControl({value:this.fillPhoneNumber(), disabled:false}, [Validators.required, Validators.pattern("[0-9]{10}")])
+  first_name: FormControl = new FormControl({value:this.fillFormForUser(1), disabled:false}, [Validators.required, Validators.pattern("[a-zA-Z ]*"), Validators.minLength(3)]);
+  last_name: FormControl = new FormControl({value:this.fillFormForUser(2), disabled:false}, [Validators.required, Validators.pattern("[a-zA-Z ]*"),Validators.minLength(3)]);
+  e_mail: FormControl = new FormControl({value:this.fillFormForUser(3), disabled:false}, [Validators.required, Validators.email]);
+  phone_number: FormControl = new FormControl({value:this.fillFormForUser(4), disabled:false}, [Validators.required, Validators.pattern("[0-9]{10}")])
   game_date: FormControl = new FormControl("", [Validators.required]);
   game_time: FormControl = new FormControl("", [Validators.required]);
   players: FormControl = new FormControl("", [Validators.required]);
@@ -91,50 +92,22 @@ export class BookComponent implements OnInit {
 
   }
 
-  fillFirstName():string{
+ 
+  fillFormForUser(data:number):string{
     var player = window.localStorage.getItem("player")
-    if(player){
+    if (player){
       if (typeof(player) === 'string'){
         this.Player = JSON.parse(player)
-        return this.Player.FirstName
+        switch(data){
+          case 1:  return this.Player.FirstName
+          case 2:  return this.Player.LastName
+          case 3:  return this.Player.Email
+          case 4:  return this.Player.PhoneNumber
+        }
       }
     }
     return ''
   }
-
-  fillLastName():string{
-    var player = window.localStorage.getItem("player")
-    if(player){
-      if (typeof(player) === 'string'){
-        this.Player = JSON.parse(player)
-        return this.Player.LastName
-      }
-    }
-    return ''
-  }
-
-  fillEmail():string{
-    var player = window.localStorage.getItem("player")
-    if(player){
-      if (typeof(player) === 'string'){
-        this.Player = JSON.parse(player)
-        return this.Player.Email
-      }
-    }
-    return ''
-  }
-
-  fillPhoneNumber():string{
-    var player = window.localStorage.getItem("player")
-    if(player){
-      if (typeof(player) === 'string'){
-        this.Player = JSON.parse(player)
-        return this.Player.PhoneNumber
-      }
-    }
-    return ''
-  }
-
 
   showAvailability(bookings: Book[]) {
     var hours: string[] = [];
@@ -299,28 +272,18 @@ export class BookComponent implements OnInit {
     if (this.form.status == "VALID") {
       this.form.disable();
       this.isLoading = true;
-      console.log(roomId, firstName, lastName, gameDate, numberOfPlayers, gameTime, email, phoneNumber);
-
       var kati = numberOfPlayers.substring(0, 1);
-      console.log(kati);
-      console.log(gameTime);
       var newDate = this.ConvertStringForGameHour(gameTime);
-
-      console.log(newDate);
       this.bookService.createBook({ RoomId: roomId, FirstName: firstName, LastName: lastName, Email: email, PhoneNumber: phoneNumber, GameDate: gameDate, NumberOfPlayers: +kati, GameTime: newDate, IsSubscribed: this.isChecked } as Book).subscribe(
         {
 
           next: response => console.log(response),
 
-          error: () => this.errorHandler(),//error => console.log(error),
+          error: () => this.errorHandler(),
 
-          complete: () => this.submitdone("Booking")//console.log("Petuxe")
+          complete: () => this.submitdone("Booking")
 
         })
-
     }
   }
-
- 
-
 }

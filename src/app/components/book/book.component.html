@@ -74,21 +74,21 @@
       <br>
       <button [disabled]="isLoading"
         (click)="CreateBookHandler(room.Id, firstName.value, lastName.value, email.value, phoneNumber.value, gameDate.valueAsDate!, numberOfPlayers.value, gameTime.value)"
-        class="btn btn-danger">Book Now
-        <span class="fa fa-money"></span>
+        class="btn btn-danger">Pay at store
+       
       </button>
       <br>
       <br>
       <button [disabled]="isLoading" class="btn btn-success"
         (click)="GoToPayPal(room.Id, firstName.value, lastName.value, email.value, phoneNumber.value, numberOfPlayers.value, gameDate.valueAsDate!, gameTime.value)">Pay
-        with Paypal <span class="fa fa-paypal"></span></button>
+        with Paypal</button>
       <br />
 
       <br />
       <button [disabled]="isLoading" class="btn btn-primary"
         (click)="onCheckout(room.Id, firstName.value, lastName.value,  email.value, phoneNumber.value, gameDate.valueAsDate!, numberOfPlayers.value, gameTime.value)">Pay
         with card
-        <span class="fa fa-credit-card"></span>
+        
       </button>
       <br />
       <br />
