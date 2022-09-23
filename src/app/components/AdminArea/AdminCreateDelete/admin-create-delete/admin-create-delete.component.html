@@ -189,7 +189,7 @@
   <div class="form__group field" style=" text-align: center; margin-left:20%">
     <div style="display:flex;  justify-content: space-between;  text-align: center;" class="container">
     </div>
-    <table class="table table-dark" *ngIf="Books else NoBooksData">
+    <table style="margin: 5px;" class="table table-striped  table-dark" *ngIf="Books else NoBooksData">
       <thead>
         <tr style="text-align:center">
           <th>Id</th>
@@ -213,7 +213,7 @@
           <td>{{book.FirstName}}</td>
           <td>{{book.LastName}}</td>
           <td>{{book.NumberOfPlayers}}</td>
-          <td>{{book.GameDate | date:'dd-MM-yyyy'}}</td>
+          <td >{{book.GameDate | date:'dd-MM-yyyy'}}</td>
           <td>{{book.GameTime | date: 'shortTime'}}</td>
           <td>{{book.TotalPrice}}</td>
           <td>{{book.IsPayed}}</td>
