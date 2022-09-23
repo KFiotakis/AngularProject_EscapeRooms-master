@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
 	email: FormControl = new FormControl("", [Validators.required, Validators.email]);
 	message: FormControl = new FormControl("", [Validators.required, Validators.maxLength(256)]);
 	honeypot: FormControl = new FormControl(""); // we will use this to prevent spam
-	submitted: boolean = false; // show and hide the success message
+	submitted: boolean = true; // show and hide the success message
 	isLoading: boolean = false; // disable the submit button if we're loading
 	responseMessage?: string; // the response message to show to the user
 	constructor(private formBuilder: FormBuilder, private contactService: ContactService) {
@@ -55,7 +55,7 @@ export class ContactComponent implements OnInit {
 		 this.responseMessage = "Thanks for the message! I'll get back to you soon!";
 		 this.form.enable(); // re enable the form after a success
 		 this.form.reset();
-		 this.submitted = true; // show the response message
+		 this.submitted = false; // show the response message
 		 this.isLoading = false; // re enable the submit button
 		 console.log(response);
 					    
